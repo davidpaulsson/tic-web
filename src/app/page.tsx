@@ -1,3 +1,7 @@
 export default function Home() {
-  return <p>Home</p>;
+  return (
+    <main>
+      <h1>TIC</h1>
+    </main>
+  );
 }
