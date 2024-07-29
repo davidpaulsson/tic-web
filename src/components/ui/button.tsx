@@ -15,18 +15,18 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         className={cn(
-          'inline-flex items-center justify-center whitespace-nowrap rounded-full transition-colors',
+          'inline-flex items-center justify-center whitespace-nowrap rounded-3xl transition-colors',
           // Focus
-          'focus-visible:ring-tic-blue ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none',
+          'ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tic-blue focus-visible:ring-offset-2 disabled:pointer-events-none',
           // Disabled
           'disabled:opacity-50',
           // Size
-          'h-12 px-6 py-4',
+          'h-10 px-6 py-3',
           {
             // Variants
-            'bg-tic-blue hover:bg-tic-blue-light text-white': variant === 'default',
-            'text-tic-blue bg-white hover:bg-black/5': variant === 'secondary',
-            'text-tic-blue hover:text-tic-blue-light bg-transparent': variant === 'ghost',
+            'bg-tic-blue text-white hover:bg-tic-blue-light': variant === 'default',
+            'bg-white text-tic-blue hover:bg-slate-50': variant === 'secondary',
+            'bg-transparent text-tic-blue hover:text-tic-blue-light': variant === 'ghost',
           },
         )}
         ref={ref}
