@@ -1,3 +1,4 @@
+import { Dot } from '@/icons/dot';
 import Facebook from '@/icons/facebook.svg';
 import Instagram from '@/icons/instagram.svg';
 import LinkedIn from '@/icons/linkedin.svg';
@@ -47,14 +48,20 @@ export const Footer = () => (
     <div className="flex flex-col-reverse border-t border-t-white/10 pt-8 md:flex-row md:justify-between">
       <div className="text-white">©{new Date().getFullYear()} The Intelligence Company AB</div>
 
-      <ul className="mb-8 flex flex-col gap-2 md:mb-0 md:flex-row md:gap-4">
-        {FOOTER_LINKS.map((link) => (
-          <li key={link.slug}>
-            <Link href={link.slug} className="text-white hover:underline">
-              {link.label}
-            </Link>
-          </li>
-        ))}
+      <ul className="mb-8 flex flex-col gap-2 text-white md:mb-0 md:flex-row md:items-center md:gap-4">
+        {FOOTER_LINKS.map((link) => {
+          const isLast = link === FOOTER_LINKS[FOOTER_LINKS.length - 1];
+          return (
+            <>
+              <li key={link.slug}>
+                <Link href={link.slug} className="text-white hover:underline">
+                  {link.label}
+                </Link>
+              </li>
+              {!isLast && <Dot width={2} height={2} className="hidden fill-white md:block" />}
+            </>
+          );
+        })}
       </ul>
     </div>
   </footer>
