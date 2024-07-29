@@ -11,7 +11,7 @@ import Link from 'next/link';
 import { FOOTER_LINKS, SOCIAL_LINKS } from '@/constants';
 
 const SocialLinks = () => (
-  <ul className="flex gap-4">
+  <ul className="flex gap-8">
     {SOCIAL_LINKS.map((link) => {
       let icon;
       switch (link.label) {
@@ -24,9 +24,14 @@ const SocialLinks = () => (
         case 'LinkedIn':
           icon = LinkedIn;
           break;
-        default:
+        case 'X':
           icon = X;
       }
+
+      if (!icon) {
+        return null;
+      }
+
       return (
         <li key={link.href}>
           <a href={link.href}>
@@ -39,7 +44,7 @@ const SocialLinks = () => (
 );
 
 export const Footer = () => (
-  <footer className="container space-y-8 bg-gradient-to-b from-tic-blue-light to-tic-blue-dark py-20">
+  <footer className="container space-y-8 bg-gradient-to-b from-tic-blue-light to-tic-blue-dark pb-20 pt-40">
     <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
       <Image src={TIC} alt="The Information Company" />
       <SocialLinks />
