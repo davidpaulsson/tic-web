@@ -8,7 +8,8 @@ import { HEADER_LINKS } from '@/constants';
 
 import { cn } from '@/lib/utils';
 
-import { Button } from './ui/button';
+import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 type Props = {
   theme: 'light' | 'dark';
@@ -41,28 +42,42 @@ export const Header = ({ theme = 'dark' }: Props) => (
       {/** Between md and lg screens */}
       <ul className="hidden gap-2 text-white md:max-lg:flex">
         <li>
-          <Link
-            href="/kontakta-oss"
-            className={cn('flex h-10 w-10 items-center justify-center', {
-              'text-white': theme === 'light',
-              'text-tic-blue': theme === 'dark',
-            })}
-          >
-            <span className="sr-only">Kontakta säljteamet</span>
-            <Phone className="h-5 w-5" />
-          </Link>
+          <Tooltip>
+            <TooltipTrigger>
+              <Link
+                href="/kontakta-oss"
+                className={cn('flex h-10 w-10 items-center justify-center', {
+                  'text-white': theme === 'light',
+                  'text-tic-blue': theme === 'dark',
+                })}
+              >
+                <span className="sr-only">Kontakta säljteamet</span>
+                <Phone className="h-5 w-5" />
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Kontakta säljteamet</p>
+            </TooltipContent>
+          </Tooltip>
         </li>
         <li>
-          <Link
-            href="/login"
-            className={cn('flex h-10 w-10 items-center justify-center', {
-              'text-white': theme === 'light',
-              'text-tic-blue': theme === 'dark',
-            })}
-          >
-            <span className="sr-only">Logga in</span>
-            <LogIn className="h-5 w-5" />
-          </Link>
+          <Tooltip>
+            <TooltipTrigger>
+              <Link
+                href="/login"
+                className={cn('flex h-10 w-10 items-center justify-center', {
+                  'text-white': theme === 'light',
+                  'text-tic-blue': theme === 'dark',
+                })}
+              >
+                <span className="sr-only">Logga in</span>
+                <LogIn className="h-5 w-5" />
+              </Link>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Logga in</p>
+            </TooltipContent>
+          </Tooltip>
         </li>
       </ul>
 

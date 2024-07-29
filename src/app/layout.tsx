@@ -1,6 +1,7 @@
 import localFont from 'next/font/local';
 
 import { Footer } from '@/components/footer';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 import './globals.css';
 
@@ -38,7 +39,7 @@ export default function RootLayout({
     <html lang="en">
       <title>The Information Company</title>
       <body className={hyperlegible.className}>
-        {children}
+        <TooltipProvider delayDuration={100}>{children}</TooltipProvider>
 
         <Footer />
       </body>

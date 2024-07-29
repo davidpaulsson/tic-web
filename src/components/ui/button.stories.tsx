@@ -20,7 +20,7 @@ export default {
     asChild: { table: { disable: true } },
   },
   args: {
-    children: 'The Information Company',
+    children: 'The Intelligence Company',
     variant: 'default',
     size: 'default',
   },

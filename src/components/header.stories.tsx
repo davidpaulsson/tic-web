@@ -1,3 +1,4 @@
+import { Tooltip } from '@radix-ui/react-tooltip';
 import { Meta, StoryObj } from '@storybook/react';
 
 import React from 'react';
@@ -5,28 +6,26 @@ import React from 'react';
 import { cn } from '@/lib/utils';
 
 import { Header } from './header';
+import { TooltipProvider } from './ui/tooltip';
 
 const meta: Meta<typeof Header> = {
   title: 'Sections/Header',
   component: Header,
-  tags: ['autodocs'],
+  // tags: ['autodocs'],
   args: {
     theme: 'dark',
   },
-  argTypes: {
-    theme: {
-      description: 'The theme of the header, a dark themed header works on a light background and vice-versa.',
-    },
-  },
   render: ({ theme }) => (
-    <div
-      className={cn({
-        'bg-white': theme === 'dark',
-        'bg-tic-blue-dark': theme === 'light',
-      })}
-    >
-      <Header theme={theme} />
-    </div>
+    <TooltipProvider delayDuration={100}>
+      <div
+        className={cn({
+          'bg-white': theme === 'dark',
+          'bg-tic-blue-dark': theme === 'light',
+        })}
+      >
+        <Header theme={theme} />
+      </div>
+    </TooltipProvider>
   ),
 };
 
