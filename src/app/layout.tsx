@@ -1,8 +1,31 @@
-import { Inter } from 'next/font/google';
+import localFont from 'next/font/local';
 
 import './globals.css';
 
-const inter = Inter({ subsets: ['latin'] });
+const hyperlegible = localFont({
+  src: [
+    {
+      path: '../fonts/Atkinson-Hyperlegible-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Atkinson-Hyperlegible-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../fonts/Atkinson-Hyperlegible-Italic.woff2',
+      weight: '400',
+      style: 'italic',
+    },
+    {
+      path: '../fonts/Atkinson-Hyperlegible-BoldItalic.woff2',
+      weight: '700',
+      style: 'italic',
+    },
+  ],
+});
 
 export default function RootLayout({
   children,
@@ -12,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <title>The Information Company</title>
-      <body className={inter.className}>{children}</body>
+      <body className={hyperlegible.className}>{children}</body>
     </html>
   );
 }
