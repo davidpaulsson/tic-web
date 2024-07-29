@@ -44,30 +44,32 @@ const SocialLinks = () => (
 );
 
 export const Footer = () => (
-  <footer className="container space-y-8 bg-gradient-to-b from-tic-blue-light to-tic-blue-dark pb-20 pt-40">
-    <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-      <Image src={TIC} alt="The Information Company" />
-      <SocialLinks />
-    </div>
+  <footer className="bg-gradient-to-b from-tic-blue-light to-tic-blue-dark pb-20 pt-40">
+    <div className="container space-y-8">
+      <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+        <Image src={TIC} alt="The Information Company" />
+        <SocialLinks />
+      </div>
 
-    <div className="flex flex-col-reverse border-t border-t-white/10 pt-8 md:flex-row md:justify-between">
-      <div className="text-white">©{new Date().getFullYear()} The Intelligence Company AB</div>
+      <div className="flex flex-col-reverse border-t border-t-white/10 pt-8 md:flex-row md:justify-between">
+        <div className="text-white">©{new Date().getFullYear()} The Intelligence Company AB</div>
 
-      <ul className="mb-8 flex flex-col gap-2 text-white md:mb-0 md:flex-row md:items-center md:gap-4">
-        {FOOTER_LINKS.map((link) => {
-          const isLast = link === FOOTER_LINKS[FOOTER_LINKS.length - 1];
-          return (
-            <>
-              <li key={link.slug}>
-                <Link href={link.slug} className="text-white hover:underline">
-                  {link.label}
-                </Link>
-              </li>
-              {!isLast && <Dot width={2} height={2} className="hidden fill-white md:block" />}
-            </>
-          );
-        })}
-      </ul>
+        <ul className="mb-8 flex flex-col gap-2 text-white md:mb-0 md:flex-row md:items-center md:gap-4">
+          {FOOTER_LINKS.map((link) => {
+            const isLast = link === FOOTER_LINKS[FOOTER_LINKS.length - 1];
+            return (
+              <>
+                <li key={link.slug}>
+                  <Link href={link.slug} className="text-white hover:underline">
+                    {link.label}
+                  </Link>
+                </li>
+                {!isLast && <Dot width={2} height={2} className="hidden fill-white md:block" />}
+              </>
+            );
+          })}
+        </ul>
+      </div>
     </div>
   </footer>
 );

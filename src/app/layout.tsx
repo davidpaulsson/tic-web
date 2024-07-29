@@ -1,5 +1,7 @@
 import localFont from 'next/font/local';
 
+import { Footer } from '@/components/footer';
+
 import './globals.css';
 
 const hyperlegible = localFont({
@@ -35,7 +37,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <title>The Information Company</title>
-      <body className={hyperlegible.className}>{children}</body>
+      <body className={hyperlegible.className}>
+        {children}
+
+        <Footer />
+      </body>
     </html>
   );
 }
