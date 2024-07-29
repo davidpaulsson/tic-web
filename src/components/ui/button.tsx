@@ -28,6 +28,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             'bg-white text-tic-blue hover:bg-slate-50': variant === 'secondary',
             'bg-transparent text-tic-blue hover:text-tic-blue-light': variant === 'ghost',
           },
+          className,
         )}
         ref={ref}
         {...props}

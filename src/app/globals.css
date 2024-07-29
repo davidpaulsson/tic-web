@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'hyperlegible', sans-serif;
+@layer base {
+  body {
+    font-family: 'hyperlegible', sans-serif;
+  }
+}
+
+@layer utilities {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 1280px;
+  }
 }

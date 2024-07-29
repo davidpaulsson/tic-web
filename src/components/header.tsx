@@ -1,6 +1,6 @@
 import TIC from '@/icons/tic.svg';
 
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, LogIn, Phone } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -30,26 +30,56 @@ export const Header = ({ theme = 'dark' }: Props) => (
         <ul className="flex items-center gap-8">
           {HEADER_LINKS.map((link) => (
             <li key={link.slug}>
-              <Link href={link.slug} className="hover:underline">
+              <Link href={link.slug} className="text-nowrap hover:underline">
                 {link.label}
               </Link>
             </li>
           ))}
         </ul>
       </div>
-      <ul className="flex items-center gap-2">
+
+      {/** Between md and lg screens */}
+      <ul className="hidden gap-2 text-white md:max-lg:flex">
+        <li>
+          <Link
+            href="/kontakta-oss"
+            className={cn('flex h-10 w-10 items-center justify-center', {
+              'text-white': theme === 'light',
+              'text-tic-blue': theme === 'dark',
+            })}
+          >
+            <span className="sr-only">Kontakta säljteamet</span>
+            <Phone className="h-5 w-5" />
+          </Link>
+        </li>
+        <li>
+          <Link
+            href="/login"
+            className={cn('flex h-10 w-10 items-center justify-center', {
+              'text-white': theme === 'light',
+              'text-tic-blue': theme === 'dark',
+            })}
+          >
+            <span className="sr-only">Logga in</span>
+            <LogIn className="h-5 w-5" />
+          </Link>
+        </li>
+      </ul>
+
+      {/** lg screens and up */}
+      <ul className="hidden items-center gap-2 lg:flex">
         <li>
           <Button variant="ghost" asChild>
-            <Link href="/kontakta-oss" className="flex gap-2 text-white hover:text-white">
+            <Link href="/kontakta-oss" className="group flex gap-2 text-white hover:text-white">
               Kontakta säljteamet
-              <ChevronRight className="h-5 w-5 text-[#C8B8DC]" />
+              <ChevronRight className="h-5 w-5 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
         </li>
         <li>
           <Button variant="secondary" asChild>
-            <Link href="/login" className="flex gap-2">
-              Logga in <ChevronRight className="h-5 w-5 text-[#C8B8DC]" />
+            <Link href="/login" className="group flex gap-2">
+              Logga in <ChevronRight className="h-5 w-5 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>
         </li>
