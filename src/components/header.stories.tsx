@@ -15,10 +15,13 @@ const meta: Meta<typeof Header> = {
   args: {
     theme: 'dark',
   },
+  parameters: {
+    layout: 'fullscreen', // Remove padding around the story
+  },
   render: ({ theme }) => (
     <TooltipProvider delayDuration={100}>
       <div
-        className={cn({
+        className={cn('py-6', {
           'bg-white': theme === 'dark',
           'bg-tic-blue-dark': theme === 'light',
         })}
