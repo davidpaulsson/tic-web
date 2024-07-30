@@ -52,8 +52,6 @@ export const TeknikOmraden = () => {
             </p>
           </CarouselItem>
         </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
       </Carousel>
     </div>
   );
