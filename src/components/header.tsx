@@ -45,7 +45,7 @@ export const Header = ({ theme = 'dark' }: Props) => (
 
       {/** up to md screen */}
       <Sheet>
-        <SheetTrigger className="flex h-10 w-10 items-center justify-center md:hidden">
+        <SheetTrigger className="flex h-10 w-10 items-center justify-end md:hidden">
           <Menu />
           <span className="sr-only">Öppna menyn</span>
         </SheetTrigger>

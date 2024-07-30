@@ -37,10 +37,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <title>The Information Company</title>
       <body className={hyperlegible.className}>
         <TooltipProvider delayDuration={100}>{children}</TooltipProvider>
-
         <Footer />
       </body>
     </html>

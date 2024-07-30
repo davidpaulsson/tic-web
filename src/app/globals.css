@@ -10,8 +10,8 @@
 
 @layer utilities {
   .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
     width: 100%;
     margin: 0 auto;
     max-width: 1280px;
