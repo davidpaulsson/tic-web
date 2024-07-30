@@ -2,7 +2,6 @@ import { Dot } from '@/icons/dot';
 import Facebook from '@/icons/facebook.svg';
 import Instagram from '@/icons/instagram.svg';
 import LinkedIn from '@/icons/linkedin.svg';
-import TIC from '@/icons/tic.svg';
 import X from '@/icons/x.svg';
 
 import Image from 'next/image';
@@ -47,7 +46,10 @@ export const Footer = () => (
   <footer className="bg-gradient-to-b from-tic-blue-light to-tic-blue-dark pb-20 pt-40">
     <div className="container space-y-8">
       <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-        <Image src={TIC} alt="The Information Company" />
+        <div className="grid place-items-center rounded bg-red-500 text-white" style={{ width: 134, height: 64 }}>
+          Logo
+        </div>
+
         <SocialLinks />
       </div>
 

@@ -1,7 +1,4 @@
-import TIC from '@/icons/tic.svg';
-
-import { ChevronRight, LogIn, Phone } from 'lucide-react';
-import Image from 'next/image';
+import { ChevronRight, LogIn, Menu, Phone } from 'lucide-react';
 import Link from 'next/link';
 
 import { HEADER_LINKS } from '@/constants';
@@ -26,9 +23,16 @@ export const Header = ({ theme = 'dark' }: Props) => (
       <div className="flex items-center gap-8">
         <Link href="/">
           <span className="sr-only">Gå till startsidan</span>
-          <Image src={TIC} height={40} alt="The Information Company" />
+          <div className="grid place-items-center rounded bg-red-500 text-white" style={{ width: 67, height: 32 }}>
+            Logo
+          </div>
         </Link>
-        <ul className="flex items-center gap-8">
+
+        {/** up to md screen */}
+        <Menu />
+
+        {/** md screen and up */}
+        <ul className="hidden items-center gap-8 md:flex">
           {HEADER_LINKS.map((link) => (
             <li key={link.slug}>
               <Link href={link.slug} className="text-nowrap hover:underline">
@@ -39,7 +43,7 @@ export const Header = ({ theme = 'dark' }: Props) => (
         </ul>
       </div>
 
-      {/** Between md and lg screens */}
+      {/** Between md and lg screen */}
       <ul className="hidden gap-2 text-white md:max-lg:flex">
         <li>
           <Tooltip>
@@ -81,7 +85,7 @@ export const Header = ({ theme = 'dark' }: Props) => (
         </li>
       </ul>
 
-      {/** lg screens and up */}
+      {/** lg screen and up */}
       <ul className="hidden items-center gap-2 lg:flex">
         <li>
           <Button variant="ghost" asChild>
