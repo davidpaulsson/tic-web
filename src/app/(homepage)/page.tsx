@@ -14,7 +14,7 @@ import { TeknikOmraden } from './teknikomraden';
 export default function Home() {
   return (
     <>
-      <title>The Information Company</title>
+      <title>The Intelligence Company</title>
       <meta
         name="description"
         content="Upptäck en AI-revolution inom affärsinsikter. Högre kvalitet och 10X mer företagsinfo. Vår AI-plattform Ormeo bäddar för säkrare affärsbeslut och identifierar nya kunder och möjligheter snabbare än någonsin."
