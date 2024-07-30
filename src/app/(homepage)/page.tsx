@@ -15,7 +15,7 @@ export default function Home() {
       />
 
       <div className="relative overflow-hidden py-6">
-        <Image src={HeroBackground} alt="" fill={true} priority={true} placeholder="blur" className="z-[-1] object-cover" />
+        <Image src={HeroBackground} alt="" fill={true} priority={true} placeholder="blur" quality={100} className="z-[-1] object-cover" />
         <Header theme="light" />
         <Hero />
       </div>
