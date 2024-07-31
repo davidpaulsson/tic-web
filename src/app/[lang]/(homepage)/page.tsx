@@ -1,9 +1,11 @@
 import Image from 'next/image';
 
+import { getDictionary } from '@/lib/get-dictionary';
+
 import { Header } from '@/components/header';
 
 import { FeatureSection } from './feature-section';
-import { Hero } from './hero';
+import { Hero, HeroSubtitle, HeroTitle } from './hero';
 import HeroBackground from './hero-background.jpg';
 import IconAffarshantering from './icon-affarshantering.png';
 import IconAiPlattform from './icon-ai-plattform.png';
@@ -11,19 +13,21 @@ import IconCrmIntegrering from './icon-crm-integrering.png';
 import IconDokumenthantering from './icon-dokumenthantering.png';
 import { TeknikOmraden } from './teknikomraden';
 
-export default function Home() {
+export default async function Home({ params }: Readonly<{ params: { lang: string } }>) {
+  const dict = await getDictionary(params.lang);
+
   return (
     <>
-      <title>The Intelligence Company</title>
-      <meta
-        name="description"
-        content="Upptäck en AI-revolution inom affärsinsikter. Högre kvalitet och 10X mer företagsinfo. Vår AI-plattform Ormeo bäddar för säkrare affärsbeslut och identifierar nya kunder och möjligheter snabbare än någonsin."
-      />
+      <title>{dict.homepage.meta.title}</title>
+      <meta name="description" content={dict.homepage.meta.description} />
 
       <div className="relative overflow-hidden py-6">
         <Image src={HeroBackground} alt="" fill={true} priority={true} placeholder="blur" quality={100} className="z-[-1] object-cover" />
         <Header theme="light" />
-        <Hero />
+        <Hero>
+          <HeroTitle>{dict.homepage.hero.title}</HeroTitle>
+          <HeroSubtitle>{dict.homepage.hero.subtitle}</HeroSubtitle>
+        </Hero>
       </div>
       <main>
         <div className="py-6">

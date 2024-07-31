@@ -1,18 +1,13 @@
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import React from 'react';
 
 import { Button } from '@/components/ui/button';
 
-export const Hero = () => {
+export const Hero = ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="container pb-32 pt-20">
-      <h1 className="mb-6 text-balance text-4xl text-white sm:text-5xl md:max-w-[14ch] md:text-6xl lg:text-7xl">
-        Upptäck en AI-revolution inom affärsinsikter
-      </h1>
-      <p className="mb-10 text-pretty text-lg text-[#DCCFED] sm:max-w-[40ch] md:text-xl">
-        Högre kvalitet och 10X mer företagsinfo. Vår AI-plattform Ormeo bäddar för säkrare affärsbeslut och identifierar nya kunder och
-        möjligheter snabbare än någonsin.
-      </p>
+      {children}
       <div className="flex flex-col gap-4 sm:flex-row">
         <Button variant="secondary" asChild>
           <Link href="/kontakta-oss" className="group flex gap-2">
@@ -29,3 +24,11 @@ export const Hero = () => {
     </div>
   );
 };
+
+export const HeroTitle = ({ children }: { children: React.ReactNode }) => (
+  <h1 className="mb-6 text-balance text-4xl text-white sm:text-5xl md:max-w-[14ch] md:text-6xl lg:text-7xl">{children}</h1>
+);
+
+export const HeroSubtitle = ({ children }: { children: React.ReactNode }) => (
+  <p className="mb-10 text-pretty text-lg text-[#DCCFED] sm:max-w-[40ch] md:text-xl">{children}</p>
+);
