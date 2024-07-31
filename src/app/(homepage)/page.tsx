@@ -26,7 +26,7 @@ export default function Home() {
         <Hero />
       </div>
       <main>
-        <div className="container py-6">
+        <div className="py-6">
           <FeatureSection
             align="left"
             topIcon={<Image src={IconAiPlattform} alt="" width={40} height={40} />}
@@ -39,6 +39,7 @@ export default function Home() {
 
           <FeatureSection
             align="right"
+            className="bg-gradient-to-b from-[#F3F2FF] to-[#CDE5F6]"
             topIcon={<Image src={IconAffarshantering} alt="" width={40} height={40} />}
             topTitle="Affärshantering"
             title="En smartare och säkrare affärshantering med vår AI-plattform"
@@ -59,6 +60,7 @@ export default function Home() {
 
           <FeatureSection
             align="right"
+            className="bg-gradient-to-b from-[#F3F2FF] to-[#CDE5F6]"
             topIcon={<Image src={IconDokumenthantering} alt="" width={40} height={40} />}
             topTitle="Dokumenthantering"
             title="Dataanalys och skräddarsydd rådgivning"
