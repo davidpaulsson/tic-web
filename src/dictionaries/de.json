@@ -1,0 +1,124 @@
+{
+  "general": {
+    "openMenu": "Menü öffnen",
+    "links": {
+      "goToHomepage": {
+        "title": "Zur Startseite",
+        "url": "/de"
+      },
+      "contactSales": {
+        "title": "Kontaktieren Sie den Vertrieb",
+        "url": "/"
+      },
+      "logIn": {
+        "title": "Anmelden",
+        "url": "/"
+      }
+    }
+  },
+  "global": {
+    "navigation": [
+      {
+        "title": "Produkte",
+        "url": "/"
+      },
+      {
+        "title": "Lösungen",
+        "url": "/"
+      },
+      {
+        "title": "Entwickler",
+        "url": "/"
+      },
+      {
+        "title": "Unsere KI-Technologie",
+        "url": "/"
+      },
+      {
+        "title": "Über uns",
+        "url": "/"
+      },
+      {
+        "title": "Kontakt",
+        "url": "/"
+      }
+    ],
+    "footer": {
+      "links": [
+        {
+          "title": "Cookie-Richtlinie",
+          "url": "/"
+        },
+        {
+          "title": "Nutzungsbedingungen",
+          "url": "/"
+        },
+        {
+          "title": "Datenschutzerklärung",
+          "url": "/"
+        }
+      ]
+    }
+  },
+  "homepage": {
+    "meta": {
+      "title": "The Intelligence Company",
+      "description": "Entdecken Sie eine KI-Revolution in der Geschäftsinformation. Höhere Qualität und 10-mal mehr Unternehmensinformationen. Unsere KI-Plattform Ormeo ermöglicht sichere Geschäftsentscheidungen und identifiziert neue Kunden und Chancen schneller als je zuvor."
+    },
+    "hero": {
+      "title": "Entdecken Sie eine KI-Revolution in der Geschäftsinformation",
+      "subtitle": "Höhere Qualität und 10-mal mehr Unternehmensinformationen. Unsere KI-Plattform Ormeo ermöglicht sichere Geschäftsentscheidungen und identifiziert neue Kunden und Chancen schneller als je zuvor.",
+      "cta": "Kostenlos starten",
+      "ctaUrl": "#",
+      "secondaryCta": "Kontaktieren Sie den Vertrieb",
+      "secondaryCtaUrl": "#"
+    },
+    "features": {
+      "aiPlatform": {
+        "topTitle": "KI-Plattform",
+        "title": "Super sicher und einfach mit Ormeo®",
+        "description": "Übernehmen Sie die vollständige Kontrolle über Unternehmensinformationen mit unserer KI-gesteuerten Plattform Ormeo®. Unsere fortschrittliche KI interpretiert jedes Detail in Jahresberichten, Finanzdaten, behördlichen Informationen, öffentlichen Informationen, sozialen Unternehmensprofilen, Adressdaten und vielem mehr. Entdecken Sie die Kraft datengesteuerter Erkenntnisse und treffen Sie sofort smartere Geschäftsentscheidungen.",
+        "link": {
+          "title": "Ormeo testen",
+          "url": "/"
+        }
+      },
+      "businessManagement": {
+        "topTitle": "Geschäftsmanagement",
+        "title": "Intelligenteres und sichereres Geschäftsmanagement mit unserer KI-Plattform",
+        "description": "Die KI-Plattform von TIC überwacht ständig Tausende von Datenquellen, um Abweichungen und Muster in Registern, Jahresberichten und anderen Informationsquellen zu identifizieren. Mit Ormeo® eliminieren Sie unangenehme Überraschungen und haben volle Kontrolle darüber, mit wem Sie Geschäfte machen. Sicheres und intelligentes Geschäftsmanagement war noch nie einfacher.",
+        "link": {
+          "title": "Erfahren Sie mehr über unsere KI-Technologie",
+          "url": "/"
+        }
+      },
+      "crmIntegration": {
+        "topTitle": "CRM-Integration",
+        "title": "Steigern Sie sofort Ihren Umsatz und Ihre Einnahmen",
+        "description": "Mit unserer KI-Plattform Ormeo® können Sie ganz einfach neue potenzielle Kunden durch Prospektion und intelligente Auswahlen identifizieren. Verwenden Sie unser Web-Tool für personalisiertes und effektives Marketing und integrieren Sie Ormeo® nahtlos in Ihr bestehendes CRM-System. Entdecken Sie, wie es ist, Ihren Vertrieb wirklich zu revolutionieren.",
+        "link": {
+          "title": "Integration live sehen",
+          "url": "/"
+        }
+      },
+      "documentManagement": {
+        "topTitle": "Dokumentenmanagement",
+        "title": "Datenanalyse und maßgeschneiderte Beratung",
+        "description": "Kombinieren Sie Ihre eigenen Daten mit Hunderten von Datenquellen in unserer KI-Plattform Ormeo, um völlig neue Einblicke in Ihre Geschäftsbeziehungen zu gewinnen. Ormeo® verarbeitet alle Arten von Dokument- und Dateiformaten sowie Bilder und interpretiert sowohl strukturierte als auch unstrukturierte Daten. Entdecken Sie die Kraft datengesteuerter Beratung und verwandeln Sie Ihr Geschäft.",
+        "link": {
+          "title": "Mit Ormeo loslegen",
+          "url": "/"
+        }
+      },
+      "creditInformation": {
+        "topTitle": "Mehr als Kreditinformationen",
+        "title": "Mehr als nur ein Kreditinformationsunternehmen",
+        "description": "Wir sind mehr als nur ein Kreditinformationsunternehmen – wir machen Geschäfte sicherer, indem wir Ihnen eine bessere Kontrolle darüber geben, mit wem Sie Geschäfte machen. Unsere fortschrittliche Technologie verarbeitet Jahresberichte, Registerinformationen und andere Quellen, um Abweichungen zu identifizieren. Unsere Dienstleistungen sind für öffentliche Einrichtungen und gemeinnützige Organisationen völlig kostenlos.",
+        "link": {
+          "title": "Kostenlos starten",
+          "url": "/"
+        }
+      }
+    }
+  }
+}
