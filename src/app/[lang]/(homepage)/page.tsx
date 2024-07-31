@@ -1,17 +1,20 @@
+import { ChevronRight } from 'lucide-react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { getDictionary } from '@/lib/get-dictionary';
 
 import { Header } from '@/components/header';
+import { Button } from '@/components/ui/button';
 
-import { FeatureSection } from './feature-section';
-import { Hero, HeroSubtitle, HeroTitle } from './hero';
-import HeroBackground from './hero-background.jpg';
-import IconAffarshantering from './icon-affarshantering.png';
-import IconAiPlattform from './icon-ai-plattform.png';
-import IconCrmIntegrering from './icon-crm-integrering.png';
-import IconDokumenthantering from './icon-dokumenthantering.png';
-import { TeknikOmraden } from './teknikomraden';
+import HeroBackground from './assets/hero-background.jpg';
+import IconAffarshantering from './assets/icon-affarshantering.png';
+import IconAiPlattform from './assets/icon-ai-plattform.png';
+import IconCrmIntegrering from './assets/icon-crm-integrering.png';
+import IconDokumenthantering from './assets/icon-dokumenthantering.png';
+import { FeatureSection } from './components/feature-section';
+import { Hero, HeroSubtitle, HeroTitle } from './components/hero';
+import { TeknikOmraden } from './components/teknikomraden';
 
 export default async function Home({ params }: Readonly<{ params: { lang: string } }>) {
   const dict = await getDictionary(params.lang);
@@ -23,64 +26,78 @@ export default async function Home({ params }: Readonly<{ params: { lang: string
 
       <div className="relative overflow-hidden py-6">
         <Image src={HeroBackground} alt="" fill={true} priority={true} placeholder="blur" quality={100} className="z-[-1] object-cover" />
-        <Header theme="light" />
+        <Header theme="light" lang={params.lang} />
         <Hero>
           <HeroTitle>{dict.homepage.hero.title}</HeroTitle>
           <HeroSubtitle>{dict.homepage.hero.subtitle}</HeroSubtitle>
+          <div className="flex flex-col gap-4 sm:flex-row">
+            <Button variant="secondary" asChild>
+              <Link href={dict.homepage.hero.ctaUrl} className="group flex gap-2">
+                {dict.homepage.hero.cta} <ChevronRight className="h-5 w-5 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+            <Button variant="ghost" asChild>
+              <Link href={dict.homepage.hero.secondaryCtaUrl} className="group flex gap-2 text-white hover:text-white">
+                {dict.homepage.hero.secondaryCta}
+                <ChevronRight className="h-5 w-5 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+              </Link>
+            </Button>
+          </div>
         </Hero>
       </div>
+
       <main>
         <div className="py-6">
           <FeatureSection
             align="left"
             topIcon={<Image src={IconAiPlattform} alt="" width={40} height={40} />}
-            topTitle="AI-plattform"
-            title="Supersäkert och enkelt med Ormeo®"
-            content="Ta total kontroll över företagsinformation med vår AI-drivna plattform Ormeo®. Vår avancerade AI tolkar varje detalj i årsredovisningar, finansiell data, myndighetsinformation, offentlig information, sociala företagsprofiler, adressdata och mycket mer. Upptäck kraften i datadriven insikt och gör smartare affärsbeslut på ett ögonblick."
-            linkHref="/ormeo"
-            linkLabel="Testa Ormeo"
+            topTitle={dict.homepage.features.aiPlatform.topTitle}
+            title={dict.homepage.features.aiPlatform.title}
+            content={dict.homepage.features.aiPlatform.description}
+            linkHref={dict.homepage.features.aiPlatform.link.url}
+            linkLabel={dict.homepage.features.aiPlatform.link.title}
           />
 
           <FeatureSection
             align="right"
             className="bg-gradient-to-b from-[#F3F2FF] to-[#CDE5F6]"
             topIcon={<Image src={IconAffarshantering} alt="" width={40} height={40} />}
-            topTitle="Affärshantering"
-            title="En smartare och säkrare affärshantering med vår AI-plattform"
-            content="TIC:s AI-plattform övervakar ständigt tusentals datakällor för att identifiera avvikelser och mönster i register, årsredovisningar och andra informationskällor. Med Ormeo® eliminerar du obehagliga överraskningar och får full koll på vem du gör affärer med. Säker och smart affärshantering har aldrig varit enklare."
-            linkHref="/ormeo"
-            linkLabel="Läs mer om vår AI-teknik"
+            topTitle={dict.homepage.features.businessManagement.topTitle}
+            title={dict.homepage.features.businessManagement.title}
+            content={dict.homepage.features.businessManagement.description}
+            linkHref={dict.homepage.features.businessManagement.link.url}
+            linkLabel={dict.homepage.features.businessManagement.link.title}
           />
 
           <FeatureSection
             align="left"
             topIcon={<Image src={IconCrmIntegrering} alt="" width={40} height={40} />}
-            topTitle="CRM-integrering"
-            title="Öka din försäljning och dina intäkter direkt"
-            content="Med vår AI-plattform Ormeo® kan du enkelt identifiera nya potentiella kunder genom prospektering och smarta urval. Använd vårt webbverktyg för personlig och effektiv marknadsföring, och integrera Ormeo® helt sömlöst med ditt befintliga CRM-system. Upptäck hur det känns att på riktigt revolutionera sin försäljning."
-            linkHref="/ormeo"
-            linkLabel="Se integrationen live"
+            topTitle={dict.homepage.features.crmIntegration.topTitle}
+            title={dict.homepage.features.crmIntegration.title}
+            content={dict.homepage.features.crmIntegration.description}
+            linkHref={dict.homepage.features.crmIntegration.link.url}
+            linkLabel={dict.homepage.features.crmIntegration.link.title}
           />
 
           <FeatureSection
             align="right"
             className="bg-gradient-to-b from-[#F3F2FF] to-[#CDE5F6]"
             topIcon={<Image src={IconDokumenthantering} alt="" width={40} height={40} />}
-            topTitle="Dokumenthantering"
-            title="Dataanalys och skräddarsydd rådgivning"
-            content="Kombinera dina egna data med hundratals datakällor i vår AI-plattform Ormeo för att få helt nya insikter om dina affärsrelationer. Ormeo® hanterar alla typer av dokument- och filformat samt bilder, och tolkar både strukturerad och ostrukturerad data. Upptäck kraften i datadriven rådgivning och förvandla din verksamhet."
-            linkHref="/ormeo"
-            linkLabel="Testa Ormeo"
+            topTitle={dict.homepage.features.documentManagement.topTitle}
+            title={dict.homepage.features.documentManagement.title}
+            content={dict.homepage.features.documentManagement.description}
+            linkHref={dict.homepage.features.documentManagement.link.url}
+            linkLabel={dict.homepage.features.documentManagement.link.title}
           />
 
           <FeatureSection
             align="left"
             topIcon={<Image src={IconCrmIntegrering} alt="" width={40} height={40} />}
-            topTitle="Mer än kreditupplysingar"
-            title="Mer än ett vanligt kreditupplysningsbolag"
-            content="Vi är mer än ett vanligt kreditupplysningsbolag – vi gör affärer säkrare och tryggare genom att ge dig bättre koll på vem du gör affärer med. Vår avancerade teknik bearbetar årsredovisningar, registerinformation och andra källor för att identifiera avvikelser. Våra tjänster är helt kostnadsfria för offentliga aktörer och icke vinstdrivna organisationer."
-            linkHref="/ormeo"
-            linkLabel="Börja kostnadsfritt"
+            topTitle={dict.homepage.features.creditInformation.topTitle}
+            title={dict.homepage.features.creditInformation.title}
+            content={dict.homepage.features.creditInformation.description}
+            linkHref={dict.homepage.features.creditInformation.link.url}
+            linkLabel={dict.homepage.features.creditInformation.link.title}
           />
         </div>
 

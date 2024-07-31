@@ -41,7 +41,7 @@ export default function RootLayout({
     <html lang={params.lang}>
       <body className={hyperlegible.className}>
         <TooltipProvider delayDuration={100}>{children}</TooltipProvider>
-        <Footer />
+        <Footer lang={params.lang} />
       </body>
     </html>
   );

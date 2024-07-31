@@ -1,12 +1,124 @@
 {
+  "general": {
+    "openMenu": "Open menu",
+    "links": {
+      "goToHomepage": {
+        "title": "Go to homepage",
+        "url": "/en"
+      },
+      "contactSales": {
+        "title": "Contact sales",
+        "url": "/"
+      },
+      "logIn": {
+        "title": "Log in",
+        "url": "/"
+      }
+    }
+  },
+  "global": {
+    "navigation": [
+      {
+        "title": "Products",
+        "url": "/"
+      },
+      {
+        "title": "Solutions",
+        "url": "/"
+      },
+      {
+        "title": "Developers",
+        "url": "/"
+      },
+      {
+        "title": "Our AI Technology",
+        "url": "/"
+      },
+      {
+        "title": "About Us",
+        "url": "/"
+      },
+      {
+        "title": "Contact",
+        "url": "/"
+      }
+    ],
+    "footer": {
+      "links": [
+        {
+          "title": "Cookie Policy",
+          "url": "/"
+        },
+        {
+          "title": "Terms of Use",
+          "url": "/"
+        },
+        {
+          "title": "Privacy Policy",
+          "url": "/"
+        }
+      ]
+    }
+  },
   "homepage": {
     "meta": {
       "title": "The Intelligence Company",
-      "description": "Discover an AI revolution in business insights. Higher quality and 10X more business information. Our AI platform Ormeo paves the way for safer business decisions and identifies new customers and opportunities faster than ever."
+      "description": "Discover an AI revolution in business insights. Higher quality and 10X more company information. Our AI platform Ormeo enables safer business decisions and identifies new customers and opportunities faster than ever."
     },
     "hero": {
       "title": "Discover an AI revolution in business insights",
-      "subtitle": "Higher quality and 10X more business information. Our AI platform Ormeo paves the way for safer business decisions and identifies new customers and opportunities faster than ever."
+      "subtitle": "Higher quality and 10X more company information. Our AI platform Ormeo enables safer business decisions and identifies new customers and opportunities faster than ever.",
+      "cta": "Start for free",
+      "ctaUrl": "#",
+      "secondaryCta": "Contact sales",
+      "secondaryCtaUrl": "#"
+    },
+    "features": {
+      "aiPlatform": {
+        "topTitle": "AI Platform",
+        "title": "Super secure and easy with Ormeo®",
+        "description": "Take full control of company information with our AI-driven platform Ormeo®. Our advanced AI interprets every detail in annual reports, financial data, government information, public information, social company profiles, address data, and much more. Discover the power of data-driven insights and make smarter business decisions in an instant.",
+        "link": {
+          "title": "Try Ormeo",
+          "url": "/"
+        }
+      },
+      "businessManagement": {
+        "topTitle": "Business Management",
+        "title": "Smarter and safer business management with our AI platform",
+        "description": "TIC's AI platform constantly monitors thousands of data sources to identify anomalies and patterns in registers, annual reports, and other information sources. With Ormeo®, you eliminate unpleasant surprises and get full control over who you do business with. Secure and smart business management has never been easier.",
+        "link": {
+          "title": "Learn more about our AI technology",
+          "url": "/"
+        }
+      },
+      "crmIntegration": {
+        "topTitle": "CRM Integration",
+        "title": "Boost your sales and revenue instantly",
+        "description": "With our AI platform Ormeo®, you can easily identify new potential customers through prospecting and smart selections. Use our web tool for personalized and effective marketing, and integrate Ormeo® seamlessly with your existing CRM system. Discover what it's like to truly revolutionize your sales.",
+        "link": {
+          "title": "See the integration live",
+          "url": "/"
+        }
+      },
+      "documentManagement": {
+        "topTitle": "Document Management",
+        "title": "Data analysis and customized advice",
+        "description": "Combine your own data with hundreds of data sources in our AI platform Ormeo to gain completely new insights into your business relationships. Ormeo® handles all types of document and file formats as well as images, and interprets both structured and unstructured data. Discover the power of data-driven advice and transform your business.",
+        "link": {
+          "title": "Get started with Ormeo",
+          "url": "/"
+        }
+      },
+      "creditInformation": {
+        "topTitle": "More than Credit Information",
+        "title": "More than just a credit information company",
+        "description": "We are more than just a credit information company – we make business safer and more secure by giving you better control over who you do business with. Our advanced technology processes annual reports, registry information, and other sources to identify anomalies. Our services are completely free for public entities and non-profit organizations.",
+        "link": {
+          "title": "Start for free",
+          "url": "/"
+        }
+      }
     }
   }
 }

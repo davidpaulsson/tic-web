@@ -10,7 +10,7 @@ import { cn } from '@/lib/utils';
 import { type CarouselApi, CarouselDots } from '@/components/ui/carousel';
 import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
 
-import bg1 from './teknikomraden-bg-1.png';
+import bg1 from '../assets/teknikomraden-bg-1.png';
 
 export const TeknikOmraden = () => {
   const [api, setApi] = useState<CarouselApi>();
