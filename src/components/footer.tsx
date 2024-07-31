@@ -32,7 +32,7 @@ const SocialLinks = () => (
       }
 
       return (
-        <li key={link.href}>
+        <li key={link.label}>
           <a href={link.href}>
             <Image src={icon} alt={link.label} />
           </a>

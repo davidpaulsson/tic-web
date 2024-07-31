@@ -1,8 +1,20 @@
 'use client';
 
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { ChevronRight } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useState } from 'react';
+
+import { cn } from '@/lib/utils';
+
+import { type CarouselApi, CarouselDots } from '@/components/ui/carousel';
+import { Carousel, CarouselContent, CarouselItem } from '@/components/ui/carousel';
+
+import bg1 from './teknikomraden-bg-1.png';
 
 export const TeknikOmraden = () => {
+  const [api, setApi] = useState<CarouselApi>();
+
   return (
     <div className="bg-gradient-to-b from-[#CDD4F6] to-[#F3F2FF] py-32">
       <div className="container">
@@ -12,6 +24,7 @@ export const TeknikOmraden = () => {
       </div>
 
       <Carousel
+        setApi={setApi}
         opts={{
           containScroll: false,
           align: (viewSize) => {
@@ -27,31 +40,107 @@ export const TeknikOmraden = () => {
           },
         }}
       >
-        <CarouselContent className="gap-6">
-          <CarouselItem className="max-w-[calc(100vw-3rem)] rounded-3xl bg-white p-6 md:max-w-[520px] md:p-8 lg:p-10">
-            <h3 className="mb-8 text-pretty text-xl sm:text-2xl md:max-w-[20ch] md:text-3xl lg:text-4xl">
-              Snabb och smart dokumentbearbetning
-            </h3>
-            <p>
-              AI-plattformens dokumentbearbetning (IDP) läser, extraherar, kategoriserar och strukturerar data från dokument, t.ex
-              årsredovisningar i både digitalt och icke-digitalt format.
-            </p>
+        <CarouselContent className="gap-6 text-tic-blue">
+          <CarouselItem
+            className={cn(
+              'relative flex overflow-hidden rounded-3xl bg-white',
+              'basis-9/12 md:basis-7/12 lg:basis-5/12',
+              '@container/carousel-item',
+            )}
+          >
+            <div className="@xl/carousel-item:!pr-[35%] p-6 md:p-8 lg:p-10">
+              <h3 className="mb-8 text-pretty text-xl sm:text-2xl md:max-w-[20ch] md:text-3xl lg:text-4xl">
+                Snabb och smart dokumentbearbetning
+              </h3>
+              <p className="mb-20 max-w-prose">
+                AI-plattformens dokumentbearbetning (IDP) läser, extraherar, kategoriserar och strukturerar data från dokument, t.ex
+                årsredovisningar i både digitalt och icke-digitalt format.
+              </p>
+              <ul>
+                <li className="font-bold">Läs mer om</li>
+                <li>
+                  <Link href="#" className="group flex items-center gap-1 text-[#4E0FD5] transition-colors hover:text-[#4E0FD5]/75">
+                    Låg kostnadströskel
+                    <ChevronRight className="h-4 w-4 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="group flex items-center gap-1 text-[#4E0FD5] transition-colors hover:text-[#4E0FD5]/75">
+                    Avancerad bildanalys
+                    <ChevronRight className="h-4 w-4 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </li>
+                <li>
+                  <Link href="#" className="group flex items-center gap-1 text-[#4E0FD5] transition-colors hover:text-[#4E0FD5]/75">
+                    Hög tillförlitlighet
+                    <ChevronRight className="h-4 w-4 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <Image src={bg1} alt="" className="@xl/carousel-item:block absolute inset-0 hidden h-full w-[35] object-contain object-right" />
           </CarouselItem>
-          <CarouselItem className="max-w-[calc(100vw-3rem)] rounded-3xl bg-white p-10 md:max-w-[520px]">
+
+          <CarouselItem className={cn('overflow-hidden rounded-3xl bg-white p-6 md:p-8 lg:p-10', 'basis-9/12 md:basis-7/12 lg:basis-5/12')}>
             <h3 className="mb-8 text-pretty text-xl sm:text-2xl md:max-w-[20ch] md:text-3xl lg:text-4xl">Avvikelsedetektion</h3>
-            <p>
+            <p className="mb-20">
               AI-plattformen arbetar med stora datamängder och urskiljer data som är ovanliga, annorlunda eller på annat sätt sticker ut
               från mängden. Våra experter bygger metoder och modellering för säkra upplysningar om företagen.
             </p>
+            <ul>
+              <li className="font-bold">Läs mer om</li>
+              <li>
+                <Link href="#" className="group flex items-center gap-1 text-[#4E0FD5] transition-colors hover:text-[#4E0FD5]/75">
+                  Domänexperter
+                  <ChevronRight className="h-4 w-4 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="group flex items-center gap-1 text-[#4E0FD5] transition-colors hover:text-[#4E0FD5]/75">
+                  Metodexperter
+                  <ChevronRight className="h-4 w-4 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="group flex items-center gap-1 text-[#4E0FD5] transition-colors hover:text-[#4E0FD5]/75">
+                  Avancerad avvikelsedetektion
+                  <ChevronRight className="h-4 w-4 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+                </Link>
+              </li>
+            </ul>
           </CarouselItem>
-          <CarouselItem className="max-w-[calc(100vw-3rem)] rounded-3xl bg-white p-10 md:max-w-[520px]">
+
+          <CarouselItem className={cn('overflow-hidden rounded-3xl bg-white p-6 md:p-8 lg:p-10', 'basis-9/12 md:basis-7/12 lg:basis-5/12')}>
             <h3 className="mb-8 text-pretty text-xl sm:text-2xl md:max-w-[20ch] md:text-3xl lg:text-4xl">Lorem ipsum</h3>
-            <p>
+            <p className="mb-20">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Deleniti cupiditate est nihil tempora recusandae! Praesentium, ab
               eaque! Quaerat qui odio doloremque similique adipisci quidem consequuntur mollitia obcaecati. Accusamus, dolorem mollitia!
             </p>
+            <ul>
+              <li className="font-bold">Läs mer om</li>
+              <li>
+                <Link href="#" className="group flex items-center gap-1 text-[#4E0FD5] transition-colors hover:text-[#4E0FD5]/75">
+                  Foo
+                  <ChevronRight className="h-4 w-4 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="group flex items-center gap-1 text-[#4E0FD5] transition-colors hover:text-[#4E0FD5]/75">
+                  Bar
+                  <ChevronRight className="h-4 w-4 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="group flex items-center gap-1 text-[#4E0FD5] transition-colors hover:text-[#4E0FD5]/75">
+                  Baz
+                  <ChevronRight className="h-4 w-4 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+                </Link>
+              </li>
+            </ul>
           </CarouselItem>
         </CarouselContent>
+        <CarouselDots api={api} />
       </Carousel>
     </div>
   );

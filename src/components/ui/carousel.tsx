@@ -1,12 +1,15 @@
 'use client';
 
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
+import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
 
 import { Button } from '@/components/ui/button';
+
+import './carousel.css';
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -149,13 +152,7 @@ const CarouselItem = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
   const { orientation } = useCarousel();
 
   return (
-    <div
-      ref={ref}
-      role="group"
-      aria-roledescription="slide"
-      className={cn('min-w-0 shrink-0 grow-0 basis-full', orientation === 'horizontal' ? 'pl-4' : 'pt-4', className)}
-      {...props}
-    />
+    <div ref={ref} role="group" aria-roledescription="slide" className={cn('min-w-0 shrink-0 grow-0 basis-full', className)} {...props} />
   );
 });
 CarouselItem.displayName = 'CarouselItem';
@@ -210,4 +207,63 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
 );
 CarouselNext.displayName = 'CarouselNext';
 
-export { type CarouselApi, Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext };
+const CarouselDots = ({ api }: { api: CarouselApi }) => {
+  const [current, setCurrent] = React.useState(0);
+
+  React.useEffect(() => {
+    if (!api) {
+      return;
+    }
+
+    api.on('select', () => setCurrent(api.selectedScrollSnap()));
+
+    return () => {
+      if (api) {
+        api.destroy();
+      }
+    };
+  }, [api]);
+
+  // React.useEffect(() => {
+  //   if (!api) {
+  //     return;
+  //   }
+
+  //   const interval = setInterval(() => {
+  //     api.canScrollNext() ? api.scrollNext() : api.scrollTo(0);
+  //   }, 5000);
+
+  //   return () => clearInterval(interval);
+  // }, [api]);
+
+  return (
+    <div className="container flex gap-1 pt-16">
+      {Array.from(Array(api?.scrollSnapList().length || 0).keys()).map((index) => (
+        <motion.button
+          className="h-3 overflow-hidden rounded-full bg-tic-blue/10"
+          initial={false}
+          animate={{
+            width: index === current ? 64 : 24,
+            transition: { duration: 0.4, ease: 'easeOut' },
+          }}
+          key={index}
+          onClick={() => api?.scrollTo(index)}
+        >
+          <span className="sr-only">Teknikområde {index + 1}</span>
+          {index === current && (
+            <motion.span
+              className="block h-3 rounded-full bg-tic-blue/25"
+              initial={{ width: 0 }}
+              animate={{
+                width: 64,
+                transition: { duration: 5, ease: 'easeInOut' },
+              }}
+            />
+          )}
+        </motion.button>
+      ))}
+    </div>
+  );
+};
+
+export { type CarouselApi, Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext, CarouselDots };

@@ -1,0 +1,28 @@
+@keyframes progress {
+  from {
+    width: 6px;
+  }
+  to {
+    width: 16px;
+  }
+}
+
+.dot {
+  height: 3px;
+  width: 6px;
+  border-radius: 9999px;
+  transition: background-color 0.3s;
+}
+
+.dot.current {
+  background-color: rgba(0, 123, 255, 0.25);
+  animation: progress 5s linear infinite;
+}
+
+.dot:not(.current) {
+  background-color: red;
+}
+
+.dot:hover {
+  background-color: rgba(0, 123, 255, 0.25);
+}
