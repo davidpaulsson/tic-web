@@ -224,17 +224,17 @@ const CarouselDots = ({ api }: { api: CarouselApi }) => {
     };
   }, [api]);
 
-  // React.useEffect(() => {
-  //   if (!api) {
-  //     return;
-  //   }
+  React.useEffect(() => {
+    if (!api) {
+      return;
+    }
 
-  //   const interval = setInterval(() => {
-  //     api.canScrollNext() ? api.scrollNext() : api.scrollTo(0);
-  //   }, 5000);
+    const interval = setInterval(() => {
+      api.canScrollNext() ? api.scrollNext() : api.scrollTo(0);
+    }, 5000);
 
-  //   return () => clearInterval(interval);
-  // }, [api]);
+    return () => clearInterval(interval);
+  }, [api]);
 
   return (
     <div className="container flex gap-1 pt-16">
