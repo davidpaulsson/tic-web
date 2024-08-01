@@ -26,7 +26,7 @@ const meta: Meta<typeof Header> = {
           'bg-tic-blue-dark': theme === 'light',
         })}
       >
-        <Header theme={theme} lang="sv" />
+        <Header theme={theme} locale="sv" />
       </div>
     </TooltipProvider>
   ),

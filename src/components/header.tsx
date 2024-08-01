@@ -1,6 +1,9 @@
 import { ChevronRight, LogIn, Menu, Phone } from 'lucide-react';
+import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
+import { getContentfulClient } from '@/lib/contentful/get-client';
+import type { ContentfulNavigationResponse } from '@/lib/contentful/types';
 import { getDictionary } from '@/lib/get-dictionary';
 import { cn } from '@/lib/utils';
 
@@ -12,11 +15,25 @@ import { ScrollArea } from './ui/scroll-area';
 
 type Props = {
   theme: 'light' | 'dark';
-  lang: string;
+  locale: string;
 };
 
-export const Header = async ({ theme = 'dark', lang }: Props) => {
-  const dict = await getDictionary(lang);
+export const Header = async ({ theme = 'dark', locale }: Props) => {
+  const { isEnabled } = draftMode();
+  const cf = getContentfulClient(isEnabled);
+  const entry = (await cf.getEntries({
+    content_type: 'navigation',
+    'fields.internalTitle': 'Header',
+    limit: 1,
+    locale: locale,
+  })) as unknown as ContentfulNavigationResponse;
+
+  const links = entry?.items?.[0]?.fields?.links.map((link) => ({
+    title: link.fields.title,
+    slug: link.fields.slug,
+  }));
+
+  const dict = await getDictionary(locale);
 
   return (
     <header
@@ -36,9 +53,9 @@ export const Header = async ({ theme = 'dark', lang }: Props) => {
 
           {/** md screen and up */}
           <ul className="hidden items-center gap-8 md:flex">
-            {dict.global.navigation.map((link) => (
-              <li key={link.title}>
-                <Link href={link.url} className="text-nowrap hover:underline">
+            {links.map((link) => (
+              <li key={link.slug}>
+                <Link href={`/${link.slug}`} className="text-nowrap hover:underline">
                   {link.title}
                 </Link>
               </li>
@@ -59,9 +76,9 @@ export const Header = async ({ theme = 'dark', lang }: Props) => {
               </SheetHeader>
               <ScrollArea>
                 <ul className="divide-y">
-                  {dict.global.navigation.map((link) => (
-                    <li key={link.title}>
-                      <Link href={link.url} className="block text-nowrap py-4 hover:underline">
+                  {links.map((link) => (
+                    <li key={link.slug}>
+                      <Link href={`/${link.slug}`} className="block text-nowrap py-4 hover:underline">
                         {link.title}
                       </Link>
                     </li>

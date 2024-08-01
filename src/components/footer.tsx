@@ -4,10 +4,12 @@ import Instagram from '@/icons/instagram.svg';
 import LinkedIn from '@/icons/linkedin.svg';
 import X from '@/icons/x.svg';
 
+import { draftMode } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { getDictionary } from '@/lib/get-dictionary';
+import { getContentfulClient } from '@/lib/contentful/get-client';
+import type { ContentfulNavigationResponse } from '@/lib/contentful/types';
 
 const SocialLinks = () => (
   <ul className="flex gap-8">
@@ -28,8 +30,20 @@ const SocialLinks = () => (
   </ul>
 );
 
-export const Footer = async ({ lang }: { lang: string }) => {
-  const dict = await getDictionary(lang);
+export const Footer = async ({ locale }: { locale: string }) => {
+  const { isEnabled } = draftMode();
+  const cf = getContentfulClient(isEnabled);
+  const entry = (await cf.getEntries({
+    content_type: 'navigation',
+    'fields.internalTitle': 'Footer',
+    limit: 1,
+    locale: locale,
+  })) as unknown as ContentfulNavigationResponse;
+
+  const links = entry?.items?.[0]?.fields?.links.map((link) => ({
+    title: link.fields.title,
+    slug: link.fields.slug,
+  }));
 
   return (
     <footer className="bg-gradient-to-b from-tic-blue-light to-tic-blue-dark pb-20 pt-40">
@@ -46,12 +60,12 @@ export const Footer = async ({ lang }: { lang: string }) => {
           <div className="text-white">©{new Date().getFullYear()} The Intelligence Company AB</div>
 
           <ul className="mb-8 flex flex-col gap-2 text-white md:mb-0 md:flex-row md:items-center md:gap-4">
-            {dict.global.footer.links.map((link) => {
-              const isLast = link === dict.global.footer.links[dict.global.footer.links.length - 1];
+            {links.map((link) => {
+              const isLast = link === links[links.length - 1];
               return (
                 <>
-                  <li key={link.title}>
-                    <Link href={link.url} className="text-white hover:underline">
+                  <li key={link.slug}>
+                    <Link href={`/${link.slug}`} className="text-white hover:underline">
                       {link.title}
                     </Link>
                   </li>

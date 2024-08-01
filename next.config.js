@@ -6,6 +6,9 @@ const nextConfig = {
   experimental: {
     reactCompiler: true,
   },
+  images: {
+    domains: ['images.ctfassets.net'],
+  },
 };
 
 module.exports = withMDX(nextConfig);

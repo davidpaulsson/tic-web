@@ -35,13 +35,15 @@ export default function RootLayout({
   params,
 }: Readonly<{
   children: React.ReactNode;
-  params: { lang: string };
+  params: { slug: string[] };
 }>) {
   return (
-    <html lang={params.lang}>
+    <html lang={params?.slug?.[0] || 'sv'}>
       <body className={hyperlegible.className}>
-        <TooltipProvider delayDuration={100}>{children}</TooltipProvider>
-        <Footer lang={params.lang} />
+        <TooltipProvider delayDuration={100}>
+          {children}
+          <Footer locale={params?.slug?.[0] || 'sv'} />
+        </TooltipProvider>
       </body>
     </html>
   );
