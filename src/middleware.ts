@@ -23,8 +23,6 @@ function getLocale(request: NextRequest): string | undefined {
 }
 
 export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
-
   // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
   // // If you have one
   // if (
@@ -36,17 +34,42 @@ export function middleware(request: NextRequest) {
   // )
   //   return
 
-  // Check if there is any supported locale in the pathname
-  const pathnameIsMissingLocale = i18n.locales.every((locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`);
+  // 1. Check if there is any supported locale in the pathname
+  // -------------------------------
+  const { pathname } = request.nextUrl;
+  const pathnameHasLocale = i18n.locales.some((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`);
 
-  // Redirect if there is no locale
-  if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
+  if (pathnameHasLocale) return;
 
-    // e.g. incoming request is /foo
-    // The new URL is now /sv/foo
-    return NextResponse.redirect(new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url));
+  // 2. Redirect if there is no locale
+  // -------------------------------
+
+  // 2.1 Redirect to the same URL with the locale based on the user's IP country
+  const country = (request.geo && request.geo.country) || null;
+  if (country !== null) {
+    let locale;
+    switch (country) {
+      case 'SE':
+        locale = 'sv';
+        break;
+      case 'NO':
+        locale = 'no';
+        break;
+      case 'DE':
+        locale = 'de';
+        break;
+      case 'GB':
+        locale = 'en';
+        break;
+    }
+    if (locale) {
+      return NextResponse.redirect(new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url));
+    }
   }
+
+  // 2.2 Redirect to the same URL with the locale based on the user's language preference
+  const locale = getLocale(request); // Fallbacks to default locale (i18n.defaultLocale) if no match
+  return NextResponse.redirect(new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url));
 }
 
 export const config = {
