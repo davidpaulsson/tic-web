@@ -4,7 +4,6 @@ import Instagram from '@/icons/instagram.svg';
 import LinkedIn from '@/icons/linkedin.svg';
 import X from '@/icons/x.svg';
 
-import { unstable_cache } from 'next/cache';
 import { draftMode } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -31,27 +30,20 @@ const SocialLinks = () => (
   </ul>
 );
 
-const getCachedFooterNavigation = unstable_cache(
-  async (isEnabled, locale) => {
-    const cf = getContentfulClient(isEnabled);
-    const entry = (await cf.getEntries({
-      content_type: 'navigation',
-      'fields.internalTitle': 'Footer',
-      limit: 1,
-      locale: locale,
-    })) as unknown as ContentfulNavigationResponse;
-
-    return entry?.items?.[0]?.fields?.links.map((link) => ({
-      title: link.fields.title,
-      slug: link.fields.slug,
-    }));
-  },
-  ['navigation'],
-);
-
 export const Footer = async ({ locale }: { locale: string }) => {
   const { isEnabled } = draftMode();
-  const links = await getCachedFooterNavigation(isEnabled, locale);
+  const cf = getContentfulClient(isEnabled);
+  const entry = (await cf.getEntries({
+    content_type: 'navigation',
+    'fields.internalTitle': 'Footer',
+    limit: 1,
+    locale: locale,
+  })) as unknown as ContentfulNavigationResponse;
+
+  const links = entry?.items?.[0]?.fields?.links.map((link) => ({
+    title: link.fields.title,
+    slug: link.fields.slug,
+  }));
 
   return (
     <footer className="bg-gradient-to-b from-tic-blue-light to-tic-blue-dark pb-20 pt-40">

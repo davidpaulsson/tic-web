@@ -1,5 +1,4 @@
 import { ChevronRight } from 'lucide-react';
-import { unstable_cache } from 'next/cache';
 import { draftMode } from 'next/headers';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -16,25 +15,16 @@ import { Button } from '@/components/ui/button';
 
 import HeroBackground from './hero-background.jpg';
 
-const getCachedPageEntry = unstable_cache(
-  async (isEnabled, params) => {
-    const cf = getContentfulClient(isEnabled);
-    const entry = (await cf.getEntries({
-      content_type: 'page',
-      'fields.slug': params.slug.join('/'),
-      limit: 1,
-      include: 10,
-      locale: params?.slug?.[0] || 'sv',
-    })) as unknown as ContentfulPageResponse;
-
-    return entry;
-  },
-  ['page'],
-);
-
 export default async function Page({ params }: Readonly<{ params: { slug: string[] } }>) {
   const { isEnabled } = draftMode();
-  const entry = await getCachedPageEntry(isEnabled, params);
+  const cf = getContentfulClient(isEnabled);
+  const entry = (await cf.getEntries({
+    content_type: 'page',
+    'fields.slug': params.slug.join('/'),
+    limit: 1,
+    include: 10,
+    locale: params?.slug?.[0] || 'sv',
+  })) as unknown as ContentfulPageResponse;
 
   if (!entry.items.length) {
     notFound();
@@ -45,7 +35,7 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
 
   return (
     <>
-      <title>{`${content.title} | TIC`}</title>
+      <title>{content.title} | TIC</title>
 
       <div className="relative overflow-hidden py-6">
         {isHomepage && (
