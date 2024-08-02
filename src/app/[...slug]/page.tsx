@@ -15,6 +15,31 @@ import { Button } from '@/components/ui/button';
 
 import HeroBackground from './hero-background.jpg';
 
+export async function generateStaticParams() {
+  const cf = getContentfulClient();
+
+  const [swedish, english] = await Promise.all([
+    cf.getEntries({
+      content_type: 'page',
+      limit: 1000,
+      include: 0,
+      locale: 'sv',
+    }) as unknown as ContentfulPageResponse,
+    cf.getEntries({
+      content_type: 'page',
+      limit: 1000,
+      include: 0,
+      locale: 'en',
+    }) as unknown as ContentfulPageResponse,
+  ]);
+
+  const pages = [...swedish.items, ...english.items];
+
+  return pages.map((page) => ({
+    slug: page.fields.slug.split('/'),
+  }));
+}
+
 export default async function Page({ params }: Readonly<{ params: { slug: string[] } }>) {
   const { isEnabled } = draftMode();
   const cf = getContentfulClient(isEnabled);
