@@ -1,4 +1,5 @@
 import { ChevronRight, LogIn, Menu, Phone } from 'lucide-react';
+import { unstable_cache } from 'next/cache';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
@@ -18,21 +19,27 @@ type Props = {
   locale: string;
 };
 
+const getCachedHeaderNavigation = unstable_cache(
+  async (isEnabled, locale) => {
+    const cf = getContentfulClient(isEnabled);
+    const entry = (await cf.getEntries({
+      content_type: 'navigation',
+      'fields.internalTitle': 'Header',
+      limit: 1,
+      locale: locale,
+    })) as unknown as ContentfulNavigationResponse;
+
+    return entry?.items?.[0]?.fields?.links.map((link) => ({
+      title: link.fields.title,
+      slug: link.fields.slug,
+    }));
+  },
+  ['navigation'],
+);
+
 export const Header = async ({ theme = 'dark', locale }: Props) => {
   const { isEnabled } = draftMode();
-  const cf = getContentfulClient(isEnabled);
-  const entry = (await cf.getEntries({
-    content_type: 'navigation',
-    'fields.internalTitle': 'Header',
-    limit: 1,
-    locale: locale,
-  })) as unknown as ContentfulNavigationResponse;
-
-  const links = entry?.items?.[0]?.fields?.links.map((link) => ({
-    title: link.fields.title,
-    slug: link.fields.slug,
-  }));
-
+  const links = await getCachedHeaderNavigation(isEnabled, locale);
   const dict = await getDictionary(locale);
 
   return (
