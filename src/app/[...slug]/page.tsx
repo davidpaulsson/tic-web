@@ -60,7 +60,7 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
 
   return (
     <>
-      <title>{content.title} | TIC</title>
+      <title>{`${content.title} | TIC`}</title>
 
       <div className="relative overflow-hidden py-6">
         {isHomepage && (
