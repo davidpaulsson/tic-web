@@ -4,7 +4,6 @@ import Link from 'next/link';
 
 import { getContentfulClient } from '@/lib/contentful/get-client';
 import type { ContentfulNavigationResponse } from '@/lib/contentful/types';
-import { getDictionary } from '@/lib/get-dictionary';
 import { cn } from '@/lib/utils';
 
 import { Button } from '@/components/ui/button';
@@ -33,7 +32,39 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
     slug: link.fields.slug,
   }));
 
-  const dict = await getDictionary(locale);
+  let dict;
+  switch (locale) {
+    case 'en':
+      dict = {
+        goToHomepage: 'Go to homepage',
+        openMenu: 'Open menu',
+        contactSales: {
+          title: 'Contact sales',
+          url: '/',
+        },
+        logIn: {
+          title: 'Log in',
+          url: '/',
+        },
+      };
+      break;
+    case 'sv':
+      dict = {
+        goToHomepage: 'Gå till startsidan',
+        openMenu: 'Öppna meny',
+        contactSales: {
+          title: 'Kontakta säljteamet',
+          url: '/',
+        },
+        logIn: {
+          title: 'Logga in',
+          url: '/',
+        },
+      };
+      break;
+    default:
+      throw new Error(`Unsupported locale: ${locale}`);
+  }
 
   return (
     <header
@@ -44,8 +75,8 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
     >
       <nav className="container flex items-center justify-between">
         <div className="flex items-center gap-8">
-          <Link href={dict.general.links.goToHomepage.url}>
-            <span className="sr-only">{dict.general.links.goToHomepage.title}</span>
+          <Link href={`/${locale}`}>
+            <span className="sr-only">{dict.goToHomepage}</span>
             <div className="grid h-10 place-items-center rounded bg-red-500 text-white" style={{ width: 68 }}>
               Logo
             </div>
@@ -67,7 +98,7 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
         <Sheet>
           <SheetTrigger className="flex h-10 w-10 items-center justify-end md:hidden">
             <Menu />
-            <span className="sr-only">{dict.general.openMenu}</span>
+            <span className="sr-only">{dict.openMenu}</span>
           </SheetTrigger>
           <SheetContent className="flex flex-col justify-between">
             <div>
@@ -90,12 +121,12 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
               <ul className="space-y-4">
                 <li>
                   <Button className="w-full" variant="secondary" asChild>
-                    <Link href={dict.general.links.contactSales.url}>{dict.general.links.contactSales.title}</Link>
+                    <Link href={dict.contactSales.url}>{dict.contactSales.title}</Link>
                   </Button>
                 </li>
                 <li>
                   <Button className="w-full" asChild>
-                    <Link href={dict.general.links.logIn.url}>{dict.general.links.logIn.title}</Link>
+                    <Link href={dict.logIn.url}>{dict.logIn.title}</Link>
                   </Button>
                 </li>
               </ul>
@@ -109,18 +140,18 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
             <Tooltip>
               <TooltipTrigger>
                 <Link
-                  href={dict.general.links.contactSales.url}
+                  href={dict.contactSales.url}
                   className={cn('flex h-10 w-10 items-center justify-center', {
                     'text-white': theme === 'light',
                     'text-tic-blue': theme === 'dark',
                   })}
                 >
-                  <span className="sr-only">{dict.general.links.contactSales.title}</span>
+                  <span className="sr-only">{dict.contactSales.title}</span>
                   <Phone className="h-5 w-5" />
                 </Link>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{dict.general.links.contactSales.title}</p>
+                <p>{dict.contactSales.title}</p>
               </TooltipContent>
             </Tooltip>
           </li>
@@ -128,18 +159,18 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
             <Tooltip>
               <TooltipTrigger>
                 <Link
-                  href={dict.general.links.logIn.url}
+                  href={dict.logIn.url}
                   className={cn('flex h-10 w-10 items-center justify-center', {
                     'text-white': theme === 'light',
                     'text-tic-blue': theme === 'dark',
                   })}
                 >
-                  <span className="sr-only">{dict.general.links.logIn.title}</span>
+                  <span className="sr-only">{dict.logIn.title}</span>
                   <LogIn className="h-5 w-5" />
                 </Link>
               </TooltipTrigger>
               <TooltipContent>
-                <p>{dict.general.links.logIn.title}</p>
+                <p>{dict.logIn.title}</p>
               </TooltipContent>
             </Tooltip>
           </li>
@@ -150,21 +181,20 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
           <li>
             <Button variant="ghost" asChild>
               <Link
-                href={dict.general.links.contactSales.url}
+                href={dict.contactSales.url}
                 className={cn('group flex gap-2', {
                   'text-white hover:text-white': theme === 'light',
                 })}
               >
-                {dict.general.links.contactSales.title}
+                {dict.contactSales.title}
                 <ChevronRight className="h-5 w-5 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </li>
           <li>
             <Button variant={theme === 'light' ? 'secondary' : 'default'} asChild>
-              <Link href={dict.general.links.logIn.url} className="group flex gap-2">
-                {dict.general.links.logIn.title}{' '}
-                <ChevronRight className="h-5 w-5 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+              <Link href={dict.logIn.url} className="group flex gap-2">
+                {dict.logIn.title} <ChevronRight className="h-5 w-5 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
           </li>
