@@ -8,7 +8,12 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import { getContentfulClient } from '@/lib/contentful/get-client';
-import type { ContentfulBlockHero, ContentfulBlockProductFeature, ContentfulPageResponse } from '@/lib/contentful/types';
+import type {
+  ContentfulBlockContent,
+  ContentfulBlockHero,
+  ContentfulBlockProductFeature,
+  ContentfulPageResponse,
+} from '@/lib/contentful/types';
 import { cn } from '@/lib/utils';
 
 import { Header } from '@/components/header';
@@ -143,7 +148,8 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
             );
           }
           case 'blockContent': {
-            const content = (block as ContentfulBlockContent).fields.content;
+            // @ts-expect-error weak typing
+            const content = block.fields.content;
             return (
               <div className="my-8">
                 <div key={block.sys.id} className="prose container text-tic-blue">

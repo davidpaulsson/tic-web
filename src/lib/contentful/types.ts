@@ -12,7 +12,7 @@ export type ContentfulPageResponse = {
       internalTitle: string;
       title: string;
       slug: string;
-      blocks: (ContentfulBlockHero | ContentfulBlockProductFeature)[];
+      blocks: (ContentfulBlockHero | ContentfulBlockProductFeature | ContentfulBlockContent)[];
     };
   }[];
 };
