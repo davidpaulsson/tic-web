@@ -1,3 +1,5 @@
+import { Document } from '@contentful/rich-text-types';
+
 export type ContentfulPageResponse = {
   sys: {
     id: string;
@@ -33,6 +35,14 @@ export type ContentfulComponentLink = {
       };
     };
   };
+};
+
+export type ContentfulBlockContent = {
+  sys: {
+    id: string;
+    contentType: { sys: { id: 'blockContent' } };
+  };
+  fields: Document;
 };
 
 export type ContentfulBlockProductFeature = {

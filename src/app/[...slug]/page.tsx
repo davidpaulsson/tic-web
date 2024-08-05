@@ -1,3 +1,6 @@
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+
 import { ChevronRight } from 'lucide-react';
 import { draftMode } from 'next/headers';
 import Image from 'next/image';
@@ -10,6 +13,7 @@ import { cn } from '@/lib/utils';
 
 import { Header } from '@/components/header';
 import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
+import { Logger } from '@/components/logger';
 import { ProductFeature } from '@/components/product-feature';
 import { Button } from '@/components/ui/button';
 
@@ -57,51 +61,55 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
 
   const content = entry.items[0].fields;
   const isHomepage = params.slug.length === 1;
+  const firstBlockIsHero = (content.blocks || [])[0].sys.contentType.sys.id === 'blockHero';
 
   return (
     <>
       <title>{`${content.title} | TIC`}</title>
 
+      <Logger data={{ content }} />
+
       <div className="relative overflow-hidden py-6">
-        {isHomepage && (
+        {isHomepage && firstBlockIsHero && (
           <Image src={HeroBackground} alt="" fill={true} priority={true} placeholder="blur" quality={100} className="z-[-1] object-cover" />
         )}
 
-        <Header theme={isHomepage ? 'light' : 'dark'} locale={params?.slug?.[0]} />
+        <Header theme={isHomepage && firstBlockIsHero ? 'light' : 'dark'} locale={params?.slug?.[0]} />
 
-        {(content.blocks || []).map((block) => {
-          switch (block.sys.contentType.sys.id) {
-            case 'blockHero': {
-              const hero = (block as ContentfulBlockHero).fields;
-              return (
-                <Hero key={block.sys.id}>
-                  <HeroTitle>{hero.title}</HeroTitle>
-                  <HeroSubtitle>{hero.subtitle}</HeroSubtitle>
-                  <div className="flex flex-col gap-4 sm:flex-row">
-                    {hero.cta.map((link, index) => (
-                      <Button key={link.sys.id} variant={index === 0 ? 'secondary' : 'ghost'} asChild>
-                        <Link
-                          href={link.fields.link.fields.slug}
-                          className={cn('group flex gap-2', {
-                            'text-white hover:text-white': index === 1,
-                          })}
-                        >
-                          {link.fields.label}
-                          <ChevronRight className="h-5 w-5 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
-                        </Link>
-                      </Button>
-                    ))}
-                  </div>
-                </Hero>
-              );
+        {firstBlockIsHero &&
+          [content.blocks[0]].map((block) => {
+            switch (block.sys.contentType.sys.id) {
+              case 'blockHero': {
+                const hero = (block as ContentfulBlockHero).fields;
+                return (
+                  <Hero key={block.sys.id}>
+                    <HeroTitle isDark={isHomepage}>{hero.title}</HeroTitle>
+                    <HeroSubtitle isDark={isHomepage}>{hero.subtitle}</HeroSubtitle>
+                    <div className="flex flex-col gap-4 sm:flex-row">
+                      {hero.cta.map((link, index) => (
+                        <Button key={link.sys.id} variant={index === 0 ? 'secondary' : 'ghost'} asChild>
+                          <Link
+                            href={link.fields.link.fields.slug}
+                            className={cn('group flex gap-2', {
+                              'text-white hover:text-white': index === 1,
+                            })}
+                          >
+                            {link.fields.label}
+                            <ChevronRight className="h-5 w-5 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+                          </Link>
+                        </Button>
+                      ))}
+                    </div>
+                  </Hero>
+                );
+              }
+              default:
+                return null;
             }
-            default:
-              return null;
-          }
-        })}
+          })}
       </div>
 
-      {(content.blocks || []).map((block) => {
+      {(content.blocks || []).map((block, index) => {
         switch (block.sys.contentType.sys.id) {
           case 'blockProductFeature': {
             const feature = (block as ContentfulBlockProductFeature).fields;
@@ -109,6 +117,58 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
             const index = productFeatures.indexOf(block);
             const align = index % 2 === 0 ? 'left' : 'right';
             return <ProductFeature key={block.sys.id} align={align} {...feature} />;
+          }
+          case 'blockHero': {
+            if (firstBlockIsHero && index === 0) {
+              return null;
+            }
+
+            const hero = (block as ContentfulBlockHero).fields;
+
+            return (
+              <Hero key={block.sys.id}>
+                <HeroTitle isDark={false}>{hero.title}</HeroTitle>
+                <HeroSubtitle isDark={false}>{hero.subtitle}</HeroSubtitle>
+                <div className="flex flex-col gap-4 sm:flex-row">
+                  {hero.cta.map((link, index) => (
+                    <Button key={link.sys.id} variant={index === 0 ? 'default' : 'secondary'} asChild>
+                      <Link href={link.fields.link.fields.slug} className={cn('group flex gap-2')}>
+                        {link.fields.label}
+                        <ChevronRight className="h-5 w-5 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+                      </Link>
+                    </Button>
+                  ))}
+                </div>
+              </Hero>
+            );
+          }
+          case 'blockContent': {
+            const content = (block as ContentfulBlockContent).fields.content;
+            return (
+              <div className="my-8">
+                <div key={block.sys.id} className="prose container text-tic-blue">
+                  {documentToReactComponents(content, {
+                    renderNode: {
+                      [INLINES.ENTRY_HYPERLINK]: (node) => {
+                        const slug = node.data.target.fields.slug;
+                        // @ts-expect-error weak typing
+                        const target = node.content[0].value;
+
+                        return (
+                          <Link
+                            key={node.data.target.sys.id}
+                            href={`/${slug}`}
+                            className="font-bold text-tic-blue-light underline transition-colors hover:text-tic-blue hover:no-underline"
+                          >
+                            {target}
+                          </Link>
+                        );
+                      },
+                    },
+                  })}
+                </div>
+              </div>
+            );
           }
           default:
             return null;
