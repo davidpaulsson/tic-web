@@ -18,7 +18,6 @@ import { cn } from '@/lib/utils';
 
 import { Header } from '@/components/header';
 import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
-import { Logger } from '@/components/logger';
 import { ProductFeature } from '@/components/product-feature';
 import { Button } from '@/components/ui/button';
 
@@ -66,13 +65,11 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
 
   const content = entry.items[0].fields;
   const isHomepage = params.slug.length === 1;
-  const firstBlockIsHero = (content.blocks || [])[0].sys.contentType.sys.id === 'blockHero';
+  const firstBlockIsHero = (content.blocks || [])[0]?.sys?.contentType?.sys?.id === 'blockHero';
 
   return (
     <>
       <title>{`${content.title} | TIC`}</title>
-
-      <Logger data={{ content }} />
 
       <div className="relative overflow-hidden py-6">
         {isHomepage && firstBlockIsHero && (
