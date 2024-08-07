@@ -2,7 +2,7 @@
 
 import useEmblaCarousel, { type UseEmblaCarouselType } from 'embla-carousel-react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Pause, PauseCircle, Play, PlayCircle } from 'lucide-react';
 import * as React from 'react';
 
 import { cn } from '@/lib/utils';
@@ -213,6 +213,7 @@ CarouselNext.displayName = 'CarouselNext';
 
 const CarouselDots = ({ api }: { api: CarouselApi }) => {
   const [current, setCurrent] = React.useState(0);
+  const [isPlaying, setIsPlaying] = React.useState(true);
 
   React.useEffect(() => {
     if (!api) {
@@ -233,15 +234,24 @@ const CarouselDots = ({ api }: { api: CarouselApi }) => {
       return;
     }
 
-    const interval = setInterval(() => {
-      api.canScrollNext() ? api.scrollNext() : api.scrollTo(0);
-    }, 5000);
+    let interval: NodeJS.Timeout;
+
+    if (isPlaying) {
+      interval = setInterval(() => {
+        api.canScrollNext() ? api.scrollNext() : api.scrollTo(0);
+      }, 5000);
+    }
 
     return () => clearInterval(interval);
-  }, [api]);
+  }, [api, isPlaying]);
 
   return (
     <div className="container flex gap-1 pt-16">
+      <button className="flex gap-2 text-tic-blue-dark" onClick={() => setIsPlaying(!isPlaying)}>
+        {isPlaying ? <PauseCircle size={12} /> : <PlayCircle size={12} />}
+        <span className="sr-only">{isPlaying ? 'Pause' : 'Play'}</span>
+      </button>
+
       {Array.from(Array(api?.scrollSnapList().length || 0).keys()).map((index) => (
         <motion.button
           className="h-3 overflow-hidden rounded-full bg-tic-blue/10"
@@ -254,7 +264,7 @@ const CarouselDots = ({ api }: { api: CarouselApi }) => {
           onClick={() => api?.scrollTo(index)}
         >
           <span className="sr-only">Teknikområde {index + 1}</span>
-          {index === current && (
+          {index === current && isPlaying && (
             <motion.span
               className="block h-3 rounded-full bg-tic-blue/25"
               initial={{ width: 0 }}
