@@ -9,6 +9,7 @@ import { notFound } from 'next/navigation';
 
 import { getContentfulClient } from '@/lib/contentful/get-client';
 import type {
+  ContentfulBlockCarousel,
   ContentfulBlockContent,
   ContentfulBlockHero,
   ContentfulBlockProductFeature,
@@ -16,6 +17,7 @@ import type {
 } from '@/lib/contentful/types';
 import { cn } from '@/lib/utils';
 
+import { Carousel } from '@/components/carousel';
 import { Header } from '@/components/header';
 import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
 import { ProductFeature } from '@/components/product-feature';
@@ -49,6 +51,7 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: Readonly<{ params: { slug: string[] } }>) {
+  const locale = params?.slug?.[0] || 'sv';
   const { isEnabled } = draftMode();
   const cf = getContentfulClient(isEnabled);
   const entry = (await cf.getEntries({
@@ -56,7 +59,7 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
     'fields.slug': params.slug.join('/'),
     limit: 1,
     include: 10,
-    locale: params?.slug?.[0] || 'sv',
+    locale,
   })) as unknown as ContentfulPageResponse;
 
   if (!entry.items.length) {
@@ -144,12 +147,15 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
               </Hero>
             );
           }
+          case 'blockCarousel': {
+            return <Carousel key={block.sys.id} carousel={(block as ContentfulBlockCarousel).fields} locale={locale} />;
+          }
           case 'blockContent': {
             // @ts-expect-error weak typing
             const content = block.fields.content;
             return (
               <div className="my-8">
-                <div key={block.sys.id} className="prose container text-tic-blue">
+                <div key={block.sys.id} className="container prose text-tic-blue">
                   {documentToReactComponents(content, {
                     renderNode: {
                       [INLINES.ENTRY_HYPERLINK]: (node) => {

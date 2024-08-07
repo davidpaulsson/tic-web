@@ -12,9 +12,32 @@ export type ContentfulPageResponse = {
       internalTitle: string;
       title: string;
       slug: string;
-      blocks: (ContentfulBlockHero | ContentfulBlockProductFeature | ContentfulBlockContent)[];
+      blocks: (ContentfulBlockHero | ContentfulBlockProductFeature | ContentfulBlockContent | ContentfulBlockCarousel)[];
     };
   }[];
+};
+
+export type ContentfulBlockCarousel = {
+  sys: {
+    id: string;
+    contentType: { sys: { id: 'blockCarousel' } };
+  };
+  fields: {
+    title: string;
+    cards: ContentfulComponentCard[];
+  };
+};
+
+export type ContentfulComponentCard = {
+  sys: {
+    id: string;
+    contentType: { sys: { id: 'componentCard' } };
+  };
+  fields: {
+    title: string;
+    description: string;
+    links: ContentfulPageResponse['items'];
+  };
 };
 
 export type ContentfulComponentLink = {
