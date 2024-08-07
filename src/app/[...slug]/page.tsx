@@ -154,7 +154,7 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
             // @ts-expect-error weak typing
             const content = block.fields.content;
             return (
-              <div className="my-8">
+              <div key={block.sys.id} className="my-8">
                 <div key={block.sys.id} className="container prose text-tic-blue">
                   {documentToReactComponents(content, {
                     renderNode: {
