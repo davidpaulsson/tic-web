@@ -1,5 +1,6 @@
+import { showNewWeb } from '@/flags';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { BLOCKS, INLINES } from '@contentful/rich-text-types';
+import { INLINES } from '@contentful/rich-text-types';
 
 import { ChevronRight } from 'lucide-react';
 import { draftMode } from 'next/headers';
@@ -10,7 +11,6 @@ import { notFound } from 'next/navigation';
 import { getContentfulClient } from '@/lib/contentful/get-client';
 import type {
   ContentfulBlockCarousel,
-  ContentfulBlockContent,
   ContentfulBlockHero,
   ContentfulBlockProductFeature,
   ContentfulPageResponse,
@@ -51,6 +51,11 @@ export async function generateStaticParams() {
 }
 
 export default async function Page({ params }: Readonly<{ params: { slug: string[] } }>) {
+  const newWeb = await showNewWeb();
+  if (!newWeb) {
+    return <div>New web is not enabled</div>;
+  }
+
   const locale = params?.slug?.[0] || 'sv';
   const { isEnabled } = draftMode();
   const cf = getContentfulClient(isEnabled);

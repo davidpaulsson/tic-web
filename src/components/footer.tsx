@@ -1,3 +1,4 @@
+import { showNewWeb } from '@/flags';
 import { Dot } from '@/icons/dot';
 import Facebook from '@/icons/facebook.svg';
 import Instagram from '@/icons/instagram.svg';
@@ -31,6 +32,11 @@ const SocialLinks = () => (
 );
 
 export const Footer = async ({ locale }: { locale: string }) => {
+  const newWeb = await showNewWeb();
+  if (!newWeb) {
+    return null;
+  }
+
   const { isEnabled } = draftMode();
   const cf = getContentfulClient(isEnabled);
   const entry = (await cf.getEntries({
