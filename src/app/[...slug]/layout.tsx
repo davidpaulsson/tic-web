@@ -1,33 +1,16 @@
-import localFont from 'next/font/local';
+/* eslint-disable @next/next/no-page-custom-font */
+import { Atkinson_Hyperlegible } from 'next/font/google';
 
 import { Footer } from '@/components/footer';
 import { TooltipProvider } from '@/components/ui/tooltip';
 
 import '../globals.css';
 
-const hyperlegible = localFont({
-  src: [
-    {
-      path: '../../fonts/Atkinson-Hyperlegible-Regular.woff2',
-      weight: '400',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Atkinson-Hyperlegible-Bold.woff2',
-      weight: '700',
-      style: 'normal',
-    },
-    {
-      path: '../../fonts/Atkinson-Hyperlegible-Italic.woff2',
-      weight: '400',
-      style: 'italic',
-    },
-    {
-      path: '../../fonts/Atkinson-Hyperlegible-BoldItalic.woff2',
-      weight: '700',
-      style: 'italic',
-    },
-  ],
+const hyperlegible = Atkinson_Hyperlegible({
+  weight: ['400', '700'],
+  display: 'swap',
+  subsets: ['latin'],
+  preload: true,
 });
 
 export default function RootLayout({
@@ -38,8 +21,8 @@ export default function RootLayout({
   params: { slug: string[] };
 }>) {
   return (
-    <html lang={params?.slug?.[0] || 'sv'}>
-      <body className={hyperlegible.className}>
+    <html lang={params?.slug?.[0] || 'sv'} className={hyperlegible.className}>
+      <body>
         <TooltipProvider delayDuration={100}>
           {children}
           <Footer locale={params?.slug?.[0] || 'sv'} />
