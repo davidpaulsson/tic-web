@@ -29,6 +29,7 @@ export function middleware(request: NextRequest) {
   if (
     [
       '/og-image.png',
+      '/og-image-statistik.png',
       // ...other files in `public`
     ].includes(pathname)
   ) {

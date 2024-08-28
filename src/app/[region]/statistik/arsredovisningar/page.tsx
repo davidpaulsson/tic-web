@@ -17,6 +17,7 @@ const metadata = {
     title: 'Bolagsverket årsredovisningar och deras brister daglig statistik',
     description: 'Följ daglig statistik av digitala och på papper inlämnade årsredovisningar och hur många brister som finns',
     type: 'article',
+    url: 'https://www.tic.io/sv/statistik/arsredovisningar',
     images: [
       {
         url: 'https://www.tic.io/og-image-statistik.png',
