@@ -1,6 +1,7 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import { Atkinson_Hyperlegible } from 'next/font/google';
 
+import { FrontChat } from '@/components/front-chat';
 import { ReactQueryClientProvider } from '@/components/react-query-client-provider';
 import { TooltipProvider } from '@/components/ui/tooltip';
 
@@ -26,6 +27,7 @@ export default function RootLayout({
         <TooltipProvider delayDuration={100}>
           <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
         </TooltipProvider>
+        <FrontChat />
       </body>
     </html>
   );

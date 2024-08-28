@@ -50,6 +50,9 @@ const columns: ColumnDef<Program>[] = [
         </button>
       );
     },
+    cell: ({ row }) => {
+      return <span className="whitespace-nowrap">{Number(row.original.value.toFixed(0)).toLocaleString('sv-SE')}</span>;
+    },
   },
   {
     accessorKey: 'percentage',

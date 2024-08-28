@@ -5,8 +5,8 @@ export default async function Page() {
 }
 
 const metadata = {
-  title: 'Finansiella rapporter (års- och delårsrapporter) | The Intelligence Company',
-  description: 'Statistik om registrerade finansiella rapporter (års- och delårsrapporter) hos Bolagsverket. Uppdateras varje dag.',
+  title: 'Bolagsverket årsredovisningar och deras brister daglig statistik | The Intelligence Company',
+  description: 'Följ daglig statistik av digitala och på papper inlämnade årsredovisningar och hur många brister som finns',
   openGraph: {
     images: [
       {

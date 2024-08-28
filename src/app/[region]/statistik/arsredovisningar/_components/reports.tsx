@@ -22,7 +22,9 @@ export function Reports() {
         <div>
           <h1 className="mb-4 text-3xl leading-none tracking-tight">The Intelligence Company</h1>
           <p className="mb-8 max-w-prose text-base text-slate-700">
-            Statistik om registrerade finansiella rapporter (års- och delårsrapporter) hos Bolagsverket. Uppdateras varje dag.
+            Statistik om registrerade årsredovisningar (även delårsrapporter) hos Bolagsverket. Uppdateras varje dag runt 00:00. Använd vårt
+            fria API om du vill själv ladda ner innehållet med mer statistik härifrån{' '}
+            <a href="https://docs.tic.io/api-statistics/bolagsverket/financial-reports-daily">docs.tio.io</a>
           </p>
         </div>
         <div className="flex items-center gap-2 max-md:mb-4">
