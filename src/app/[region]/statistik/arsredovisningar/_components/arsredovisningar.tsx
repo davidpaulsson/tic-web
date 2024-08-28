@@ -1,34 +1,24 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
+import * as React from 'react';
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 
 const chartConfig = {
   views: {
-    label: "Registrerade årsredovisningar",
+    label: 'Registrerade årsredovisningar',
   },
   digitala: {
-    label: "Digitala",
-    color: "hsl(var(--chart-1))",
+    label: 'Digitala',
+    color: 'hsl(var(--chart-1))',
   },
   papper: {
-    label: "Papper",
-    color: "hsl(var(--chart-2))",
+    label: 'Papper',
+    color: 'hsl(var(--chart-2))',
   },
 } satisfies ChartConfig;
 
@@ -45,7 +35,7 @@ export function Arsredovisningar({
     date: string;
     value: number;
   }[];
-  range: "daily" | "monthly";
+  range: 'daily' | 'monthly';
 }) {
   const [visibleLines, setVisibleLines] = React.useState({
     digitala: true,
@@ -57,14 +47,11 @@ export function Arsredovisningar({
       digitala: eReportsData.reduce((acc, curr) => acc + curr.value, 0),
       papper: pReportsData.reduce((acc, curr) => acc + curr.value, 0),
     }),
-    [eReportsData, pReportsData]
+    [eReportsData, pReportsData],
   );
 
   const chartData = React.useMemo(() => {
-    const allDates = new Set([
-      ...eReportsData.map((e) => e.date),
-      ...pReportsData.map((p) => p.date),
-    ]);
+    const allDates = new Set([...eReportsData.map((e) => e.date), ...pReportsData.map((p) => p.date)]);
     return Array.from(allDates)
       .sort()
       .map((date) => {
@@ -88,15 +75,14 @@ export function Arsredovisningar({
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <CardTitle className="mb-2">Registrerade årsredovisningar</CardTitle>
           <CardDescription className="max-w-prose">
-            Digitala årsredovisningar registreras alla dagar i veckan, medan
-            pappersbaserade årsredovisningar endast registreras på helgfria
+            Digitala årsredovisningar registreras alla dagar i veckan, medan pappersbaserade årsredovisningar endast registreras på helgfria
             vardagar.
           </CardDescription>
         </div>
 
         <div className="flex">
           {Object.entries(chartConfig)
-            .filter(([key]) => key !== "views")
+            .filter(([key]) => key !== 'views')
             .map(([key, config]) => {
               const isVisible = visibleLines[key as keyof typeof visibleLines];
               return (
@@ -104,24 +90,19 @@ export function Arsredovisningar({
                   key={key}
                   onClick={() => toggleLine(key as keyof typeof visibleLines)}
                   className={cn(
-                    "flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
+                    'flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l sm:border-l sm:border-t-0 sm:px-8 sm:py-6',
                   )}
                 >
-                  <span className="text-xs flex gap-2 items-center text-muted-foreground">
+                  <span className="text-muted-foreground flex items-center gap-2 text-xs">
                     <span
-                      className="h-2 w-2 rounded-full block bg-slate-300"
+                      className="block h-2 w-2 rounded-full bg-slate-300"
                       style={{
-                        backgroundColor:
-                          isVisible && "color" in config
-                            ? config.color
-                            : undefined,
+                        backgroundColor: isVisible && 'color' in config ? config.color : undefined,
                       }}
                     />
                     {config.label}
                   </span>
-                  <span className="text-lg font-bold leading-none sm:text-3xl">
-                    {total[key as keyof typeof total].toLocaleString("sv-SE")}
-                  </span>
+                  <span className="text-lg leading-none sm:text-3xl">{total[key as keyof typeof total].toLocaleString('sv-SE')}</span>
                 </button>
               );
             })}
@@ -129,10 +110,7 @@ export function Arsredovisningar({
       </CardHeader>
 
       <CardContent className="px-2 sm:p-6">
-        <ChartContainer
-          config={chartConfig}
-          className="aspect-auto h-80 w-full"
-        >
+        <ChartContainer config={chartConfig} className="aspect-auto h-80 w-full">
           <LineChart
             accessibilityLayer
             data={chartData}
@@ -145,11 +123,7 @@ export function Arsredovisningar({
           >
             <CartesianGrid vertical={false} />
 
-            <YAxis
-              axisLine={false}
-              tickLine={false}
-              tickFormatter={(value) => value.toLocaleString("sv-SE")}
-            />
+            <YAxis axisLine={false} tickLine={false} tickFormatter={(value) => value.toLocaleString('sv-SE')} />
 
             <XAxis
               dataKey="date"
@@ -159,14 +133,14 @@ export function Arsredovisningar({
               minTickGap={32}
               tickFormatter={(value) => {
                 const date = new Date(value);
-                if (range === "monthly") {
-                  return date.toLocaleDateString("sv-SE", {
-                    month: "short",
+                if (range === 'monthly') {
+                  return date.toLocaleDateString('sv-SE', {
+                    month: 'short',
                   });
                 } else {
-                  return date.toLocaleDateString("sv-SE", {
-                    month: "short",
-                    day: "numeric",
+                  return date.toLocaleDateString('sv-SE', {
+                    month: 'short',
+                    day: 'numeric',
                   });
                 }
               }}
@@ -178,18 +152,18 @@ export function Arsredovisningar({
                   className="w-48"
                   labelFormatter={(value) => {
                     const date = new Date(value);
-                    if (range === "monthly") {
-                      return date.toLocaleDateString("sv-SE", {
-                        month: "long",
+                    if (range === 'monthly') {
+                      return date.toLocaleDateString('sv-SE', {
+                        month: 'long',
                       });
                     } else {
-                      const weekday = date.toLocaleDateString("sv-SE", {
-                        weekday: "short",
+                      const weekday = date.toLocaleDateString('sv-SE', {
+                        weekday: 'short',
                       });
-                      return `${weekday}, ${date.toLocaleDateString("sv-SE", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
+                      return `${weekday}, ${date.toLocaleDateString('sv-SE', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric',
                       })}`;
                     }
                   }}

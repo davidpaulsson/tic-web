@@ -1,22 +1,12 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { CartesianGrid, Line, LineChart, XAxis, YAxis } from "recharts";
+import * as React from 'react';
+import { CartesianGrid, Line, LineChart, XAxis, YAxis } from 'recharts';
 
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
+
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '@/components/ui/chart';
 
 export function Arsredovisningsbrister({
   discrepanciesData,
@@ -27,16 +17,16 @@ export function Arsredovisningsbrister({
     identifiedIssues: number;
     percentage: number | null;
   }[];
-  range: "daily" | "monthly";
+  range: 'daily' | 'monthly';
 }) {
   const chartConfig = {
     identifiedIssues: {
-      label: "Identifierade brister",
-      color: "hsl(var(--chart-1))",
+      label: 'Identifierade brister',
+      color: 'hsl(var(--chart-1))',
     },
     percentage: {
-      label: "% brister",
-      color: "hsl(var(--chart-2))",
+      label: '% brister',
+      color: 'hsl(var(--chart-2))',
     },
   } satisfies ChartConfig;
 
@@ -51,24 +41,18 @@ export function Arsredovisningsbrister({
 
   const total = React.useMemo(
     () => ({
-      identifiedIssues: discrepanciesData.reduce(
-        (acc, curr) => acc + curr.identifiedIssues,
-        0
-      ),
+      identifiedIssues: discrepanciesData.reduce((acc, curr) => acc + curr.identifiedIssues, 0),
       percentage:
-        discrepanciesData.reduce(
-          (acc, curr) => acc + (curr.percentage ?? 0),
-          0
-        ) / discrepanciesData.filter((item) => item.percentage !== null).length,
+        discrepanciesData.reduce((acc, curr) => acc + (curr.percentage ?? 0), 0) /
+        discrepanciesData.filter((item) => item.percentage !== null).length,
     }),
-    [discrepanciesData]
+    [discrepanciesData],
   );
 
   const chartData = discrepanciesData.map((item) => ({
     date: item.date,
     identifiedIssues: item.identifiedIssues,
-    percentage:
-      item.percentage !== null ? Number(item.percentage.toFixed(1)) : null,
+    percentage: item.percentage !== null ? Number(item.percentage.toFixed(1)) : null,
   }));
 
   return (
@@ -76,15 +60,12 @@ export function Arsredovisningsbrister({
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <CardTitle className="mb-2">Brister i årsredovisningar</CardTitle>
-          <CardDescription>
-            Exkluderar sen årsstämma, sen årsredovisning, likviditetsplikt, och
-            fel soliditet.
-          </CardDescription>
+          <CardDescription>Exkluderar sen årsstämma, sen årsredovisning, likviditetsplikt, och fel soliditet.</CardDescription>
         </div>
 
         <div className="flex">
           {Object.entries(chartConfig)
-            .filter(([key]) => key !== "views")
+            .filter(([key]) => key !== 'views')
             .map(([key, config]) => {
               const isVisible = visibleLines[key as keyof typeof visibleLines];
               return (
@@ -92,31 +73,22 @@ export function Arsredovisningsbrister({
                   key={key}
                   onClick={() => toggleLine(key as keyof typeof visibleLines)}
                   className={cn(
-                    "flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l sm:border-l sm:border-t-0 sm:px-8 sm:py-6"
+                    'flex flex-1 flex-col justify-center gap-1 border-t px-6 py-4 text-left even:border-l sm:border-l sm:border-t-0 sm:px-8 sm:py-6',
                   )}
                 >
-                  <span className="text-xs whitespace-nowrap flex gap-2 items-center text-muted-foreground">
+                  <span className="text-muted-foreground flex items-center gap-2 whitespace-nowrap text-xs">
                     <span
-                      className="whitespace-nowrap h-2 w-2 rounded-full block bg-slate-300"
+                      className="block h-2 w-2 whitespace-nowrap rounded-full bg-slate-300"
                       style={{
-                        backgroundColor:
-                          isVisible && "color" in config
-                            ? config.color
-                            : undefined,
+                        backgroundColor: isVisible && 'color' in config ? config.color : undefined,
                       }}
                     />
-                    {key === "percentage"
-                      ? "Genomsnittliga brister"
-                      : "Antal brister"}
+                    {key === 'percentage' ? 'Genomsnittliga brister' : 'Antal brister'}
                   </span>
-                  <span className="text-lg font-bold leading-none whitespace-nowrap sm:text-3xl">
-                    {key === "percentage"
-                      ? `${Number(
-                          total[key as keyof typeof total].toFixed(1)
-                        ).toLocaleString("sv-SE")} %`
-                      : total[key as keyof typeof total].toLocaleString(
-                          "sv-SE"
-                        )}
+                  <span className="whitespace-nowrap text-lg leading-none sm:text-3xl">
+                    {key === 'percentage'
+                      ? `${Number(total[key as keyof typeof total].toFixed(1)).toLocaleString('sv-SE')} %`
+                      : total[key as keyof typeof total].toLocaleString('sv-SE')}
                   </span>
                 </button>
               );
@@ -125,10 +97,7 @@ export function Arsredovisningsbrister({
       </CardHeader>
 
       <CardContent className="px-2 sm:p-6">
-        <ChartContainer
-          config={chartConfig}
-          className="aspect-auto h-80 w-full"
-        >
+        <ChartContainer config={chartConfig} className="aspect-auto h-80 w-full">
           <LineChart
             accessibilityLayer
             data={chartData}
@@ -141,13 +110,7 @@ export function Arsredovisningsbrister({
           >
             <CartesianGrid vertical={false} />
 
-            <YAxis
-              yAxisId="left"
-              axisLine={false}
-              tickLine={false}
-              tickFormatter={(value) => value.toLocaleString("sv-SE")}
-              width={30}
-            />
+            <YAxis yAxisId="left" axisLine={false} tickLine={false} tickFormatter={(value) => value.toLocaleString('sv-SE')} width={30} />
 
             <XAxis
               dataKey="date"
@@ -157,14 +120,14 @@ export function Arsredovisningsbrister({
               minTickGap={32}
               tickFormatter={(value) => {
                 const date = new Date(value);
-                if (range === "monthly") {
-                  return date.toLocaleDateString("sv-SE", {
-                    month: "short",
+                if (range === 'monthly') {
+                  return date.toLocaleDateString('sv-SE', {
+                    month: 'short',
                   });
                 } else {
-                  return date.toLocaleDateString("sv-SE", {
-                    month: "short",
-                    day: "numeric",
+                  return date.toLocaleDateString('sv-SE', {
+                    month: 'short',
+                    day: 'numeric',
                   });
                 }
               }}
@@ -209,18 +172,18 @@ export function Arsredovisningsbrister({
                   className="w-48"
                   labelFormatter={(value) => {
                     const date = new Date(value);
-                    if (range === "monthly") {
-                      return date.toLocaleDateString("sv-SE", {
-                        month: "short",
+                    if (range === 'monthly') {
+                      return date.toLocaleDateString('sv-SE', {
+                        month: 'short',
                       });
                     } else {
-                      const weekday = date.toLocaleDateString("sv-SE", {
-                        weekday: "short",
+                      const weekday = date.toLocaleDateString('sv-SE', {
+                        weekday: 'short',
                       });
-                      return `${weekday}, ${date.toLocaleDateString("sv-SE", {
-                        month: "short",
-                        day: "numeric",
-                        year: "numeric",
+                      return `${weekday}, ${date.toLocaleDateString('sv-SE', {
+                        month: 'short',
+                        day: 'numeric',
+                        year: 'numeric',
                       })}`;
                     }
                   }}

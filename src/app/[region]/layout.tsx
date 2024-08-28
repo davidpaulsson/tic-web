@@ -21,8 +21,8 @@ export default function RootLayout({
   params: { slug: string[] };
 }>) {
   return (
-    <html lang={params?.slug?.[0] || 'sv'} className={hyperlegible.className}>
-      <body>
+    <html lang={params?.slug?.[0] || 'sv'}>
+      <body className={hyperlegible.className}>
         <TooltipProvider delayDuration={100}>
           <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
         </TooltipProvider>

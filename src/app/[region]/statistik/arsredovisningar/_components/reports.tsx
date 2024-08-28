@@ -20,7 +20,7 @@ export function Reports() {
     <div className="container my-8">
       <div className="md:flex md:items-start md:justify-between">
         <div>
-          <h1 className="mb-4 text-3xl font-semibold leading-none tracking-tight">The Intelligence Company</h1>
+          <h1 className="mb-4 text-3xl leading-none tracking-tight">The Intelligence Company</h1>
           <p className="mb-8 max-w-prose text-base text-slate-700">
             Statistik om registrerade finansiella rapporter (års- och delårsrapporter) hos Bolagsverket. Uppdateras varje dag.
           </p>
