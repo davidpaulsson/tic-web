@@ -23,28 +23,28 @@ function getLocale(request: NextRequest): string | undefined {
 }
 
 export function middleware(request: NextRequest) {
-  // // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
-  // // If you have one
-  // if (
-  //   [
-  //     '/manifest.json',
-  //     '/favicon.ico',
-  //     // Your other files in `public`
-  //   ].includes(pathname)
-  // )
-  //   return
-
-  // 1. Check if there is any supported locale in the pathname
-  // -------------------------------
   const { pathname } = request.nextUrl;
+
+  // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
+  if (
+    [
+      '/og-image.png',
+      // ...other files in `public`
+    ].includes(pathname)
+  ) {
+    return;
+  }
+
+  // Check if there is any supported locale in the pathname
+  // -------------------------------
   const pathnameHasLocale = i18n.locales.some((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`);
 
   if (pathnameHasLocale) return;
 
-  // 2. Redirect if there is no locale
+  // Redirect if there is no locale
   // -------------------------------
 
-  // 2.1 Redirect to the same URL with the locale based on the user's IP country
+  // Redirect to the same URL with the locale based on the user's IP country
   const country = (request.geo && request.geo.country) || null;
   if (country !== null) {
     let locale;
@@ -67,7 +67,7 @@ export function middleware(request: NextRequest) {
     }
   }
 
-  // 2.2 Redirect to the same URL with the locale based on the user's language preference
+  // Redirect to the same URL with the locale based on the user's language preference
   const locale = getLocale(request); // Fallbacks to default locale (i18n.defaultLocale) if no match
   return NextResponse.redirect(new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url));
 }
