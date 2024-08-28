@@ -115,7 +115,7 @@ export function Bokslutsprogram({
       <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
         <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
           <CardTitle className="mb-2">Bokslutsprogram</CardTitle>
-          <CardDescription>Avser digitalt inlämnade hittills i år.</CardDescription>
+          <CardDescription>Avser digitalt inlämnade hittills i år per bokslutsprogram.</CardDescription>
         </div>
 
         <div className="flex items-center px-6 py-5 sm:py-6">
