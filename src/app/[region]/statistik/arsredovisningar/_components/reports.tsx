@@ -20,11 +20,12 @@ export function Reports() {
     <div className="container my-8">
       <div className="md:flex md:items-start md:justify-between">
         <div>
-          <h1 className="mb-4 text-3xl leading-none tracking-tight">The Intelligence Company</h1>
+          <h1 className="mb-4 text-3xl leading-none tracking-tight">Bolagsverket statistik årsredovisningar</h1>
           <p className="mb-8 max-w-prose text-base text-slate-700">
             Statistik om registrerade årsredovisningar (även delårsrapporter) hos Bolagsverket. Uppdateras varje dag runt 00:00. Använd vårt
             fria API om du vill själv ladda ner innehållet med mer statistik härifrån{' '}
-            <a href="https://docs.tic.io/api-statistics/bolagsverket/financial-reports-daily">docs.tio.io</a>
+            <a href="https://docs.tic.io/api-statistics/bolagsverket/financial-reports-daily">docs.tio.io</a>. En tjänst från The
+            Intelligence Company AB (publ) som övervakar årsredovisningar och deras brister.
           </p>
         </div>
         <div className="flex items-center gap-2 max-md:mb-4">
