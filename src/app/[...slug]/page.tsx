@@ -17,7 +17,7 @@ export default async function Page({ params }: Readonly<{ params: { slug: string
         <address className="max-w-prose text-base not-italic text-slate-600">
           Press, questions, or general inquiries please contact
           <br />
-          <a href="https://www.linkedin.com/in/nylanderjens/"> Jens Nylander</a>, CEO
+          <a href="https://www.linkedin.com/in/nylanderjens/">Jens Nylander</a>, CEO
           <br />
           <a href="tel:0046733670882" className="text-tic-blue transition-colors hover:text-tic-blue-light">
             +46 73-367 08 82
