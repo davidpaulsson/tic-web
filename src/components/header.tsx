@@ -5,11 +5,11 @@ import Link from 'next/link';
 import { getContentfulClient } from '@/lib/contentful/get-client';
 import type { ContentfulNavigationResponse } from '@/lib/contentful/types';
 
+import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-
-import { ScrollArea } from './ui/scroll-area';
 
 type Props = {
   locale: string;
@@ -62,9 +62,7 @@ export const Header = async ({ locale }: Props) => {
         <div className="flex w-full items-center gap-14">
           <Link href={`/${locale}`}>
             <span className="sr-only">{dict.goToHomepage}</span>
-            <div className="grid h-10 place-items-center rounded bg-red-500 text-white" style={{ width: 68 }}>
-              Logo
-            </div>
+            <Logo className="w-12" />
           </Link>
 
           {/** md screen and up */}

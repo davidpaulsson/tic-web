@@ -11,6 +11,8 @@ import Link from 'next/link';
 import { getContentfulClient } from '@/lib/contentful/get-client';
 import type { ContentfulNavigationResponse } from '@/lib/contentful/types';
 
+import { Logo } from './logo';
+
 const SocialLinks = () => (
   <ul className="flex gap-8">
     {[
@@ -50,9 +52,7 @@ export const Footer = async ({ locale }: { locale: string }) => {
       <div className="container">
         <div className="border-t-tic-stroke space-y-8 border-t pt-10">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-            <div className="grid place-items-center rounded bg-red-500" style={{ width: 134, height: 64 }}>
-              Logo
-            </div>
+            <Logo className="w-32" />
 
             <SocialLinks />
           </div>

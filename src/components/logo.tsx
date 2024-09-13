@@ -2,11 +2,11 @@ import * as React from 'react';
 
 export function Logo(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg fill="none" viewBox="0 0 114 38" {...props}>
-      <path
-        fill="currentColor"
-        d="M48.75 37.067h9.669V6.007h-9.67v31.06zm31.027-4.249V10.256h33.331V6.008H70.107v31.06h43.074v-4.25zM9.67 0H0v37.068h38.55v-4.25H9.67V10.256h28.88V6.008H9.67z"
-      />
+    <svg viewBox="0 0 166 65" fill="none" {...props}>
+      <g clipPath="url(#prefix__clip0_323_206)" fill="currentColor">
+        <path d="M72.255 21.408h21.481V.074h-21.48v21.334zM166 .074h-42.962v21.334H166V.074z" />
+        <path d="M101.554 21.405V64.07h64.442V42.739h-42.961V21.405h-21.481zM0 42.74h21.48v21.334h21.482V42.741h21.48V21.408h-21.48V.074H21.48v21.334H0V42.74z" />
+      </g>
     </svg>
   );
 }

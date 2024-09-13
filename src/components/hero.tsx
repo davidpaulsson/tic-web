@@ -1,29 +1,13 @@
 import React from 'react';
 
-import { cn } from '@/lib/utils';
-
 export const Hero = ({ children }: { children: React.ReactNode }) => {
-  return <div className="container pb-32 pt-20">{children}</div>;
+  return <div className="container">{children}</div>;
 };
 
-export const HeroTitle = ({ children, isDark }: { children: React.ReactNode; isDark: boolean }) => (
-  <h1
-    className={cn('mb-6 text-balance text-4xl sm:text-5xl md:max-w-[14ch] md:text-6xl lg:text-7xl', {
-      'text-tic-blue': !isDark,
-      'text-white': isDark,
-    })}
-  >
-    {children}
-  </h1>
+export const HeroTitle = ({ children }: { children: React.ReactNode }) => (
+  <h1 className="mb-6 text-pretty text-5xl sm:text-6xl md:text-7xl lg:text-8xl">{children}</h1>
 );
 
-export const HeroSubtitle = ({ children, isDark }: { children: React.ReactNode; isDark: boolean }) => (
-  <p
-    className={cn('mb-10 text-pretty text-lg sm:max-w-[40ch] md:text-xl', {
-      'text-tic-blue-light': !isDark,
-      'text-[#DCCFED]': isDark,
-    })}
-  >
-    {children}
-  </p>
+export const HeroSubtitle = ({ children }: { children: React.ReactNode }) => (
+  <p className="text-tic-light text-pretty text-lg sm:max-w-[62ch] md:text-xl">{children}</p>
 );
