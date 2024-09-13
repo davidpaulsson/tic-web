@@ -56,7 +56,7 @@ export const Header = async ({ locale }: Props) => {
   }
 
   return (
-    <header className="container sticky top-6 md:grid md:place-content-center">
+    <header className="container sticky top-6 z-10 md:grid md:place-content-center">
       <nav className="flex items-center justify-between rounded-xl border border-tic-stroke bg-white/30 px-6 py-4 backdrop-blur">
         <div className="flex w-full items-center gap-14">
           <Link href={`/${locale}`}>

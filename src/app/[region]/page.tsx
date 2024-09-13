@@ -14,6 +14,7 @@ import { cn } from '@/lib/utils';
 import { GetStartedForFree } from '@/components/get-started-for-free';
 import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
 import { ProductFeature } from '@/components/product-feature';
+import { DotPattern } from '@/components/ui/dot-pattern';
 
 export function generateStaticParams() {
   return REGIONS.map((page) => ({
@@ -40,6 +41,15 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
 
   return (
     <main className="mt-16 space-y-16 md:mt-40 md:space-y-40">
+      <DotPattern
+        width={20}
+        height={20}
+        cx={1}
+        cy={1}
+        cr={1}
+        className={cn('z-0 [mask-image:linear-gradient(to_bottom,white,transparent,transparent)]')}
+      />
+
       {content.blocks.map((block) => {
         switch (block.sys.contentType.sys.id) {
           case 'blockHero':
