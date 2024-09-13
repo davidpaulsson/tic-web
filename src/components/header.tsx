@@ -57,9 +57,9 @@ export const Header = async ({ locale }: Props) => {
   }
 
   return (
-    <header className="container sticky top-6">
+    <header className="container sticky top-6 md:grid md:place-content-center">
       <nav className="border-tic-stroke flex items-center justify-between rounded-xl border bg-white/30 px-6 py-4 backdrop-blur">
-        <div className="flex items-center gap-8">
+        <div className="flex w-full items-center gap-14">
           <Link href={`/${locale}`}>
             <span className="sr-only">{dict.goToHomepage}</span>
             <div className="grid h-10 place-items-center rounded bg-red-500 text-white" style={{ width: 68 }}>
@@ -68,7 +68,7 @@ export const Header = async ({ locale }: Props) => {
           </Link>
 
           {/** md screen and up */}
-          <ul className="hidden items-center gap-8 md:flex">
+          <ul className="hidden w-full items-center justify-between gap-14 md:flex">
             {links.map((link) => (
               <li key={link.slug}>
                 <Link href={`/${link.slug}`} className="text-nowrap hover:underline">
@@ -76,6 +76,13 @@ export const Header = async ({ locale }: Props) => {
                 </Link>
               </li>
             ))}
+            <li>
+              <Button asChild variant="outline">
+                <Link href={dict.logIn.url} className="group flex gap-2">
+                  {dict.logIn.title}
+                </Link>
+              </Button>
+            </li>
           </ul>
         </div>
 
@@ -128,17 +135,6 @@ export const Header = async ({ locale }: Props) => {
                 <p>{dict.logIn.title}</p>
               </TooltipContent>
             </Tooltip>
-          </li>
-        </ul>
-
-        {/** lg screen and up */}
-        <ul className="hidden items-center gap-2 lg:flex">
-          <li>
-            <Button asChild variant="outline">
-              <Link href={dict.logIn.url} className="group flex gap-2">
-                {dict.logIn.title}
-              </Link>
-            </Button>
           </li>
         </ul>
       </nav>
