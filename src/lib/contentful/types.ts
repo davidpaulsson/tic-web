@@ -78,7 +78,6 @@ export type ContentfulBlockProductFeature = {
     label: string;
     description: string;
     cta: ContentfulComponentLink;
-    icon: ContentfulAsset;
   };
 };
 

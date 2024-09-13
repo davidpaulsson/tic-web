@@ -3,11 +3,17 @@ import { notFound } from 'next/navigation';
 
 import { REGIONS } from '@/lib/constants';
 import { getContentfulClient } from '@/lib/contentful/get-client';
-import { ContentfulBlockHero, ContentfulComponentStatic, ContentfulPageResponse } from '@/lib/contentful/types';
+import {
+  ContentfulBlockHero,
+  ContentfulBlockProductFeature,
+  ContentfulComponentStatic,
+  ContentfulPageResponse,
+} from '@/lib/contentful/types';
 import { cn } from '@/lib/utils';
 
 import { GetStartedForFree } from '@/components/get-started-for-free';
 import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
+import { ProductFeature } from '@/components/product-feature';
 
 export function generateStaticParams() {
   return REGIONS.map((page) => ({
@@ -33,7 +39,7 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
   const content = entry.items[0].fields;
 
   return (
-    <main className="mt-40">
+    <main className="mt-40 space-y-40">
       {content.blocks.map((block) => {
         switch (block.sys.contentType.sys.id) {
           case 'blockHero':
@@ -66,6 +72,12 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
                 })}
               </Hero>
             );
+          case 'blockProductFeature': {
+            const feature = block.fields as ContentfulBlockProductFeature['fields'];
+            const index = content.blocks.findIndex((b) => b.sys.id === block.sys.id);
+            const align = index % 2 === 0 ? 'left' : 'right';
+            return <ProductFeature key={block.sys.id} align={align} {...feature} />;
+          }
           default:
             return null;
         }
