@@ -11,7 +11,7 @@ export const ProductFeature = (props: ContentfulBlockProductFeature['fields'] & 
     <div className="grid-cols-12 overflow-hidden rounded-lg border border-tic-stroke bg-tic-fill md:grid">
       <div className="col-span-7 hidden bg-tic-purple-light md:block" />
       <div
-        className={cn('col-span-5 p-16', {
+        className={cn('col-span-5 p-8 md:p-16', {
           'order-[-1]': props.align === 'left',
         })}
       >

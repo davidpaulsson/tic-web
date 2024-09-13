@@ -39,7 +39,7 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
   const content = entry.items[0].fields;
 
   return (
-    <main className="mt-40 space-y-40">
+    <main className="mt-16 space-y-16 md:mt-40 md:space-y-40">
       {content.blocks.map((block) => {
         switch (block.sys.contentType.sys.id) {
           case 'blockHero':
