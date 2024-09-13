@@ -7,6 +7,7 @@ import { Footer } from '@/components/footer';
 import { FrontChat } from '@/components/front-chat';
 import { Header } from '@/components/header';
 import { ReactQueryClientProvider } from '@/components/react-query-client-provider';
+import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 
 import '../globals.css';
@@ -27,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={params?.slug?.[0] || 'sv'}>
-      <body className={cn(hyperlegible.className, 'text-tic text-base')}>
+      <body className={cn(hyperlegible.className, 'text-base text-tic')}>
         <TooltipProvider delayDuration={100}>
           <ReactQueryClientProvider>
             <Header locale={params?.slug?.[0] || 'sv'} />
@@ -36,6 +37,7 @@ export default function RootLayout({
           </ReactQueryClientProvider>
         </TooltipProvider>
         <FrontChat />
+        <Toaster />
       </body>
     </html>
   );

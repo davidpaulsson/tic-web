@@ -1,4 +1,4 @@
-import { LogIn, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
@@ -9,7 +9,6 @@ import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 type Props = {
   locale: string;
@@ -58,7 +57,7 @@ export const Header = async ({ locale }: Props) => {
 
   return (
     <header className="container sticky top-6 md:grid md:place-content-center">
-      <nav className="border-tic-stroke flex items-center justify-between rounded-xl border bg-white/30 px-6 py-4 backdrop-blur">
+      <nav className="flex items-center justify-between rounded-xl border border-tic-stroke bg-white/30 px-6 py-4 backdrop-blur">
         <div className="flex w-full items-center gap-14">
           <Link href={`/${locale}`}>
             <span className="sr-only">{dict.goToHomepage}</span>
@@ -118,23 +117,6 @@ export const Header = async ({ locale }: Props) => {
             </SheetFooter>
           </SheetContent>
         </Sheet>
-
-        {/** Between md and lg screen */}
-        <ul className="hidden gap-4 text-white md:max-lg:flex">
-          <li className="flex items-center justify-center">
-            <Tooltip>
-              <TooltipTrigger>
-                <Link href={dict.logIn.url} className="flex h-10 w-10 items-center justify-center">
-                  <span className="sr-only">{dict.logIn.title}</span>
-                  <LogIn className="h-5 w-5" />
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{dict.logIn.title}</p>
-              </TooltipContent>
-            </Tooltip>
-          </li>
-        </ul>
       </nav>
     </header>
   );

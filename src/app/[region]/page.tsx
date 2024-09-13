@@ -3,8 +3,10 @@ import { notFound } from 'next/navigation';
 
 import { REGIONS } from '@/lib/constants';
 import { getContentfulClient } from '@/lib/contentful/get-client';
-import { ContentfulBlockHero, ContentfulPageResponse } from '@/lib/contentful/types';
+import { ContentfulBlockHero, ContentfulComponentStatic, ContentfulPageResponse } from '@/lib/contentful/types';
+import { cn } from '@/lib/utils';
 
+import { GetStartedForFree } from '@/components/get-started-for-free';
 import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
 
 export function generateStaticParams() {
@@ -13,7 +15,7 @@ export function generateStaticParams() {
   }));
 }
 
-export default async function Page({ params }: Readonly<{ params: { region: string } }>) {
+export default async function Page({ params }: Readonly<{ params: { region: (typeof REGIONS)[number] } }>) {
   const { isEnabled } = draftMode();
   const cf = getContentfulClient(isEnabled);
   const entry = (await cf.getEntries({
@@ -39,7 +41,29 @@ export default async function Page({ params }: Readonly<{ params: { region: stri
             return (
               <Hero key={block.sys.id}>
                 <HeroTitle>{hero.title}</HeroTitle>
-                <HeroSubtitle>{hero.subtitle}</HeroSubtitle>
+                <HeroSubtitle
+                  className={cn({
+                    'mb-10': hero.cta?.length > 0,
+                  })}
+                >
+                  {hero.subtitle}
+                </HeroSubtitle>
+
+                {hero.cta?.map((cta) => {
+                  switch (cta.sys.contentType.sys.id) {
+                    case 'componentStatic': {
+                      const { component } = cta.fields as ContentfulComponentStatic['fields'];
+                      switch (component) {
+                        case '"Get started for free" form':
+                          return <GetStartedForFree key={cta.sys.id} region={params.region} />;
+                        default:
+                          return null;
+                      }
+                    }
+                    default:
+                      return null;
+                  }
+                })}
               </Hero>
             );
           default:

@@ -113,7 +113,18 @@ export type ContentfulBlockHero = {
     internalTitle: string;
     title: string;
     subtitle: string;
-    cta: ContentfulComponentLink[];
+    cta: (ContentfulComponentLink | ContentfulComponentStatic)[];
+  };
+};
+
+export type ContentfulComponentStatic = {
+  sys: {
+    id: string;
+    contentType: { sys: { id: 'componentStatic' } };
+  };
+  fields: {
+    internalTitle: string;
+    component: '"Get started for free" form';
   };
 };
 
