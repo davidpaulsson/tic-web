@@ -7,10 +7,14 @@ const config = {
   theme: {
     extend: {
       colors: {
-        'tic-blue': {
-          DEFAULT: '#012E5C', // Original color
-          dark: '#01183E', // Darker shade of tic-blue
-          light: '#02468B', // Lighter shade of tic-blue
+        tic: {
+          DEFAULT: '#102030',
+          light: '#304050',
+          lighter: '#708090',
+          fill: '#F7F6F6',
+          stroke: '#E5E7E9',
+          purple: '#4B3BB0',
+          'purple-light': '#A8ACE4',
         },
       },
       keyframes: {

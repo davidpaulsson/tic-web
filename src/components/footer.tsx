@@ -46,34 +46,39 @@ export const Footer = async ({ locale }: { locale: string }) => {
   }));
 
   return (
-    <footer className="bg-gradient-to-b from-tic-blue-light to-tic-blue-dark pb-20 pt-40">
-      <div className="container space-y-8">
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-          <div className="grid place-items-center rounded bg-red-500 text-white" style={{ width: 134, height: 64 }}>
-            Logo
+    <footer className="to-tic-purple-light bg-gradient-to-b from-white pb-96 pt-40">
+      <div className="container">
+        <div className="border-t-tic-stroke space-y-8 border-t pt-10">
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <div className="grid place-items-center rounded bg-red-500" style={{ width: 134, height: 64 }}>
+              Logo
+            </div>
+
+            <SocialLinks />
           </div>
 
-          <SocialLinks />
-        </div>
+          <div className="flex flex-col-reverse border-t border-t-white/10 pt-8 md:flex-row md:justify-between">
+            <div>
+              <div className="text-tic-light mb-3">©{new Date().getFullYear()} The Intelligence Company AB</div>
+              <div className="text-sm">Vi har kreditupplysningstillstånd från Integritetsskyddsmyndigheten.</div>
+            </div>
 
-        <div className="flex flex-col-reverse border-t border-t-white/10 pt-8 md:flex-row md:justify-between">
-          <div className="text-white">©{new Date().getFullYear()} The Intelligence Company AB</div>
-
-          <ul className="mb-8 flex flex-col gap-2 text-white md:mb-0 md:flex-row md:items-center md:gap-4">
-            {links.map((link) => {
-              const isLast = link === links[links.length - 1];
-              return (
-                <>
-                  <li key={link.slug}>
-                    <Link href={`/${link.slug}`} className="text-white hover:underline">
-                      {link.title}
-                    </Link>
-                  </li>
-                  {!isLast && <Dot width={2} height={2} className="hidden fill-white md:block" />}
-                </>
-              );
-            })}
-          </ul>
+            <ul className="mb-8 flex flex-col gap-2 md:mb-0 md:flex-row md:items-center md:gap-4">
+              {links.map((link) => {
+                const isLast = link === links[links.length - 1];
+                return (
+                  <>
+                    <li key={link.slug}>
+                      <Link href={`/${link.slug}`} className="hover:underline">
+                        {link.title}
+                      </Link>
+                    </li>
+                    {!isLast && <Dot width={2} height={2} className="hidden md:block" />}
+                  </>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </div>
     </footer>

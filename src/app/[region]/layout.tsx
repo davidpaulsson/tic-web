@@ -1,7 +1,11 @@
 /* eslint-disable @next/next/no-page-custom-font */
 import { Atkinson_Hyperlegible } from 'next/font/google';
 
+import { cn } from '@/lib/utils';
+
+import { Footer } from '@/components/footer';
 import { FrontChat } from '@/components/front-chat';
+import { Header } from '@/components/header';
 import { ReactQueryClientProvider } from '@/components/react-query-client-provider';
 import { TooltipProvider } from '@/components/ui/tooltip';
 
@@ -23,9 +27,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={params?.slug?.[0] || 'sv'}>
-      <body className={hyperlegible.className}>
+      <body className={cn(hyperlegible.className, 'text-tic')}>
         <TooltipProvider delayDuration={100}>
-          <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
+          <ReactQueryClientProvider>
+            <main>{children}</main>
+            <Footer locale={params?.slug?.[0] || 'sv'} />
+          </ReactQueryClientProvider>
         </TooltipProvider>
         <FrontChat />
       </body>
