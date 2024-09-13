@@ -27,9 +27,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={params?.slug?.[0] || 'sv'}>
-      <body className={cn(hyperlegible.className, 'text-tic')}>
+      <body className={cn(hyperlegible.className, 'text-tic text-base')}>
         <TooltipProvider delayDuration={100}>
           <ReactQueryClientProvider>
+            <Header locale={params?.slug?.[0] || 'sv'} />
             <main>{children}</main>
             <Footer locale={params?.slug?.[0] || 'sv'} />
           </ReactQueryClientProvider>

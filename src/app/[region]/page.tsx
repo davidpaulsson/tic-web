@@ -1,7 +1,5 @@
-import { Logo } from '@/components/logo';
-
 export function generateStaticParams() {
-  const pages = ['sv', 'no', 'de', 'en'];
+  const pages = ['sv', 'en'];
   return pages.map((page) => ({
     slug: [page],
   }));

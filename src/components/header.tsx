@@ -1,10 +1,9 @@
-import { ChevronRight, LogIn, Menu, Phone } from 'lucide-react';
+import { LogIn, Menu } from 'lucide-react';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
 import { getContentfulClient } from '@/lib/contentful/get-client';
 import type { ContentfulNavigationResponse } from '@/lib/contentful/types';
-import { cn } from '@/lib/utils';
 
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -13,11 +12,10 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { ScrollArea } from './ui/scroll-area';
 
 type Props = {
-  theme: 'light' | 'dark';
   locale: string;
 };
 
-export const Header = async ({ theme = 'dark', locale }: Props) => {
+export const Header = async ({ locale }: Props) => {
   const { isEnabled } = draftMode();
   const cf = getContentfulClient(isEnabled);
   const entry = (await cf.getEntries({
@@ -38,10 +36,6 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
       dict = {
         goToHomepage: 'Go to homepage',
         openMenu: 'Open menu',
-        contactSales: {
-          title: 'Contact sales',
-          url: '/',
-        },
         logIn: {
           title: 'Log in',
           url: '/',
@@ -52,10 +46,6 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
       dict = {
         goToHomepage: 'Gå till startsidan',
         openMenu: 'Öppna meny',
-        contactSales: {
-          title: 'Kontakta säljteamet',
-          url: '/',
-        },
         logIn: {
           title: 'Logga in',
           url: '/',
@@ -67,13 +57,8 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
   }
 
   return (
-    <header
-      className={cn({
-        'text-black': theme === 'dark',
-        'text-white': theme === 'light',
-      })}
-    >
-      <nav className="container flex items-center justify-between">
+    <header className="container sticky top-6">
+      <nav className="border-tic-stroke flex items-center justify-between rounded-xl border bg-white/30 px-6 py-4 backdrop-blur">
         <div className="flex items-center gap-8">
           <Link href={`/${locale}`}>
             <span className="sr-only">{dict.goToHomepage}</span>
@@ -120,11 +105,6 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
             <SheetFooter>
               <ul className="space-y-4">
                 <li>
-                  <Button className="w-full" variant="secondary" asChild>
-                    <Link href={dict.contactSales.url}>{dict.contactSales.title}</Link>
-                  </Button>
-                </li>
-                <li>
                   <Button className="w-full" asChild>
                     <Link href={dict.logIn.url}>{dict.logIn.title}</Link>
                   </Button>
@@ -139,32 +119,7 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
           <li className="flex items-center justify-center">
             <Tooltip>
               <TooltipTrigger>
-                <Link
-                  href={dict.contactSales.url}
-                  className={cn('flex h-10 w-10 items-center justify-center', {
-                    'text-white': theme === 'light',
-                    'text-tic-blue': theme === 'dark',
-                  })}
-                >
-                  <span className="sr-only">{dict.contactSales.title}</span>
-                  <Phone className="h-5 w-5" />
-                </Link>
-              </TooltipTrigger>
-              <TooltipContent>
-                <p>{dict.contactSales.title}</p>
-              </TooltipContent>
-            </Tooltip>
-          </li>
-          <li className="flex items-center justify-center">
-            <Tooltip>
-              <TooltipTrigger>
-                <Link
-                  href={dict.logIn.url}
-                  className={cn('flex h-10 w-10 items-center justify-center', {
-                    'text-white': theme === 'light',
-                    'text-tic-blue': theme === 'dark',
-                  })}
-                >
+                <Link href={dict.logIn.url} className="flex h-10 w-10 items-center justify-center">
                   <span className="sr-only">{dict.logIn.title}</span>
                   <LogIn className="h-5 w-5" />
                 </Link>
@@ -179,22 +134,9 @@ export const Header = async ({ theme = 'dark', locale }: Props) => {
         {/** lg screen and up */}
         <ul className="hidden items-center gap-2 lg:flex">
           <li>
-            <Button variant="ghost" asChild>
-              <Link
-                href={dict.contactSales.url}
-                className={cn('group flex gap-2', {
-                  'text-white hover:text-white': theme === 'light',
-                })}
-              >
-                {dict.contactSales.title}
-                <ChevronRight className="h-5 w-5 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
-          </li>
-          <li>
-            <Button variant={theme === 'light' ? 'secondary' : 'default'} asChild>
+            <Button asChild variant="outline">
               <Link href={dict.logIn.url} className="group flex gap-2">
-                {dict.logIn.title} <ChevronRight className="h-5 w-5 text-[#C8B8DC] transition-transform group-hover:translate-x-1" />
+                {dict.logIn.title}
               </Link>
             </Button>
           </li>
