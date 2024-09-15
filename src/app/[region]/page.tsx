@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 
 import { GetStartedForFree } from '@/components/get-started-for-free';
 import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
+import { PricingTable } from '@/components/pricing-table';
 import { ProductFeature } from '@/components/product-feature';
 import { DotPattern } from '@/components/ui/dot-pattern';
 
@@ -92,6 +93,8 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
             return null;
         }
       })}
+
+      <PricingTable />
     </main>
   );
 }
