@@ -1,14 +1,43 @@
-import { Check, Minus, X } from 'lucide-react';
+import { Check, InfoIcon, Minus, X } from 'lucide-react';
+import Link from 'next/link';
 import React from 'react';
 
+import { cn } from '@/lib/utils';
+
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+
+import { Button } from './ui/button';
+
+const asMoney = (value: number) => {
+  return new Intl.NumberFormat('sv-SE', {
+    style: 'currency',
+    currency: 'SEK',
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(value);
+};
+
+const asNumber = (value: number) => {
+  return new Intl.NumberFormat('sv-SE').format(value);
+};
 
 const PLANS = [
   {
     title: 'Total kostnad per månad',
     Free: '0 kr',
-    Basic: '995 kr',
-    Premium: 'Från 3995 kr > (begär offert)',
+    Basic: asMoney(995),
+    Premium: (
+      <Tooltip>
+        <TooltipTrigger className="inline-flex items-center gap-1">
+          Från {asMoney(3995)}
+          <InfoIcon className="h-3 w-3 text-tic-light" />
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Begär offert</p>
+        </TooltipContent>
+      </Tooltip>
+    ),
   },
   {
     title: 'Betala med',
@@ -18,27 +47,27 @@ const PLANS = [
   },
   {
     title: 'Max antal API-anrop / frågor per månad',
-    Free: '2,000',
-    Basic: '5,000',
+    Free: asNumber(2000),
+    Basic: asNumber(5000),
     Premium: 'Obegränsat',
   },
   {
     title: 'Validera ditt konto med BankID och få fler anrop per månad',
-    Free: '4,000',
-    Basic: '7,000',
+    Free: asNumber(4000),
+    Basic: asNumber(7000),
     Premium: 'Obegränsat',
   },
   {
     title: "Maximala antalet företag du kan 'hämta per månad'",
-    Free: '200,000',
-    Basic: '500,000',
+    Free: asNumber(200000),
+    Basic: asNumber(500000),
     Premium: 'Obegränsat',
   },
   {
     title: 'Antal API-anrop per sekund',
-    Free: '4',
-    Basic: '8',
-    Premium: '16',
+    Free: asNumber(4),
+    Basic: asNumber(8),
+    Premium: asNumber(16),
   },
   {
     title: 'Sök företagsinformation och gör urval via vår blixtsnabba sökmotor',
@@ -115,9 +144,29 @@ const PLANS = [
   },
   {
     title: 'Ekonomisk översikt',
-    Free: 'Senaste räkenskapsåret',
-    Basic: 'Senaste räkenskapsåret',
-    Premium: 'Fyra år',
+    Free: (
+      <Tooltip>
+        <TooltipTrigger className="inline-flex items-center gap-1">
+          1 år
+          <InfoIcon className="h-3 w-3 text-tic-light" />
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Senaste räkenskapsåret</p>
+        </TooltipContent>
+      </Tooltip>
+    ),
+    Basic: (
+      <Tooltip>
+        <TooltipTrigger className="inline-flex items-center gap-1">
+          1 år
+          <InfoIcon className="h-3 w-3 text-tic-light" />
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>Senaste räkenskapsåret</p>
+        </TooltipContent>
+      </Tooltip>
+    ),
+    Premium: '4 år',
   },
   {
     title: 'Ekonomiska detaljer (samtliga tillgängliga år)',
@@ -230,69 +279,130 @@ const PLANS = [
   {
     title: 'Support',
     Free: false,
-    Basic: 'Ja via chatt och e-post',
+    Basic: 'Chatt och e-post',
     Premium: 'Dedikerad resurs telefon, e-post, chatt',
   },
   {
     title: 'Kreditupplysning privatperson / företag (med omfrågekopia)',
-    Free: '49 kr',
-    Basic: '39 kr',
-    Premium: '19 kr',
+    Free: asMoney(49),
+    Basic: asMoney(39),
+    Premium: asMoney(19),
   },
 ];
 
 export const PricingTable = () => {
   return (
     <div className="container">
+      <h2 className="mb-14 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Jämför detaljerna</h2>
       <Table>
-        <TableCaption>Pricing Plans Comparison</TableCaption>
+        {/* <TableCaption>Pricing Plans Comparison</TableCaption> */}
         <TableHeader>
-          <TableRow>
+          <TableRow className="!border-b-0 hover:bg-transparent">
             <TableHead className="w-1/2"></TableHead>
             <TableHead className="!m-0 !p-0">
-              <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-4 text-center text-2xl text-tic">
-                Free
+              <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-6 text-center text-2xl text-tic">
+                <div>Free</div>
+                <Button asChild variant="outline">
+                  <Link href="#" className="mt-4 block text-base">
+                    Kom igång gratis
+                  </Link>
+                </Button>
               </div>
             </TableHead>
             <TableHead />
             <TableHead className="!m-0 !p-0">
-              <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-4 text-center text-2xl text-tic">
-                Basic
+              <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-6 text-center text-2xl text-tic">
+                <div>Basic</div>
+                <Button asChild>
+                  <Link href="#" className="mt-4 block text-base">
+                    Skapa konto
+                  </Link>
+                </Button>
               </div>
             </TableHead>
             <TableHead />
             <TableHead className="!m-0 !p-0">
-              <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-4 text-center text-2xl text-tic">
-                Premium
+              <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-6 text-center text-2xl text-tic">
+                <div>Premium</div>
+                <Button asChild>
+                  <Link href="#" className="mt-4 block text-base">
+                    Kontakta sälj
+                  </Link>
+                </Button>
               </div>
             </TableHead>
           </TableRow>
         </TableHeader>
+
         <TableBody>
-          {PLANS.map((plan, index) => (
-            <TableRow key={index}>
-              <TableCell className="font-medium">{plan.title}</TableCell>
-              <TableCell className="border-x border-x-tic-stroke bg-tic-fill text-center">
-                {typeof plan.Free === 'boolean' ? plan.Free ? <Check className="h-4 w-4" /> : <Minus className="h-4 w-4" /> : plan.Free}
-              </TableCell>
-              <TableCell />
-              <TableCell className="border-x border-x-tic-stroke bg-tic-fill text-center">
-                {typeof plan.Basic === 'boolean' ? plan.Basic ? <Check className="h-4 w-4" /> : <Minus className="h-4 w-4" /> : plan.Basic}
-              </TableCell>
-              <TableCell />
-              <TableCell className="border-x border-x-tic-stroke bg-tic-fill text-center">
-                {typeof plan.Premium === 'boolean' ? (
-                  plan.Premium ? (
-                    <Check className="h-4 w-4" />
+          {PLANS.map((plan, index) => {
+            const isLast = index === PLANS.length - 1;
+
+            return (
+              <TableRow
+                key={index}
+                className={cn({
+                  '!border-b-0': isLast,
+                })}
+              >
+                <TableCell className="font-medium">{plan.title}</TableCell>
+
+                <TableCell className="border-x border-x-tic-stroke bg-tic-fill text-center">
+                  {typeof plan.Free === 'boolean' ? (
+                    plan.Free ? (
+                      <Check className="inline h-4 w-4 text-tic-purple" />
+                    ) : (
+                      <Minus className="inline h-4 w-4 text-tic-purple" />
+                    )
                   ) : (
-                    <Minus className="h-4 w-4" />
-                  )
-                ) : (
-                  plan.Premium
-                )}
-              </TableCell>
-            </TableRow>
-          ))}
+                    plan.Free
+                  )}
+                </TableCell>
+
+                <TableCell />
+
+                <TableCell className="border-x border-x-tic-stroke bg-tic-fill text-center">
+                  {typeof plan.Basic === 'boolean' ? (
+                    plan.Basic ? (
+                      <Check className="inline h-4 w-4 text-tic-purple" />
+                    ) : (
+                      <Minus className="inline h-4 w-4 text-tic-purple" />
+                    )
+                  ) : (
+                    plan.Basic
+                  )}
+                </TableCell>
+
+                <TableCell />
+
+                <TableCell className="border-x border-x-tic-stroke bg-tic-fill text-center">
+                  {typeof plan.Premium === 'boolean' ? (
+                    plan.Premium ? (
+                      <Check className="inline h-4 w-4 text-tic-purple" />
+                    ) : (
+                      <Minus className="inline h-4 w-4 text-tic-purple" />
+                    )
+                  ) : (
+                    plan.Premium
+                  )}
+                </TableCell>
+              </TableRow>
+            );
+          })}
+          <TableRow className="hover:bg-transparent">
+            <TableCell className="w-1/2"></TableCell>
+            <TableCell className="!m-0 !p-0">
+              <div className="h-8 rounded-b-lg border-x border-b border-tic-stroke bg-tic-fill text-center text-2xl text-tic" />
+            </TableCell>
+            <TableCell />
+            <TableCell className="!m-0 !p-0">
+              <div className="h-8 rounded-b-lg border-x border-b border-tic-stroke bg-tic-fill text-center text-2xl text-tic" />
+            </TableCell>
+            <TableCell />
+            <TableCell className="!m-0 !p-0">
+              <div className="h-8 rounded-b-lg border-x border-b border-tic-stroke bg-tic-fill text-center text-2xl text-tic" />
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </div>
