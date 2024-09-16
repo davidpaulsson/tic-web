@@ -13,6 +13,7 @@ import { cn } from '@/lib/utils';
 
 import { GetStartedForFree } from '@/components/get-started-for-free';
 import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
+import { PlanSelection } from '@/components/plan-selection';
 import { PricingTable } from '@/components/pricing-table';
 import { ProductFeature } from '@/components/product-feature';
 import { DotPattern } from '@/components/ui/dot-pattern';
@@ -127,24 +128,8 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
         }
       })}
 
+      <PlanSelection />
       <PricingTable />
     </main>
   );
 }
-
-// const metadata = {
-//   title: 'The Intelligence Company',
-//   description: 'The Intelligence Company AB (publ) 559487-1682',
-//   openGraph: {
-//     images: [
-//       {
-//         url: 'http://localhost:3000/api/og?title=Företagsinformation och kreditupplysningar',
-//         width: 1200,
-//         height: 630,
-//         alt: 'Företagsinformation och kreditupplysningar',
-//       },
-//     ],
-//   },
-// };
-
-// export { metadata };
