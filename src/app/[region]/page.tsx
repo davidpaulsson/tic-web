@@ -23,6 +23,39 @@ export function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: Readonly<{ params: { region: (typeof REGIONS)[number] } }>) {
+  const { isEnabled } = draftMode();
+  const cf = getContentfulClient(isEnabled);
+  const entry = (await cf.getEntries({
+    content_type: 'page',
+    'fields.slug': params.region,
+    limit: 1,
+    include: 10,
+    locale: params.region,
+  })) as unknown as ContentfulPageResponse;
+
+  if (!entry.items.length) {
+    notFound();
+  }
+
+  const content = entry.items[0].fields;
+
+  return {
+    title: content.title,
+    description: content.description,
+    openGraph: {
+      images: [
+        {
+          url: `/api/og?title=${content.title}`,
+          width: 1200,
+          height: 630,
+          alt: content.description,
+        },
+      ],
+    },
+  };
+}
+
 export default async function Page({ params }: Readonly<{ params: { region: (typeof REGIONS)[number] } }>) {
   const { isEnabled } = draftMode();
   const cf = getContentfulClient(isEnabled);
@@ -99,19 +132,19 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
   );
 }
 
-const metadata = {
-  title: 'The Intelligence Company',
-  description: 'The Intelligence Company AB (publ) 559487-1682',
-  openGraph: {
-    images: [
-      {
-        url: 'https://www.tic.io/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'The Intelligence Company',
-      },
-    ],
-  },
-};
+// const metadata = {
+//   title: 'The Intelligence Company',
+//   description: 'The Intelligence Company AB (publ) 559487-1682',
+//   openGraph: {
+//     images: [
+//       {
+//         url: 'http://localhost:3000/api/og?title=Företagsinformation och kreditupplysningar',
+//         width: 1200,
+//         height: 630,
+//         alt: 'Företagsinformation och kreditupplysningar',
+//       },
+//     ],
+//   },
+// };
 
-export { metadata };
+// export { metadata };

@@ -11,6 +11,7 @@ export type ContentfulPageResponse = {
     fields: {
       internalTitle: string;
       title: string;
+      description: string;
       slug: string;
       blocks: (ContentfulBlockHero | ContentfulBlockProductFeature | ContentfulBlockContent | ContentfulBlockCarousel)[];
     };
