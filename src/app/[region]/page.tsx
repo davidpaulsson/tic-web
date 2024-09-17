@@ -16,6 +16,7 @@ import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
 import { PlanSelection } from '@/components/plan-selection';
 import { PricingTable } from '@/components/pricing-table';
 import { ProductFeature } from '@/components/product-feature';
+import { Sources } from '@/components/sources';
 import { DotPattern } from '@/components/ui/dot-pattern';
 
 export function generateStaticParams() {
@@ -127,6 +128,8 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
             return null;
         }
       })}
+
+      <Sources />
 
       <PlanSelection />
       <PricingTable />
