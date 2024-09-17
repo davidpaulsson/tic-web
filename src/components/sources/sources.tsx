@@ -40,9 +40,11 @@ export const Sources = () => {
   const prvRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div className="container">
-      <h2 className="mb-4 text-balance text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Dokument och data från mängder med källor.</h2>
-      <p className="mb-14 text-balance text-2xl text-tic-lighter md:text-3xl">
+    <div className="container py-40">
+      <h2 className="mb-2 text-balance text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+        Dokument och data från mängder med källor.
+      </h2>
+      <p className="mb-20 text-balance text-center text-base text-tic-lighter sm:text-lg md:text-xl lg:text-2xl">
         Avvikelser, brister och felaktigheter blir vad vi kallar &quot;Intelligence Score&quot;.
       </p>
 
