@@ -32,13 +32,13 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
   toRef,
   curvature = 0,
   reverse = false, // Include the reverse prop
-  duration = Math.random() * 20 + 10,
-  delay = Math.random() * 10,
+  duration = Math.random() * 10 + 10,
+  delay = 0,
   pathColor = '#E5E7E9',
   pathWidth = 2,
   pathOpacity = 0.2,
-  gradientStartColor = '#102030',
-  gradientStopColor = '#4B3BB0',
+  gradientStartColor = '#ffaa40',
+  gradientStopColor = '#9c40ff',
   startXOffset = 0,
   startYOffset = 0,
   endXOffset = 0,
@@ -79,15 +79,16 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
         const endX = rectB.left - containerRect.left + rectB.width / 2 + endXOffset;
         const endY = rectB.top - containerRect.top + rectB.height / 2 + endYOffset;
 
-        const path = `M${startX},${startY} L${endX},${endY}`;
-        setPathD(path);
+        const controlY = startY - curvature;
+        const d = `M ${startX},${startY} Q ${(startX + endX) / 2},${controlY} ${endX},${endY}`;
+        setPathD(d);
       }
     };
 
     // Initialize ResizeObserver
     const resizeObserver = new ResizeObserver((entries) => {
       // For all entries, recalculate the path
-      for (let _ of entries) {
+      for (let entry of entries) {
         updatePath();
       }
     });
