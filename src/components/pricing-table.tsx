@@ -7,7 +7,7 @@ import { asMoney, asNumber, cn } from '@/lib/utils';
 import { ListItem } from '@/components/list-item';
 import { Button } from '@/components/ui/button';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 const PLANS = [
@@ -256,8 +256,8 @@ export const PricingTable = () => {
         {/* <TableCaption>Pricing Plans Comparison</TableCaption> */}
         <TableHeader>
           <TableRow className="!border-b-0 hover:bg-transparent">
-            <TableHead className="w-1/2"></TableHead>
-            <TableHead className="!m-0 !p-0">
+            <TableHead className="w-3/6"></TableHead>
+            <TableHead className="!m-0 w-1/6 !p-0">
               <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-6 text-center text-2xl text-tic">
                 <div>Free</div>
                 <Button asChild variant="outline">
@@ -268,7 +268,7 @@ export const PricingTable = () => {
               </div>
             </TableHead>
             <TableHead />
-            <TableHead className="!m-0 !p-0">
+            <TableHead className="!m-0 w-1/6 !p-0">
               <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-6 text-center text-2xl text-tic">
                 <div>Basic</div>
                 <Button asChild>
@@ -279,7 +279,7 @@ export const PricingTable = () => {
               </div>
             </TableHead>
             <TableHead />
-            <TableHead className="!m-0 !p-0">
+            <TableHead className="!m-0 w-1/6 !p-0">
               <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-6 text-center text-2xl text-tic">
                 <div>Premium</div>
                 <Button asChild>
@@ -362,6 +362,28 @@ export const PricingTable = () => {
             </TableCell>
           </TableRow>
         </TableBody>
+        <TableFooter className="!border-none">
+          <TableRow className="border-t-transparent bg-white hover:bg-white">
+            <TableCell className="w-3/6 !pt-8 text-lg">Lägg till fler anrop</TableCell>
+          </TableRow>
+
+          <TableRow className="bg-white hover:bg-white">
+            <TableCell className="w-3/6">Köp till fler anrop +2000</TableCell>
+            <TableCell className="text-center">{asMoney(1000)}</TableCell>
+            <TableCell />
+            <TableCell className="text-center">{asMoney(500)}</TableCell>
+            <TableCell />
+            <TableCell className="text-center">Obegränsat</TableCell>
+          </TableRow>
+          <TableRow className="bg-white hover:bg-white">
+            <TableCell className="w-3/6">Köp till fler anrop +10000</TableCell>
+            <TableCell className="text-center">{asMoney(3000)}</TableCell>
+            <TableCell />
+            <TableCell className="text-center">{asMoney(1500)}</TableCell>
+            <TableCell />
+            <TableCell className="text-center">Obegränsat</TableCell>
+          </TableRow>
+        </TableFooter>
       </Table>
     </div>
   );
