@@ -2,25 +2,12 @@ import { Check, InfoIcon, Minus, X } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
-import { cn } from '@/lib/utils';
+import { asMoney, asNumber, cn } from '@/lib/utils';
 
 import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 import { Button } from './ui/button';
-
-const asMoney = (value: number) => {
-  return new Intl.NumberFormat('sv-SE', {
-    style: 'currency',
-    currency: 'SEK',
-    minimumFractionDigits: 0,
-    maximumFractionDigits: 0,
-  }).format(value);
-};
-
-const asNumber = (value: number) => {
-  return new Intl.NumberFormat('sv-SE').format(value);
-};
 
 const PLANS = [
   {
