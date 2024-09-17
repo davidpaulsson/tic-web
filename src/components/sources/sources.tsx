@@ -43,7 +43,7 @@ export const Sources = () => {
     <div className="container">
       <h2 className="mb-4 text-balance text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Dokument och data från mängder med källor.</h2>
       <p className="mb-14 text-balance text-2xl text-tic-lighter md:text-3xl">
-        Avvikelser, brister och felaktigheter blir vad vi kallar "Intelligence Score".
+        Avvikelser, brister och felaktigheter blir vad vi kallar &quot;Intelligence Score&quot;.
       </p>
 
       <div className="relative" ref={containerRef}>
