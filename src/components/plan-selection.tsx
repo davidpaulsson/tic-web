@@ -1,18 +1,12 @@
-import { CheckIcon, InfoIcon, PlusIcon } from 'lucide-react';
+import { InfoIcon, PlusIcon } from 'lucide-react';
 import Link from 'next/link';
 
 import { asMoney } from '@/lib/utils';
 
+import { ListItem } from '@/components/list-item';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-
-import { Button } from './ui/button';
-import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
-
-const ListItem = ({ children }: { children: React.ReactNode }) => (
-  <li className="mb-3 flex gap-3 last:mb-0">
-    <CheckIcon className="mt-1 inline h-4 w-4 flex-shrink-0 text-tic-purple" /> {children}
-  </li>
-);
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 export const PlanSelection = () => {
   return (

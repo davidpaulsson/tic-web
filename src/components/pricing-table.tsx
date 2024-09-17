@@ -1,13 +1,14 @@
-import { Check, InfoIcon, Minus, X } from 'lucide-react';
+import { Check, InfoIcon, Minus } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
 import { asMoney, asNumber, cn } from '@/lib/utils';
 
-import { Table, TableBody, TableCaption, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
-
-import { Button } from './ui/button';
+import { ListItem } from '@/components/list-item';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 const PLANS = [
   {
@@ -57,68 +58,38 @@ const PLANS = [
     Premium: asNumber(16),
   },
   {
-    title: 'Sök företagsinformation och gör urval via vår blixtsnabba sökmotor',
-    Free: true,
-    Basic: true,
-    Premium: true,
-  },
-  {
-    title: 'Namn, bifirma',
-    Free: true,
-    Basic: true,
-    Premium: true,
-  },
-  {
-    title: 'Telefonnummer',
-    Free: true,
-    Basic: true,
-    Premium: true,
-  },
-  {
-    title: 'Address',
-    Free: true,
-    Basic: true,
-    Premium: true,
-  },
-  {
-    title: 'SNI-koder och verksamhetsbeskrivning',
-    Free: true,
-    Basic: true,
-    Premium: true,
-  },
-  {
-    title: 'Webblänkar till hemsida',
-    Free: true,
-    Basic: true,
-    Premium: true,
-  },
-  {
-    title: 'Momsregistrering',
-    Free: true,
-    Basic: true,
-    Premium: true,
-  },
-  {
-    title: 'Registrerad som arbetsgivare',
-    Free: true,
-    Basic: true,
-    Premium: true,
-  },
-  {
-    title: 'Registrerad för F-skatt',
-    Free: true,
-    Basic: true,
-    Premium: true,
-  },
-  {
-    title: 'Bankgiro- och plusgiro uppgifter',
-    Free: true,
-    Basic: true,
-    Premium: true,
-  },
-  {
-    title:
-      'Omsättning, rörelseresultat, finansiella intäkter&kostnader, resultat efter finansiella kostnader och intäkter, tillgångar, anställda, rörelsemarginal, vinstmarginal, soliditet, bruttomarginal, revisor (ja/nej)',
+    title: (
+      <>
+        Sök företagsinformation och gör urval via vår blixtsnabba sökmotor
+        <Dialog>
+          <DialogTrigger>
+            <InfoIcon className="ml-1 h-3 w-3 text-tic-light" />
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Sök företagsinformation och gör urval via vår blixtsnabba sökmotor</DialogTitle>
+              <DialogDescription>
+                <ul>
+                  <ListItem>Namn, bifirma</ListItem>
+                  <ListItem>Telefonnummer</ListItem>
+                  <ListItem>Address</ListItem>
+                  <ListItem>SNI-koder och verksamhetsbeskrivning</ListItem>
+                  <ListItem>Webblänkar till hemsida</ListItem>
+                  <ListItem>Momsregistrering</ListItem>
+                  <ListItem>Registrerad som arbetsgivare</ListItem>
+                  <ListItem>Registrerad för F-skatt</ListItem>
+                  <ListItem>Bankgiro- och plusgiro uppgifter</ListItem>
+                  <ListItem>
+                    Omsättning, rörelseresultat, finansiella intäkter&kostnader, resultat efter finansiella kostnader och intäkter,
+                    tillgångar, anställda, rörelsemarginal, vinstmarginal, soliditet, bruttomarginal, revisor (ja/nej)
+                  </ListItem>
+                </ul>
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
+      </>
+    ),
     Free: true,
     Basic: true,
     Premium: true,
