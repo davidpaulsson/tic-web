@@ -78,7 +78,7 @@ const PLANS = [
                   <ListItem>Momsregistrering</ListItem>
                   <ListItem>Registrerad som arbetsgivare</ListItem>
                   <ListItem>Registrerad för F-skatt</ListItem>
-                  <ListItem>Bankgiro- och plusgiro uppgifter</ListItem>
+                  <ListItem>Bankgiro- och Plusgiro-uppgifter</ListItem>
                   <ListItem>
                     Omsättning, rörelseresultat, finansiella intäkter&kostnader, resultat efter finansiella kostnader och intäkter,
                     tillgångar, anställda, rörelsemarginal, vinstmarginal, soliditet, bruttomarginal, revisor (ja/nej)
