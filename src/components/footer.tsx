@@ -10,6 +10,7 @@ import Link from 'next/link';
 
 import { getContentfulClient } from '@/lib/contentful/get-client';
 import type { ContentfulNavigationResponse } from '@/lib/contentful/types';
+import { cn } from '@/lib/utils';
 
 import { Logo } from './logo';
 
@@ -48,9 +49,15 @@ export const Footer = async ({ locale }: { locale: string }) => {
   }));
 
   return (
-    <footer className="to-tic-purple-light bg-gradient-to-b from-white pb-96 pt-40">
+    <footer
+      className={cn(
+        'pb-96 pt-40',
+        // Gradient
+        'bg-gradient-to-b from-white to-tic-purple-light',
+      )}
+    >
       <div className="container">
-        <div className="border-t-tic-stroke space-y-8 border-t pt-10">
+        <div className="space-y-8 border-t border-t-tic-stroke pt-10">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
             <Logo className="w-32" />
 
@@ -59,7 +66,7 @@ export const Footer = async ({ locale }: { locale: string }) => {
 
           <div className="flex flex-col-reverse border-t border-t-white/10 pt-8 md:flex-row md:justify-between">
             <div>
-              <div className="text-tic-light mb-3">©{new Date().getFullYear()} The Intelligence Company AB</div>
+              <div className="mb-3 text-tic-light">©{new Date().getFullYear()} The Intelligence Company AB</div>
               <div className="text-sm">Vi har kreditupplysningstillstånd från Integritetsskyddsmyndigheten.</div>
             </div>
 
