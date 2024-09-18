@@ -24,7 +24,7 @@ export const dynamicParams = false;
 
 export function generateStaticParams() {
   return REGIONS.map((page) => ({
-    slug: [page],
+    slug: page,
   }));
 }
 
