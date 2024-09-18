@@ -7,6 +7,7 @@ import type { ContentfulPageResponse } from '@/lib/contentful/types';
 
 import { AccountantForm } from '@/components/accountant-form';
 import { Blocks } from '@/components/blocks';
+import { CurlExample } from '@/components/curl-example';
 import { GetStartedButton } from '@/components/get-started-button';
 import { PlanSelection } from '@/components/plan-selection';
 import { PricingTable } from '@/components/pricing-table';
@@ -73,6 +74,8 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
   return (
     <main className="mt-16 space-y-16 md:mt-40 md:space-y-40">
       <Blocks region={params.region} blocks={content.blocks} />
+
+      <CurlExample />
 
       <Sources />
       <PlanSelection />
