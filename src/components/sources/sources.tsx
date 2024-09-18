@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils';
 import { AnimatedBeam } from '@/components/ui/animated-beam';
 
 import { Logo } from '../logo';
-import { Card, CardContent, CardHeader } from '../ui/card';
 import { NumberTicker } from '../ui/number-ticker';
 import { ArbetsformedlingenLogo } from './logos/arbetsformedlingen-logo';
 import { BolagsverketLogo } from './logos/bolagsverket-logo';
