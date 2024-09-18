@@ -39,6 +39,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             // TODO
             'h-10 w-10': size === 'icon',
           },
+          className,
         )}
         ref={ref}
         {...props}

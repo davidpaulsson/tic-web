@@ -24,7 +24,7 @@ const formSchema = z.object({
     message: 'Ogiltig e-postadress.',
   }),
   accept: z.boolean().refine((val) => val === true, {
-    message: 'Du måste acceptera villkoren.',
+    message: 'Du måste godkänna integritetspolicyn.',
   }),
 });
 
@@ -49,9 +49,9 @@ export const AccountantForm = () => {
 
   return (
     <div className="container">
-      <div className="grid grid-cols-2 overflow-hidden rounded-lg">
-        <div className="bg-tic-purple-light" />
-        <div className="bg-tic-fill p-16">
+      <div className="overflow-hidden rounded-lg md:grid md:grid-cols-2">
+        <div className="bg-tic-purple-light max-md:hidden" />
+        <div className="bg-tic-fill p-8 md:p-16">
           <h2 className="mb-2 text-pretty text-4xl">Är du revisor eller auktoriserad redovisningskonsult?</h2>
           <p className="mb-5 text-tic-light">
             Fyll i ditt namn och e-post så får du en kostnadsfri kopia på årsredovisningar som registreras samt vilka brister vi
@@ -98,27 +98,32 @@ export const AccountantForm = () => {
                   </FormItem>
                 )}
               />
+
+              <Button type="submit" className="w-full">
+                Skicka
+              </Button>
+
               <FormField
                 control={form.control}
                 name="accept"
                 render={({ field }) => (
-                  <FormItem className="flex items-center space-x-3 space-y-0">
-                    <FormControl>
-                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                    </FormControl>
-                    <FormLabel className="text-tic-light">
-                      Jag godkänner{' '}
-                      <Link href="/sv/integritetspolicy" className="text-tic underline transition-colors hover:no-underline">
-                        integritetspolicyn
-                      </Link>
-                      .
-                    </FormLabel>
-                  </FormItem>
+                  <>
+                    <FormItem className="flex items-center space-x-3 space-y-0">
+                      <FormControl>
+                        <Checkbox checked={field.value} onCheckedChange={field.onChange} />
+                      </FormControl>
+                      <FormLabel className="text-tic-light">
+                        Jag godkänner{' '}
+                        <Link href="/sv/integritetspolicy" className="text-tic underline transition-colors hover:no-underline">
+                          integritetspolicyn
+                        </Link>
+                        .
+                      </FormLabel>
+                    </FormItem>
+                    <FormMessage />
+                  </>
                 )}
               />
-              <Button type="submit" disabled={!form.formState.isValid || form.formState.isSubmitting} className="!w-full">
-                Skicka
-              </Button>
             </form>
           </Form>
         </div>

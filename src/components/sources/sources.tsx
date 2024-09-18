@@ -42,7 +42,7 @@ export const Sources = () => {
   return (
     <div className="container py-40">
       <h2 className="mb-2 text-balance text-center text-2xl md:text-3xl">Dokument och data från mängder med källor.</h2>
-      <p className="text-balance text-center text-2xl text-tic-lighter md:text-3xl">
+      <p className="mx-auto max-w-prose text-balance text-center text-xl text-tic-lighter md:text-2xl">
         Avvikelser, brister och felaktigheter blir vad vi kallar ”Intelligence Score”.
       </p>
 
