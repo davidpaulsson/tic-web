@@ -8,6 +8,7 @@ import { AnimatedBeam } from '@/components/ui/animated-beam';
 
 import { Logo } from '../logo';
 import { Card, CardContent, CardHeader } from '../ui/card';
+import { NumberTicker } from '../ui/number-ticker';
 import { ArbetsformedlingenLogo } from './logos/arbetsformedlingen-logo';
 import { BolagsverketLogo } from './logos/bolagsverket-logo';
 import { ForsakringskassanLogo } from './logos/forsakringskassan-logo';
@@ -41,14 +42,12 @@ export const Sources = () => {
 
   return (
     <div className="container py-40">
-      <h2 className="mb-2 text-balance text-center text-xl sm:text-2xl md:text-3xl lg:text-4xl">
-        Dokument och data från mängder med källor.
-      </h2>
-      <p className="mb-20 text-balance text-center text-base text-tic-lighter sm:text-lg md:text-xl lg:text-2xl">
+      <h2 className="mb-2 text-balance text-center text-2xl md:text-3xl">Dokument och data från mängder med källor.</h2>
+      <p className="text-balance text-center text-2xl text-tic-lighter md:text-3xl">
         Avvikelser, brister och felaktigheter blir vad vi kallar &quot;Intelligence Score&quot;.
       </p>
 
-      <div className="relative" ref={containerRef}>
+      <div className="relative z-0 my-16 md:my-32" ref={containerRef}>
         <div className="flex justify-evenly">
           <Circle ref={skatteverketRef}>
             <SkatteverketLogo />
@@ -85,15 +84,19 @@ export const Sources = () => {
           </Circle>
         </div>
 
-        <AnimatedBeam containerRef={containerRef} fromRef={skatteverketRef} curvature={-160} toRef={ticRef} />
-        <AnimatedBeam containerRef={containerRef} fromRef={bolagsverketRef} curvature={-100} toRef={ticRef} />
-        <AnimatedBeam containerRef={containerRef} fromRef={arbetsformedlingenRef} curvature={-100} toRef={ticRef} reverse />
-        <AnimatedBeam containerRef={containerRef} fromRef={scbRef} toRef={ticRef} curvature={-160} reverse />
-        <AnimatedBeam containerRef={containerRef} fromRef={googleRef} toRef={ticRef} curvature={160} />
-        <AnimatedBeam containerRef={containerRef} fromRef={kronofogdenRef} toRef={ticRef} curvature={100} />
-        <AnimatedBeam containerRef={containerRef} fromRef={forsakringskassanRef} toRef={ticRef} curvature={100} reverse />
-        <AnimatedBeam containerRef={containerRef} fromRef={prvRef} toRef={ticRef} curvature={160} reverse />
+        <AnimatedBeam containerRef={containerRef} fromRef={skatteverketRef} curvature={-160} toRef={ticRef} delay={1} />
+        <AnimatedBeam containerRef={containerRef} fromRef={bolagsverketRef} curvature={-100} toRef={ticRef} delay={2} />
+        <AnimatedBeam containerRef={containerRef} fromRef={arbetsformedlingenRef} curvature={-100} toRef={ticRef} reverse delay={3} />
+        <AnimatedBeam containerRef={containerRef} fromRef={scbRef} toRef={ticRef} curvature={-160} reverse delay={4} />
+        <AnimatedBeam containerRef={containerRef} fromRef={googleRef} toRef={ticRef} curvature={160} delay={5} />
+        <AnimatedBeam containerRef={containerRef} fromRef={kronofogdenRef} toRef={ticRef} curvature={100} delay={6} />
+        <AnimatedBeam containerRef={containerRef} fromRef={forsakringskassanRef} toRef={ticRef} curvature={100} reverse delay={7} />
+        <AnimatedBeam containerRef={containerRef} fromRef={prvRef} toRef={ticRef} curvature={160} reverse delay={8} />
       </div>
+
+      <p className="text-balance text-center text-lg text-tic-lighter md:text-xl">
+        Dokument och data från över <NumberTicker value={100} />+ olika källor.
+      </p>
     </div>
   );
 };

@@ -8,6 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
+import { GetStartedButton } from './get-started-button';
+
 export const PlanSelection = () => {
   return (
     <div className="container">
@@ -35,11 +37,7 @@ export const PlanSelection = () => {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button asChild={true} variant="outline">
-                <Link href="#" className="mt-4 block text-base">
-                  Kom igång gratis
-                </Link>
-              </Button>
+              <GetStartedButton plan="Free" />
             </CardFooter>
           </Card>
         </li>
@@ -68,11 +66,7 @@ export const PlanSelection = () => {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button asChild>
-                <Link href="#" className="mt-4 block text-base">
-                  Skapa ett konto
-                </Link>
-              </Button>
+              <GetStartedButton plan="Basic" />
             </CardFooter>
           </Card>
         </li>
@@ -110,11 +104,7 @@ export const PlanSelection = () => {
               </ul>
             </CardContent>
             <CardFooter>
-              <Button asChild>
-                <Link href="#" className="mt-4 block text-base">
-                  Kontakta sälj
-                </Link>
-              </Button>
+              <GetStartedButton plan="Premium" />
             </CardFooter>
           </Card>
         </li>

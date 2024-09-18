@@ -130,7 +130,6 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
       })}
 
       <Sources />
-
       <PlanSelection />
       <PricingTable />
     </main>
