@@ -1,1 +1,1 @@
-export const REGIONS = ['sv', 'en'] as const;
+export const REGIONS = ['sv'] as const;

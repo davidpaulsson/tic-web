@@ -53,15 +53,6 @@ export function middleware(request: NextRequest) {
       case 'SE':
         locale = 'sv';
         break;
-      case 'NO':
-        locale = 'no';
-        break;
-      case 'DE':
-        locale = 'de';
-        break;
-      case 'GB':
-        locale = 'en';
-        break;
     }
     if (locale) {
       return NextResponse.redirect(new URL(`/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`, request.url));
