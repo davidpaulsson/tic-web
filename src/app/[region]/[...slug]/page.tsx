@@ -27,6 +27,38 @@ export async function generateStaticParams() {
   }));
 }
 
+export async function generateMetadata({ params }: Readonly<{ params: { region: (typeof REGIONS)[number]; slug: string[] } }>) {
+  const cf = getContentfulClient();
+  const entry = (await cf.getEntries({
+    content_type: 'page',
+    'fields.slug': [params.region, params.slug].flat().join('/'),
+    limit: 1,
+    include: 10,
+    locale: params.region,
+  })) as unknown as ContentfulPageResponse;
+
+  if (!entry.items.length) {
+    notFound();
+  }
+
+  const content = entry.items[0].fields;
+
+  return {
+    title: content.title,
+    description: content.description,
+    openGraph: {
+      images: [
+        {
+          url: `/api/og?title=${content.title}`,
+          width: 1200,
+          height: 630,
+          alt: content.description,
+        },
+      ],
+    },
+  };
+}
+
 export default async function Page({ params }: Readonly<{ params: { region: (typeof REGIONS)[number]; slug: string[] } }>) {
   const cf = getContentfulClient();
   const entry = (await cf.getEntries({

@@ -1,5 +1,5 @@
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { INLINES } from '@contentful/rich-text-types';
+import { Document, INLINES } from '@contentful/rich-text-types';
 
 import Link from 'next/link';
 
@@ -62,11 +62,12 @@ export const Blocks = ({ blocks, region }: Props) => {
         return <ProductFeature key={block.sys.id} align={align} {...feature} />;
       }
       case 'blockContent': {
-        const content = block.fields as ContentfulBlockContent['fields'];
+        const { content } = block.fields as ContentfulBlockContent['fields'];
+
         return (
           <div key={block.sys.id} className="container my-8">
             <div key={block.sys.id} className="prose mx-auto max-w-prose prose-headings:text-pretty prose-headings:font-normal">
-              {documentToReactComponents(content, {
+              {documentToReactComponents(content as unknown as Document, {
                 renderNode: {
                   [INLINES.ENTRY_HYPERLINK]: (node) => {
                     const slug = node.data.target.fields.slug;
