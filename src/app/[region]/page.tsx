@@ -3,19 +3,12 @@ import { notFound } from 'next/navigation';
 
 import { REGIONS } from '@/lib/constants';
 import { getContentfulClient } from '@/lib/contentful/get-client';
-import {
-  ContentfulBlockHero,
-  ContentfulBlockProductFeature,
-  ContentfulComponentStatic,
-  ContentfulPageResponse,
-} from '@/lib/contentful/types';
+import type { ContentfulPageResponse } from '@/lib/contentful/types';
 import { cn } from '@/lib/utils';
 
-import { GetStartedForFree } from '@/components/get-started-for-free';
-import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
+import { Blocks } from '@/components/blocks';
 import { PlanSelection } from '@/components/plan-selection';
 import { PricingTable } from '@/components/pricing-table';
-import { ProductFeature } from '@/components/product-feature';
 import { Sources } from '@/components/sources';
 import { DotPattern } from '@/components/ui/dot-pattern';
 
@@ -89,48 +82,7 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
         className={cn('z-0 [mask-image:linear-gradient(to_bottom,white,transparent,transparent)]')}
       />
 
-      {content.blocks.map((block) => {
-        switch (block.sys.contentType.sys.id) {
-          case 'blockHero':
-            const hero = block.fields as ContentfulBlockHero['fields'];
-            return (
-              <Hero key={block.sys.id}>
-                <HeroTitle>{hero.title}</HeroTitle>
-                <HeroSubtitle
-                  className={cn({
-                    'mb-10': hero.cta?.length > 0,
-                  })}
-                >
-                  {hero.subtitle}
-                </HeroSubtitle>
-
-                {hero.cta?.map((cta) => {
-                  switch (cta.sys.contentType.sys.id) {
-                    case 'componentStatic': {
-                      const { component } = cta.fields as ContentfulComponentStatic['fields'];
-                      switch (component) {
-                        case '"Get started for free" form':
-                          return <GetStartedForFree key={cta.sys.id} region={params.region} />;
-                        default:
-                          return null;
-                      }
-                    }
-                    default:
-                      return null;
-                  }
-                })}
-              </Hero>
-            );
-          case 'blockProductFeature': {
-            const feature = block.fields as ContentfulBlockProductFeature['fields'];
-            const index = content.blocks.findIndex((b) => b.sys.id === block.sys.id);
-            const align = index % 2 === 0 ? 'left' : 'right';
-            return <ProductFeature key={block.sys.id} align={align} {...feature} />;
-          }
-          default:
-            return null;
-        }
-      })}
+      <Blocks region={params.region} blocks={content.blocks} />
 
       <Sources />
       <PlanSelection />
