@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export function SkatteverketLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 200 183" fill="none" {...props}>
+    <svg viewBox="0 0 200 183" width="154" height="183" fill="none" {...props}>
       <g clipPath="url(#prefix__clip0_386_319)">
         <path
           d="M119.417 99.818c22.263 6.684 41.055 24.292 45.858 48.225 2.162 11.248.5 23.504-3.761 34.604l-19.404-.056c4.55-7.981 8.078-16.496 8.98-25.737 1.557-16.298-4.409-35.49-18.207-46.055-4.331-3.451-8.909-6.529-14.15-8.783l.684-2.198z"

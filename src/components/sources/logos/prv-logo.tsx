@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export function PrvLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 200 79" fill="none" {...props}>
+    <svg viewBox="0 0 200 79" width="154" height="79" fill="none" {...props}>
       <g clipPath="url(#prefix__clip0_386_420)">
         <path
           fillRule="evenodd"

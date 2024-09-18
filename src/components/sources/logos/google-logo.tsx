@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export function GoogleLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 196 200" fill="none" {...props}>
+    <svg width="196" height="200" viewBox="0 0 196 200" fill="none" {...props}>
       <g clipPath="url(#prefix__clip0_386_348)">
         <path
           d="M195.653 102.391c0-6.739-.652-13.695-1.739-20.217h-94.13v38.478h53.912c-2.174 12.391-9.348 23.261-20 30.217l32.174 25c18.913-17.608 29.783-43.26 29.783-73.478z"

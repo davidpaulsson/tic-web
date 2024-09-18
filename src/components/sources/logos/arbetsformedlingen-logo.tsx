@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export function ArbetsformedlingenLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 200 200" fill="none" {...props}>
+    <svg viewBox="0 0 200 200" width="200" height="200" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <path
         d="M69.174 63.522a67.022 67.022 0 100 134.043 67.022 67.022 0 000-134.043zm0 102.826a35.804 35.804 0 1135.804-35.805 35.802 35.802 0 01-35.804 35.761v.044z"
         fill="#7EC13D"

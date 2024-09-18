@@ -2,7 +2,7 @@ import * as React from 'react';
 
 export function ForsakringskassanLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
-    <svg viewBox="0 0 200 200" fill="none" {...props}>
+    <svg viewBox="0 0 200 200" width="200" height="200" fill="none" {...props}>
       <g clipPath="url(#prefix__clip0_386_385)">
         <path
           d="M199.574 189.362c0 5.532-4.255 9.787-9.787 9.787h-180c-5.532 0-9.787-4.255-9.787-9.787V9.787C0 4.681 4.255 0 9.787 0h179.575c5.532 0 9.787 4.68 9.787 9.787l.425 179.575z"
