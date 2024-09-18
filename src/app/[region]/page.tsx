@@ -5,6 +5,7 @@ import { REGIONS } from '@/lib/constants';
 import { getContentfulClient } from '@/lib/contentful/get-client';
 import type { ContentfulPageResponse } from '@/lib/contentful/types';
 
+import { AccountantForm } from '@/components/accountant-form';
 import { Blocks } from '@/components/blocks';
 import { PlanSelection } from '@/components/plan-selection';
 import { PricingTable } from '@/components/pricing-table';
@@ -75,6 +76,7 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
       <Sources />
       <PlanSelection />
       <PricingTable />
+      <AccountantForm />
     </main>
   );
 }

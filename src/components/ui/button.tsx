@@ -16,16 +16,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <Comp
         className={cn(
-          'focus-visible:ring-tic-light inline-flex items-center justify-center whitespace-nowrap rounded-lg ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
+          'inline-flex items-center justify-center whitespace-nowrap rounded-lg ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-tic-light focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50',
           {
-            // TODO
-            'bg-slate-900 text-slate-50 hover:bg-slate-900/90 dark:bg-slate-50 dark:text-slate-900 dark:hover:bg-slate-50/90':
-              variant === 'default',
+            'bg-tic text-white hover:bg-tic-light': variant === 'default',
             // TODO
             'bg-red-500 text-slate-50 hover:bg-red-500/90 dark:bg-red-900 dark:text-slate-50 dark:hover:bg-red-900/90':
               variant === 'destructive',
             // DONE
-            'border-tic-stroke hover:bg-tic-fill border bg-white': variant === 'outline',
+            'border border-tic-stroke bg-white hover:bg-tic-fill': variant === 'outline',
             // TODO
             'bg-slate-100 text-slate-900 hover:bg-slate-100/80 dark:bg-slate-800 dark:text-slate-50 dark:hover:bg-slate-800/80':
               variant === 'secondary',
