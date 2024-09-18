@@ -1,5 +1,11 @@
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { INLINES } from '@contentful/rich-text-types';
+
+import Link from 'next/link';
+
 import { REGIONS } from '@/lib/constants';
 import {
+  ContentfulBlockContent,
   ContentfulBlockHero,
   ContentfulBlockProductFeature,
   ContentfulComponentStatic,
@@ -54,6 +60,34 @@ export const Blocks = ({ blocks, region }: Props) => {
         const index = blocks.findIndex((b) => b.sys.id === block.sys.id);
         const align = index % 2 === 0 ? 'left' : 'right';
         return <ProductFeature key={block.sys.id} align={align} {...feature} />;
+      }
+      case 'blockContent': {
+        const content = block.fields as ContentfulBlockContent['fields'];
+        return (
+          <div key={block.sys.id} className="container my-8">
+            <div key={block.sys.id} className="prose mx-auto max-w-prose prose-headings:text-pretty prose-headings:font-normal">
+              {documentToReactComponents(content, {
+                renderNode: {
+                  [INLINES.ENTRY_HYPERLINK]: (node) => {
+                    const slug = node.data.target.fields.slug;
+                    // @ts-expect-error weak typing
+                    const target = node.content[0].value;
+
+                    return (
+                      <Link
+                        key={node.data.target.sys.id}
+                        href={`/${slug}`}
+                        className="text-tic-purple underline transition-colors hover:text-tic-purple-light hover:no-underline"
+                      >
+                        {target}
+                      </Link>
+                    );
+                  },
+                },
+              })}
+            </div>
+          </div>
+        );
       }
       default:
         return null;

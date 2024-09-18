@@ -38,13 +38,7 @@
     margin-left: auto;
     max-width: 1280px;
   }
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4,
-  .prose h5 {
-    @apply text-tic-blue-dark;
-  }
+
   .prose ul li p,
   .prose ol li p {
     margin: 0;
