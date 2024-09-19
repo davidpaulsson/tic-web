@@ -49,8 +49,8 @@ export const Sources = () => {
   return (
     <div className="relative bg-black">
       <div className="container relative grid h-screen place-content-center bg-[#102030] py-20 md:py-40">
-        <h2 className="text-balance text-center text-xl text-white md:text-3xl">Vi analyserar all data – från varje källa.</h2>
-        <p className="mb-16 text-balance text-center text-xl text-white/60 md:text-3xl">
+        <h2 className="z-10 text-balance text-center text-xl text-white md:text-3xl">Vi analyserar all data – från varje källa.</h2>
+        <p className="z-10 mb-16 text-balance text-center text-xl text-white/60 md:text-3xl">
           Brister och avvikelser skapar vårt Intelligence Score.
         </p>
 
@@ -73,9 +73,9 @@ export const Sources = () => {
             ))}
           </Marquee>
         </div>
-        <p className="text-center text-sm text-white/60">Detta är endast ett urval av våra datakällor.</p>
+        <p className="z-20 text-center text-sm text-white/60">Detta är endast ett urval av våra datakällor.</p>
 
-        <div className="pointer-events-none absolute inset-0 bg-gradient-to-r from-black via-transparent to-black"></div>
+        <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-black via-transparent to-black"></div>
       </div>
     </div>
   );
