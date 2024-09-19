@@ -38,14 +38,14 @@ const logos = [
   <FolkhalsomyndighetenLogo key="folkhalsomyndigheten" />,
 ];
 
-const firstRow = logos.slice(0, logos.length / 2);
-const secondRow = logos.slice(logos.length / 2);
-
 const LogoWrapper = ({ children }: { children: React.ReactNode }) => (
   <div className="flex size-20 items-center justify-center [&>svg]:h-auto [&>svg]:w-10">{children}</div>
 );
 
 export const Sources = () => {
+  const firstRow = logos.slice(0, logos.length / 2);
+  const secondRow = logos.slice(logos.length / 2);
+
   return (
     <div className="relative bg-black">
       <div className="container relative grid h-screen place-content-center bg-[#102030] py-20 md:py-40">
