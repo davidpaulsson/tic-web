@@ -48,34 +48,36 @@ export const Sources = () => {
 
   return (
     <div className="relative bg-black">
-      <div className="container relative grid h-screen place-content-center bg-[#102030] py-20 md:py-40">
-        <h2 className="z-10 text-balance text-center text-xl text-white md:text-3xl">Vi analyserar all data – från varje källa.</h2>
-        <p className="z-10 mb-16 text-balance text-center text-xl text-white/60 md:text-3xl">
-          Brister och avvikelser skapar vårt Intelligence Score.
-        </p>
+      <div className="container">
+        <div className="relative grid place-content-center bg-[#102030] py-40 md:py-80">
+          <h2 className="z-10 text-balance text-center text-xl text-white md:text-3xl">Vi analyserar all data, från varje källa.</h2>
+          <p className="z-10 mb-16 text-balance text-center text-xl text-white/60 md:text-3xl">
+            Brister och avvikelser skapar vårt Intelligence Score.
+          </p>
 
-        <div className="mb-16 flex w-full flex-col items-center justify-center space-y-10 overflow-hidden">
-          <Marquee pauseOnHover={false} className="[--duration:40s]">
-            {firstRow.map((logo, index) => (
-              <LogoWrapper key={index}>{logo}</LogoWrapper>
-            ))}
-          </Marquee>
+          <div className="mb-16 flex w-full flex-col items-center justify-center space-y-20 overflow-hidden">
+            <Marquee pauseOnHover={false} className="[--duration:40s]">
+              {firstRow.map((logo, index) => (
+                <LogoWrapper key={index}>{logo}</LogoWrapper>
+              ))}
+            </Marquee>
 
-          <div className="relative">
-            <NeonGradientCard>
-              <Image src={tic} width={140} height={140} alt="TIC Intelligence" className="relative z-10" />
-            </NeonGradientCard>
+            <div className="relative">
+              <NeonGradientCard>
+                <Image src={tic} width={140} height={140} alt="TIC Intelligence" className="relative z-10" />
+              </NeonGradientCard>
+            </div>
+
+            <Marquee reverse pauseOnHover={false} className="[--duration:40s]">
+              {secondRow.reverse().map((logo, index) => (
+                <LogoWrapper key={index}>{logo}</LogoWrapper>
+              ))}
+            </Marquee>
           </div>
+          <p className="z-20 text-center text-sm text-white/60">Detta är endast ett urval av våra datakällor.</p>
 
-          <Marquee reverse pauseOnHover={false} className="[--duration:40s]">
-            {secondRow.reverse().map((logo, index) => (
-              <LogoWrapper key={index}>{logo}</LogoWrapper>
-            ))}
-          </Marquee>
+          <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-black via-transparent to-black" />
         </div>
-        <p className="z-20 text-center text-sm text-white/60">Detta är endast ett urval av våra datakällor.</p>
-
-        <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-black via-transparent to-black"></div>
       </div>
     </div>
   );
