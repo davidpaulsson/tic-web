@@ -2,6 +2,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { Document, INLINES } from '@contentful/rich-text-types';
 
 import Link from 'next/link';
+import { Suspense } from 'react';
 
 import { REGIONS } from '@/lib/constants';
 import {
@@ -109,7 +110,11 @@ export const Blocks = ({ blocks, region }: Props) => {
           case 'Safer and easier business':
             return <SaferAndEasierBusiness key={block.sys.id} />;
           case 'API example':
-            return <CurlExample key={block.sys.id} />;
+            return (
+              <Suspense fallback={null}>
+                <CurlExample key={block.sys.id} />
+              </Suspense>
+            );
           default:
             return null;
         }
