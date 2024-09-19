@@ -8,6 +8,7 @@ import {
   ContentfulBlockContent,
   ContentfulBlockHero,
   ContentfulBlockProductFeature,
+  ContentfulBlockStatic,
   ContentfulComponentStatic,
   ContentfulPageResponse,
 } from '@/lib/contentful/types';
@@ -16,6 +17,12 @@ import { cn } from '@/lib/utils';
 import { GetStartedForFree } from '@/components/get-started-for-free';
 import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
 import { ProductFeature } from '@/components/product-feature';
+
+import { CurlExample } from './curl-example';
+import { PlanSelection } from './plan-selection';
+import { PricingTable } from './pricing-table';
+import { SaferAndEasierBusiness } from './safer-and-easier-business';
+import { Sources } from './sources';
 
 type Props = {
   region: (typeof REGIONS)[number];
@@ -90,6 +97,22 @@ export const Blocks = ({ blocks, region }: Props) => {
           </div>
         );
       }
+      case 'blockStatic':
+        const component = block.fields as ContentfulBlockStatic['fields'];
+        switch (component.block) {
+          case 'Data sources':
+            return <Sources key={block.sys.id} />;
+          case 'Plan selection':
+            return <PlanSelection key={block.sys.id} />;
+          case 'Pricing table':
+            return <PricingTable key={block.sys.id} />;
+          case 'Safer and easier business':
+            return <SaferAndEasierBusiness key={block.sys.id} />;
+          case 'API example':
+            return <CurlExample key={block.sys.id} />;
+          default:
+            return null;
+        }
       default:
         return null;
     }

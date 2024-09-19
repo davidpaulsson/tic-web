@@ -1,8 +1,5 @@
 import Image from 'next/image';
 
-import { cn } from '@/lib/utils';
-
-import { Card } from '../ui/card';
 import Marquee from '../ui/marquee';
 import { NeonGradientCard } from '../ui/neon-gradient-card';
 import { ArbetsformedlingenLogo } from './logos/arbetsformedlingen-logo';
@@ -49,13 +46,13 @@ export const Sources = () => {
   return (
     <div className="relative bg-black">
       <div className="container">
-        <div className="relative grid place-content-center bg-[#102030] py-40 md:py-80">
+        <div className="relative grid place-content-center bg-[#102030] py-32 md:py-60">
           <h2 className="z-10 text-balance text-center text-xl text-white md:text-3xl">Vi analyserar all data, från varje källa.</h2>
           <p className="z-10 mb-16 text-balance text-center text-xl text-white/60 md:text-3xl">
             Brister och avvikelser skapar vårt Intelligence Score.
           </p>
 
-          <div className="mb-16 flex w-full flex-col items-center justify-center space-y-20 overflow-hidden">
+          <div className="mb-16 flex w-full flex-col items-center justify-center space-y-10 overflow-hidden md:space-y-20">
             <Marquee pauseOnHover={false} className="[--duration:40s]">
               {firstRow.map((logo, index) => (
                 <LogoWrapper key={index}>{logo}</LogoWrapper>

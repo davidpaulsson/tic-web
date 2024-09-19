@@ -13,7 +13,13 @@ export type ContentfulPageResponse = {
       title: string;
       description: string;
       slug: string;
-      blocks: (ContentfulBlockHero | ContentfulBlockProductFeature | ContentfulBlockContent | ContentfulBlockCarousel)[];
+      blocks: (
+        | ContentfulBlockHero
+        | ContentfulBlockProductFeature
+        | ContentfulBlockContent
+        | ContentfulBlockCarousel
+        | ContentfulBlockStatic
+      )[];
     };
   }[];
 };
@@ -114,6 +120,17 @@ export type ContentfulBlockHero = {
     title: string;
     subtitle: string;
     cta: (ContentfulComponentLink | ContentfulComponentStatic)[];
+  };
+};
+
+export type ContentfulBlockStatic = {
+  sys: {
+    id: string;
+    contentType: { sys: { id: 'blockStatic' } };
+  };
+  fields: {
+    internalTitle: string;
+    block: 'Data sources' | 'Plan selection' | 'Pricing table' | 'Safer and easier business' | 'API example';
   };
 };
 
