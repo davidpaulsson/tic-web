@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export function GoogleLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg width="196" height="200" viewBox="0 0 196 200" fill="none" {...props}>

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export function BolagsverketLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 154 200" width="154" height="200" fill="none" {...props}>

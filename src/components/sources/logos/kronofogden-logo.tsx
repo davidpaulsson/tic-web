@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export function KronofogdenLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 200 153" width="154" height="153" fill="none" {...props}>

@@ -51,7 +51,7 @@ export const AccountantForm = () => {
       <div className="overflow-hidden rounded-lg md:grid md:grid-cols-2">
         <div className="bg-tic-purple-light max-md:hidden" />
         <div className="bg-tic-fill p-8 md:p-16">
-          <h2 className="mb-2 text-pretty text-4xl">Är du revisor eller auktoriserad redovisningskonsult?</h2>
+          <h2 className="mb-2 text-pretty text-xl md:text-4xl">Är du revisor eller auktoriserad redovisningskonsult?</h2>
           <p className="mb-5 text-tic-light">
             Fyll i ditt namn och e-post så får du en kostnadsfri kopia på årsredovisningar som registreras samt vilka brister vi
             identiferar.

@@ -1,5 +1,3 @@
-import * as React from 'react';
-
 export function ForsakringskassanLogo(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 200 200" width="200" height="200" fill="none" {...props}>
