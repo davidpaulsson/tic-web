@@ -110,11 +110,7 @@ export const Blocks = ({ blocks, region }: Props) => {
           case 'Safer and easier business':
             return <SaferAndEasierBusiness key={block.sys.id} />;
           case 'API example':
-            return (
-              <Suspense fallback={null}>
-                <CurlExample key={block.sys.id} />
-              </Suspense>
-            );
+            return <CurlExample key={block.sys.id} />;
           default:
             return null;
         }
