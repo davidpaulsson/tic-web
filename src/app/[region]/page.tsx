@@ -67,7 +67,7 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
   const content = entry.items[0].fields;
 
   return (
-    <main className="mt-16 space-y-16 md:mt-40 md:space-y-40">
+    <main className="space-y-16 md:space-y-40">
       <Blocks region={params.region} blocks={content.blocks} />
       <AccountantForm />
     </main>

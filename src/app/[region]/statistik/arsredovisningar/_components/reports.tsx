@@ -4,6 +4,7 @@ import { useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
+import { HeroSubtitle, HeroTitle } from '@/components/hero';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Switch } from '@/components/ui/switch';
 
@@ -17,17 +18,18 @@ export function Reports() {
   const { data, error, status } = useFinancialReports({ range });
 
   return (
-    <div className="container my-8">
+    <div className="container my-8 space-y-16 md:space-y-40">
       <div className="md:flex md:items-start md:justify-between">
         <div>
-          <h1 className="mb-4 text-3xl leading-none tracking-tight">Bolagsverket statistik årsredovisningar</h1>
-          <p className="mb-8 max-w-prose text-base text-slate-700">
+          <HeroTitle>Bolagsverket statistik årsredovisningar</HeroTitle>
+          <HeroSubtitle>
             Statistik om registrerade årsredovisningar (även delårsrapporter) hos Bolagsverket. Uppdateras varje dag runt 00:00. Använd vårt
             fria API om du vill själv ladda ner innehållet med mer statistik härifrån{' '}
             <a href="https://docs.tic.io/api-statistics/bolagsverket/financial-reports-daily">docs.tio.io</a>. En tjänst från The
             Intelligence Company AB (publ) som övervakar årsredovisningar och deras brister.
-          </p>
+          </HeroSubtitle>
         </div>
+
         <div className="flex items-center gap-2 max-md:mb-4">
           <button
             onClick={() => setRange(range === 'daily' ? 'monthly' : 'daily')}

@@ -11,7 +11,7 @@ export default function RootLayout({
   return (
     <>
       <Header locale={params?.slug?.[0] || 'sv'} />
-      <main>{children}</main>
+      <main className="mt-16 md:mt-40">{children}</main>
       <Footer locale={params?.slug?.[0] || 'sv'} />
     </>
   );
