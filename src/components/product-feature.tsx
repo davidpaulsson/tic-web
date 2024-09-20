@@ -1,7 +1,7 @@
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
-import type { ContentfulBlockProductFeature } from '@/lib/contentful/types';
+import type { ContentfulBlockProductFeature, ContentfulExternalPage, ContentfulPage } from '@/lib/contentful/types';
 import { cn } from '@/lib/utils';
 
 import { Button } from '@/components/ui/button';
@@ -23,7 +23,13 @@ export const ProductFeature = (props: ContentfulBlockProductFeature['fields'] & 
 
           {props.cta && (
             <Button asChild>
-              <Link href={props.cta.fields.link.fields.slug}>{props.cta.fields.label}</Link>
+              {props.cta.fields.link.sys.contentType.sys.id === 'externalPage' ? (
+                <a href={(props.cta.fields.link as ContentfulExternalPage).fields.url} className="flex items-center gap-2">
+                  {props.cta.fields.label} <ChevronRight />
+                </a>
+              ) : (
+                <Link href={(props.cta.fields.link as ContentfulPage).fields.slug}>{props.cta.fields.label}</Link>
+              )}
             </Button>
           )}
         </div>
