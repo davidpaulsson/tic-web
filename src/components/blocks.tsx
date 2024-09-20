@@ -126,9 +126,9 @@ export const Blocks = ({ blocks, region }: Props) => {
           <div key={block.sys.id} className="container">
             {title && <h2 className="mb-14 text-balance text-2xl sm:text-3xl md:max-w-2xl md:text-4xl lg:text-5xl">{title}</h2>}
             <div
-              className="grid gap-5"
+              className="grid gap-8 max-md:!grid-cols-1"
               style={{
-                gridTemplateColumns: `repeat(${cards.length}, 1fr)`,
+                gridTemplateColumns: `repeat(${cards.length}, minmax(0, 1fr))`,
               }}
             >
               {cards.map((card) => {
