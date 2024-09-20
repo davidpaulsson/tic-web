@@ -1,115 +1,197 @@
-'use client';
+import { codeToHtml } from 'shiki';
 
-import { HistoryIcon } from '@/icons/history';
-import { IntelligenceIcon } from '@/icons/intelligence';
-import { OverviewIcon } from '@/icons/overview';
-import { SaleIcon } from '@/icons/sale';
+import { CurlExampleClient } from './curl-example.client';
 
-import { motion } from 'framer-motion';
-import { useRef, useState } from 'react';
-import { useResizeObserver } from 'usehooks-ts';
-
-import { cn } from '@/lib/utils';
-
-import { MoreIcon } from '../../icons/more';
-import { json } from './json';
-
-export function CurlExample() {
-  const buttonAreaRef = useRef<HTMLDivElement>(null);
-  const scrollAreaRef = useRef<HTMLDivElement>(null);
-  const [activeButton, setActiveButton] = useState<string>('intelligence');
-  const { height = 0 } = useResizeObserver({
-    ref: buttonAreaRef,
-    box: 'border-box',
-  });
-
-  const scrollTo = (id: string) => {
-    setActiveButton(id);
-    const element = document.getElementById(id);
-    if (element && scrollAreaRef.current) {
-      const scrollAreaTop = scrollAreaRef.current.getBoundingClientRect().top;
-      const elementTop = element.getBoundingClientRect().top;
-      const offset = elementTop - scrollAreaTop;
-      const padding = -10;
-      scrollAreaRef.current.scrollTo({
-        top: scrollAreaRef.current.scrollTop + offset + padding,
-        behavior: 'smooth',
-      });
+export const CurlExample = async () => {
+  const out = await codeToHtml(
+    `{
+  "facet_counts": [],
+  "found": 1,
+  "hits": [
+    {
+      "document": {
+        "id": "1234567",
+        "companyId": 1234567,
+        "iso3166CountryCode": "SE",
+        "registrationNumber": "559999999",
+        "legalEntityType": "Aktiebolag",
+        "registrationDate": 1106697600,
+        "mostRecentPurpose": "Bolaget skall bedriva dagis- och förskoleverksamhet ävensom idka därmed förenlig verksamhet.",
+        "names": [
+          {
+            "nameOrIdentifier": "ACME AB",
+            "companyNamingType": "legalName",
+            "firstSeenAt": 1650499200
+          }
+        ],
+        "phoneNumbers": [
+          {
+            "e164PhoneNumber": "+46XXXXXXXX",
+            "phoneNumberType": "mobile",
+            "numberPlanServiceType": "Mobiltelefonitjänster",
+            "orginalOperator": "Telia Sverige AB",
+            "priorOperator": null,
+            "currentOperator": "Telia Sverige AB",
+            "lastPortingDate": null
+          }
+        ],
+        "hasPhoneNumbers": true,
+        "emailAddresses": [],
+        "hasEmailAddresses": false,
+        "hyperlinks": [
+          {
+            "hyperlink": "https://allaforskolor.se/stad/forskolan-acme-ab",
+            "hyperlinkType": "homepage"
+          },
+          {
+            "hyperlink": "https://se.linkedin.com/in/forskolan-acme",
+            "hyperlinkType": "linkedIn"
+          }
+        ],
+        "hasHyperlinks": true,
+        "sniCodes": [
+          {
+            "sni_2007Code": "85100",
+            "sni_2007Name": "Förskoleutbildning"
+          }
+        ],
+        "intelligence": [
+          {
+            "companyIntelligenceType": "annualReportDiscrepancies",
+            "companyIntelligenceSubType": "MISSING_AUDITOR",
+            "notes": "The company is missing an auditor and have passed the thresholds three years in a row and have violated the conditions.",
+            "score": 255,
+            "firstSeenAt": 1716854400,
+            "documentUrl": null
+          }
+        ],
+        "hasIntelligence": true,
+        "status": [],
+        "hasStatus": false,
+        "mostRecentFinancialSummary": {
+          "periodStart": 1672531200,
+          "periodEnd": 1703980800,
+          "rs_NetSalesK": 4015,
+          "rs_OtherOperatingIncomeK": 0,
+          "rs_OperatingProfitOrLossK": 106,
+          "rs_SumFinancialItemsK": 1,
+          "rs_ProfitAfterFinancialItemsK": 107,
+          "bs_TotalAssetsK": 639,
+          "fn_NumberOfEmployees": 4,
+          "km_OperatingMargin": 0.0265,
+          "km_NetProfitMargin": 0.0265,
+          "km_EquityAssetsRatio": 0.2475,
+          "km_GrossMargin": 0.915,
+          "isAudited": false
+        },
+        "hasMostRecentFinancialSummary": true,
+        "isRegisteredForVAT": false,
+        "isRegisteredForFTax": true,
+        "isRegisteredForPayroll": true,
+        "ftaxTerminationReason": null,
+        "bankAccounts": [
+          {
+            "bankAccountType": "bankgiro",
+            "accountNumber": "12345678",
+            "swift_BIC": null
+          }
+        ],
+        "hasBankAccounts": true,
+        "addresses": [
+          {
+            "addressType": "mailAddress",
+            "co": null,
+            "street": "Stora gatan",
+            "houseNumber": "21",
+            "postalCode": "12345",
+            "city": "Nässjö",
+            "countryCodeAlpha3": "SWE",
+            "location": [
+              57.63862,
+              14.7152
+            ]
+          }
+        ],
+        "hasAddresses": true,
+        "documents": [
+          {
+            "companyDocumentId": 10699498,
+            "companyDocumentType": "annualReport",
+            "documentDate": 1716854400,
+            "documentTitle": "Annual report submitted electronically on 2024-05-28 for 2023-01-01 to 2023-12-31 and registered on 2024-05-28",
+            "documentVersion": "9279863/2024",
+            "documentValue1": "2023-01-01",
+            "documentValue2": "2023-12-31",
+            "documentValue3": "6001092391",
+            "documentUrl": "https://api.tic.io/financial-documents/se/123456"
+          },
+          {
+            "companyDocumentId": 8738530,
+            "companyDocumentType": "annualReport",
+            "documentDate": 1687996800,
+            "documentTitle": "Annual report",
+            "documentVersion": null,
+            "documentValue1": null,
+            "documentValue2": null,
+            "documentValue3": null,
+            "documentUrl": null
+          },
+          {
+            "companyDocumentId": 8738529,
+            "companyDocumentType": "annualReport",
+            "documentDate": 1650499200,
+            "documentTitle": "Annual report",
+            "documentVersion": null,
+            "documentValue1": null,
+            "documentValue2": null,
+            "documentValue3": null,
+            "documentUrl": null
+          }
+        ],
+        "hasDocuments": true,
+        "stock": null,
+        "hasStock": false,
+        "lei": null,
+        "hasLEI": false,
+        "salesToPublicActors": [
+          {
+            "actorName": "Nässjö",
+            "actorType": "Municipality",
+            "actorCode": "0682",
+            "invoicedApprox2022K": 209,
+            "invoicedApprox2023K": 165
+          }
+        ],
+        "hasSalesToPublicActors": true,
+        "ecParticipant": null,
+        "hasECParticipant": false,
+        "franchisesOrLicences": [],
+        "hasFranchisesOrLicences": false
+      },
+      "highlight": {},
+      "highlights": []
     }
-  };
-
-  const buttonList = [
+  ],
+  "out_of": 938061,
+  "page": 1,
+  "request_params": {
+    "collection_name": "companies_20240919",
+    "first_q": "*",
+    "per_page": 10,
+    "q": "*"
+  },
+  "search_cutoff": false,
+  "search_time_ms": 13
+}`,
     {
-      id: 'intelligence',
-      title: 'Intelligence Score',
-      description: 'Vi betygssätter alla brister och fel i information vi hittar.',
-      icon: <IntelligenceIcon />,
+      lang: 'json',
+      theme: 'night-owl',
     },
-    { id: 'economic', title: 'Ekonomisk översikt', description: 'Följ enkelt finansiell data om företaget.', icon: <OverviewIcon /> },
-    {
-      id: 'history',
-      title: 'Ärendehistorik',
-      description: 'Ladda hem årsredovisningar och följ ärendehistorik.',
-      icon: <HistoryIcon />,
-    },
-    {
-      id: 'sales',
-      title: 'Offentlig försäljning',
-      description: 'Se försäljning till offentliga aktörer, kommuner, myndigheter, mfl.',
-      icon: <SaleIcon />,
-    },
-  ];
+  );
 
   return (
-    <div className="container">
-      <h2 className="mb-14 text-balance text-2xl sm:text-3xl md:max-w-2xl md:text-4xl lg:text-5xl">
-        Det som kan ta timmar löser TIC API på sekunder.
-      </h2>
-      <div className="lg:grid lg:grid-cols-4 lg:grid-rows-1 lg:gap-5">
-        <div ref={buttonAreaRef} className="rounded-xl bg-slate-950 p-5 max-lg:mb-5 lg:col-span-1">
-          <ul className="max-lg:grid max-lg:gap-5 max-md:grid-cols-1 lg:space-y-5">
-            {buttonList.map(({ id, title, description, icon }) => (
-              <li key={id}>
-                <button
-                  onClick={() => scrollTo(id)}
-                  aria-pressed={activeButton === id}
-                  className={cn(
-                    'flex h-full w-full flex-col items-start justify-start overflow-hidden rounded-lg bg-slate-800 p-3 text-left transition-opacity',
-                    {
-                      'opacity-100': activeButton === id,
-                      'opacity-50 hover:opacity-75': activeButton !== id,
-                    },
-                  )}
-                >
-                  <span className="flex w-full items-center justify-between text-pretty text-slate-50">
-                    {title} {icon}
-                  </span>
-                  <motion.span
-                    initial={false}
-                    className="block text-pretty pr-6 text-sm text-slate-300"
-                    animate={{
-                      height: activeButton === id ? 'auto' : 0,
-                      opacity: activeButton === id ? 1 : 0,
-                    }}
-                  >
-                    {description}
-                  </motion.span>
-                </button>
-              </li>
-            ))}
-            <li className="flex w-full items-center justify-between text-pretty px-3 text-slate-50 opacity-50">
-              Och mycket mer <MoreIcon />
-            </li>
-          </ul>
-        </div>
-        <div
-          ref={scrollAreaRef}
-          id="response"
-          className="h-96 overflow-hidden scroll-smooth rounded-xl bg-slate-950 p-5 font-mono text-sm lg:col-span-3 [&_span]:whitespace-pre-wrap"
-          style={{ height }}
-          dangerouslySetInnerHTML={{ __html: json }}
-        ></div>
-      </div>
-    </div>
+    <CurlExampleClient>
+      <div dangerouslySetInnerHTML={{ __html: out }} />
+    </CurlExampleClient>
   );
-}
+};

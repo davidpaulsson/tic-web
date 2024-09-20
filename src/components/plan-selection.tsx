@@ -1,19 +1,18 @@
 import { InfoIcon, PlusIcon } from 'lucide-react';
-import Link from 'next/link';
 
 import { asMoney } from '@/lib/utils';
 
 import { ListItem } from '@/components/list-item';
-import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 import { GetStartedButton } from './get-started-button';
+import { SecionTitle } from './section-title';
 
 export const PlanSelection = () => {
   return (
     <div className="container">
-      <h2 className="mb-14 text-balance text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Välj abonnemang och kom igång gratis redan idag.</h2>
+      <SecionTitle>Välj abonnemang och kom igång gratis redan idag.</SecionTitle>
       <ul className="grid gap-8 md:grid-cols-3">
         <li>
           <Card className="h-full">

@@ -1,5 +1,6 @@
 import { draftMode } from 'next/headers';
 import { notFound } from 'next/navigation';
+import { codeToHtml } from 'shiki';
 
 import { REGIONS } from '@/lib/constants';
 import { getContentfulClient } from '@/lib/contentful/get-client';

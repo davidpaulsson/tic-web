@@ -10,6 +10,8 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
+import { SecionTitle } from './section-title';
+
 const PLANS = [
   {
     title: 'Total kostnad per månad',
@@ -251,7 +253,7 @@ const PLANS = [
 export const PricingTable = () => {
   return (
     <div className="container">
-      <h2 className="mb-14 text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Jämför detaljerna.</h2>
+      <SecionTitle>Jämför detaljerna.</SecionTitle>
       <Table>
         {/* <TableCaption>Pricing Plans Comparison</TableCaption> */}
         <TableHeader>

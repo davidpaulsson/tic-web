@@ -2,7 +2,6 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { Document, INLINES } from '@contentful/rich-text-types';
 
 import Link from 'next/link';
-import { Suspense } from 'react';
 
 import { REGIONS } from '@/lib/constants';
 import {
@@ -24,6 +23,7 @@ import { CurlExample } from './curl-example';
 import { PlanSelection } from './plan-selection';
 import { PricingTable } from './pricing-table';
 import { SaferAndEasierBusiness } from './safer-and-easier-business';
+import { SecionTitle } from './section-title';
 import { Sources } from './sources';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
 
@@ -37,7 +37,7 @@ export const Blocks = ({ blocks, region }: Props) => {
     return null;
   }
 
-  return blocks.map((block) => {
+  return blocks.map(async (block) => {
     switch (block.sys.contentType.sys.id) {
       case 'blockHero':
         const hero = block.fields as ContentfulBlockHero['fields'];
@@ -124,7 +124,7 @@ export const Blocks = ({ blocks, region }: Props) => {
         const { cards, title } = block.fields as ContentfulBlockCarousel['fields'];
         return (
           <div key={block.sys.id} className="container">
-            {title && <h2 className="mb-14 text-balance text-2xl sm:text-3xl md:max-w-2xl md:text-4xl lg:text-5xl">{title}</h2>}
+            {title && <SecionTitle>{title}</SecionTitle>}
             <div
               className="grid gap-8 max-md:!grid-cols-1"
               style={{
