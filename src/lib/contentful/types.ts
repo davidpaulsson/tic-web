@@ -7,21 +7,27 @@ export type ContentfulPageResponse = {
   total: number;
   skip: number;
   limit: number;
-  items: {
-    fields: {
-      internalTitle: string;
-      title: string;
-      description: string;
-      slug: string;
-      blocks: (
-        | ContentfulBlockHero
-        | ContentfulBlockProductFeature
-        | ContentfulBlockContent
-        | ContentfulBlockCarousel
-        | ContentfulBlockStatic
-      )[];
-    };
-  }[];
+  items: ContentfulPage[];
+};
+
+export type ContentfulPage = {
+  sys: {
+    id: string;
+    contentType: { sys: { id: 'page' } };
+  };
+  fields: {
+    internalTitle: string;
+    title: string;
+    description: string;
+    slug: string;
+    blocks: (
+      | ContentfulBlockHero
+      | ContentfulBlockProductFeature
+      | ContentfulBlockContent
+      | ContentfulBlockCarousel
+      | ContentfulBlockStatic
+    )[];
+  };
 };
 
 export type ContentfulBlockCarousel = {
@@ -54,16 +60,7 @@ export type ContentfulComponentLink = {
   };
   fields: {
     label: string;
-    link: {
-      sys: {
-        id: string;
-        contentType: { sys: { id: 'page' } };
-      };
-      fields: {
-        title: string;
-        slug: string;
-      };
-    };
+    link: ContentfulPage | ContentfulExternalPage;
   };
 };
 
@@ -154,12 +151,18 @@ export type ContentfulNavigationResponse = {
   limit: number;
   items: {
     fields: {
-      links: {
-        fields: {
-          title: string;
-          slug: string;
-        };
-      }[];
+      links: (ContentfulPage | ContentfulExternalPage)[];
     };
   }[];
+};
+
+export type ContentfulExternalPage = {
+  sys: {
+    id: string;
+    contentType: { sys: { id: 'externalPage' } };
+  };
+  fields: {
+    title: string;
+    url: string;
+  };
 };

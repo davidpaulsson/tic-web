@@ -43,7 +43,7 @@ export default function RootLayout({
           cx={1}
           cy={1}
           cr={1}
-          className={cn('z-0 [mask-image:linear-gradient(to_bottom,white,transparent,transparent)]')}
+          className={cn('z-[-1] [mask-image:linear-gradient(to_bottom,white,transparent,transparent)]')}
         />
         <TooltipProvider delayDuration={100}>
           <ReactQueryClientProvider>{children}</ReactQueryClientProvider>

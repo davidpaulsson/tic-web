@@ -8,7 +8,7 @@ import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
 import { getContentfulClient } from '@/lib/contentful/get-client';
-import type { ContentfulNavigationResponse } from '@/lib/contentful/types';
+import type { ContentfulExternalPage, ContentfulNavigationResponse, ContentfulPage } from '@/lib/contentful/types';
 
 import { Logo } from './logo';
 
@@ -42,10 +42,22 @@ export const Footer = async ({ locale }: { locale: string }) => {
     locale: locale,
   })) as unknown as ContentfulNavigationResponse;
 
-  const links = entry?.items?.[0]?.fields?.links.map((link) => ({
-    title: link.fields.title,
-    slug: link.fields.slug,
-  }));
+  const links = entry?.items?.[0]?.fields?.links.map((link) => {
+    switch (link.sys.contentType.sys.id) {
+      case 'externalPage':
+        const externalPage = link as ContentfulExternalPage;
+        return {
+          title: externalPage.fields.title,
+          slug: externalPage.fields.url,
+        };
+      case 'page':
+        const page = link as ContentfulPage;
+        return {
+          title: page.fields.title,
+          slug: page.fields.slug,
+        };
+    }
+  });
 
   return (
     <div className="relative mt-16 h-[800px]" style={{ clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)' }}>
@@ -70,9 +82,15 @@ export const Footer = async ({ locale }: { locale: string }) => {
                     return (
                       <>
                         <li key={link.slug}>
-                          <Link href={`/${link.slug}`} className="hover:underline">
-                            {link.title}
-                          </Link>
+                          {link.slug.startsWith('http') ? (
+                            <a href={link.slug} className="hover:underline" target="_blank">
+                              {link.title}
+                            </a>
+                          ) : (
+                            <Link href={`/${link.slug}`} className="hover:underline">
+                              {link.title}
+                            </Link>
+                          )}
                         </li>
                         {!isLast && <Dot width={2} height={2} className="hidden md:block" />}
                       </>

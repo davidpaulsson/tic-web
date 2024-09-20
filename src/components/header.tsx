@@ -1,9 +1,9 @@
-import { Menu } from 'lucide-react';
+import { ExternalLink, Menu } from 'lucide-react';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
 import { getContentfulClient } from '@/lib/contentful/get-client';
-import type { ContentfulNavigationResponse } from '@/lib/contentful/types';
+import type { ContentfulExternalPage, ContentfulNavigationResponse, ContentfulPage } from '@/lib/contentful/types';
 
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
@@ -24,10 +24,22 @@ export const Header = async ({ locale }: Props) => {
     locale: locale,
   })) as unknown as ContentfulNavigationResponse;
 
-  const links = entry?.items?.[0]?.fields?.links.map((link) => ({
-    title: link.fields.title,
-    slug: link.fields.slug,
-  }));
+  const links = entry?.items?.[0]?.fields?.links.map((link) => {
+    switch (link.sys.contentType.sys.id) {
+      case 'externalPage':
+        const externalPage = link as ContentfulExternalPage;
+        return {
+          title: externalPage.fields.title,
+          slug: externalPage.fields.url,
+        };
+      case 'page':
+        const page = link as ContentfulPage;
+        return {
+          title: page.fields.title,
+          slug: page.fields.slug,
+        };
+    }
+  });
 
   let dict;
   switch (locale) {
@@ -66,13 +78,24 @@ export const Header = async ({ locale }: Props) => {
 
           {/** md screen and up */}
           <ul className="hidden w-full items-center justify-between gap-14 md:flex">
-            {links.map((link) => (
-              <li key={link.slug}>
-                <Link href={`/${link.slug}`} className="text-nowrap hover:underline">
-                  {link.title}
-                </Link>
-              </li>
-            ))}
+            {links.map((link) => {
+              if (link.slug.startsWith('http')) {
+                return (
+                  <li key={link.slug}>
+                    <a href={link.slug} className="flex items-center gap-2 text-nowrap hover:underline" target="_blank">
+                      {link.title} <ExternalLink className="h-4 w-4 text-tic-lighter" />
+                    </a>
+                  </li>
+                );
+              }
+              return (
+                <li key={link.slug}>
+                  <Link href={`/${link.slug}`} className="text-nowrap hover:underline">
+                    {link.title}
+                  </Link>
+                </li>
+              );
+            })}
             <li>
               <Button asChild variant="outline">
                 <Link href={dict.logIn.url} className="group flex gap-2">
@@ -98,9 +121,15 @@ export const Header = async ({ locale }: Props) => {
                 <ul className="divide-y">
                   {links.map((link) => (
                     <li key={link.slug}>
-                      <Link href={`/${link.slug}`} className="block text-nowrap py-4 hover:underline">
-                        {link.title}
-                      </Link>
+                      {link.slug.startsWith('http') ? (
+                        <a href={link.slug} className="block py-4 hover:underline" target="_blank">
+                          {link.title}
+                        </a>
+                      ) : (
+                        <Link href={`/${link.slug}`} className="block text-nowrap py-4 hover:underline">
+                          {link.title}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>
