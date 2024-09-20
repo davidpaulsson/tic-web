@@ -1,17 +1,17 @@
 'use client';
 
+import { HistoryIcon } from '@/icons/history';
+import { IntelligenceIcon } from '@/icons/intelligence';
+import { OverviewIcon } from '@/icons/overview';
+import { SaleIcon } from '@/icons/sale';
+
 import { motion } from 'framer-motion';
 import { useRef, useState } from 'react';
 import { useResizeObserver } from 'usehooks-ts';
 
 import { cn } from '@/lib/utils';
 
-import { HistoryIcon } from '@/components/icons/history';
-import { IntelligenceIcon } from '@/components/icons/intelligence';
-import { OverviewIcon } from '@/components/icons/overview';
-import { SaleIcon } from '@/components/icons/sale';
-
-import { MoreIcon } from '../icons/more';
+import { MoreIcon } from '../../icons/more';
 import { json } from './json';
 
 export function CurlExample() {

@@ -1,31 +1,30 @@
 import { Dot } from '@/icons/dot';
-import Facebook from '@/icons/facebook.svg';
-import Instagram from '@/icons/instagram.svg';
-import LinkedIn from '@/icons/linkedin.svg';
-import X from '@/icons/x.svg';
+import { FacebookIcon } from '@/icons/facebook';
+import { InstagramIcon } from '@/icons/instagram';
+import { LinkedinIcon } from '@/icons/linkedin';
+import { XIcon } from '@/icons/x';
 
 import { draftMode } from 'next/headers';
-import Image from 'next/image';
 import Link from 'next/link';
 
 import { getContentfulClient } from '@/lib/contentful/get-client';
 import type { ContentfulNavigationResponse } from '@/lib/contentful/types';
-import { cn } from '@/lib/utils';
 
 import { Logo } from './logo';
 
 const SocialLinks = () => (
   <ul className="flex gap-8">
     {[
-      { label: 'Instagram', href: '#', icon: Instagram },
-      { label: 'X', href: '#', icon: X },
-      { label: 'Facebook', href: '#', icon: Facebook },
-      { label: 'LinkedIn', href: '#', icon: LinkedIn },
+      { label: 'Instagram', href: '#', icon: <InstagramIcon /> },
+      { label: 'X', href: '#', icon: <XIcon /> },
+      { label: 'Facebook', href: '#', icon: <FacebookIcon /> },
+      { label: 'LinkedIn', href: '#', icon: <LinkedinIcon /> },
     ].map((link) => {
       return (
         <li key={link.label}>
-          <a href={link.href}>
-            <Image src={link.icon} alt={link.label} />
+          <a href={link.href} className="text-xl">
+            {link.icon}
+            <span className="sr-only">{link.label}</span>
           </a>
         </li>
       );
@@ -49,25 +48,18 @@ export const Footer = async ({ locale }: { locale: string }) => {
   }));
 
   return (
-    <footer
-      className={cn(
-        'pb-96 pt-40',
-        // Gradient
-        'bg-gradient-to-b from-white to-tic-purple-light',
-      )}
-    >
+    <footer className="mt-16 bg-slate-950 py-16 text-slate-50 md:mt-40 md:py-40">
       <div className="container">
-        <div className="space-y-8 border-t border-t-tic-stroke pt-10">
+        <div className="space-y-8 pt-10">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
             <Logo className="w-32" />
-
             <SocialLinks />
           </div>
 
-          <div className="flex flex-col-reverse border-t border-t-white/10 pt-8 md:flex-row md:justify-between">
+          <div className="flex flex-col-reverse items-start border-t border-t-slate-800 pt-8 md:flex-row md:justify-between">
             <div>
-              <div className="mb-3 text-tic-light">©{new Date().getFullYear()} The Intelligence Company AB</div>
-              <div className="text-sm">Vi har kreditupplysningstillstånd från Integritetsskyddsmyndigheten.</div>
+              <div className="mb-1">©{new Date().getFullYear()} The Intelligence Company AB</div>
+              <div className="text-sm text-slate-300">Vi har kreditupplysningstillstånd från Integritetsskyddsmyndigheten.</div>
             </div>
 
             <ul className="mb-8 flex flex-col gap-2 md:mb-0 md:flex-row md:items-center md:gap-4">
