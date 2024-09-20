@@ -21,7 +21,6 @@ import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
 import { ProductFeature } from '@/components/product-feature';
 
 import { CurlExample } from './curl-example';
-import { Logger } from './logger';
 import { PlanSelection } from './plan-selection';
 import { PricingTable } from './pricing-table';
 import { SaferAndEasierBusiness } from './safer-and-easier-business';
