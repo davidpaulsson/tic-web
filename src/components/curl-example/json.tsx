@@ -62,7 +62,7 @@ export const json = `<pre style="color:#F8F8F2" tabindex="0"><code><span class="
 <span class="line"><span style="color:#66D9EF;font-style:italic">        "hasIntelligence"</span><span style="color:#F8F8F2">: </span><span style="color:#AE81FF">true</span><span style="color:#F8F8F2">,</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">        "status"</span><span style="color:#F8F8F2">: [],</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">        "hasStatus"</span><span style="color:#F8F8F2">: </span><span style="color:#AE81FF">false</span><span style="color:#F8F8F2">,</span></span>
-<span class="line"><span style="color:#66D9EF;font-style:italic">        "mostRecentFinancialSummary"</span><span style="color:#F8F8F2">: {</span></span>
+<span class="line"><span style="color:#66D9EF;font-style:italic" id="economic">        "mostRecentFinancialSummary"</span><span style="color:#F8F8F2">: {</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">          "periodStart"</span><span style="color:#F8F8F2">: </span><span style="color:#AE81FF">1672531200</span><span style="color:#F8F8F2">,</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">          "periodEnd"</span><span style="color:#F8F8F2">: </span><span style="color:#AE81FF">1703980800</span><span style="color:#F8F8F2">,</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">          "rs_NetSalesK"</span><span style="color:#F8F8F2">: </span><span style="color:#AE81FF">4015</span><span style="color:#F8F8F2">,</span></span>
@@ -107,7 +107,7 @@ export const json = `<pre style="color:#F8F8F2" tabindex="0"><code><span class="
 <span class="line"><span style="color:#F8F8F2">          }</span></span>
 <span class="line"><span style="color:#F8F8F2">        ],</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">        "hasAddresses"</span><span style="color:#F8F8F2">: </span><span style="color:#AE81FF">true</span><span style="color:#F8F8F2">,</span></span>
-<span class="line"><span style="color:#66D9EF;font-style:italic">        "documents"</span><span style="color:#F8F8F2">: [</span></span>
+<span class="line"><span style="color:#66D9EF;font-style:italic" id="history">        "documents"</span><span style="color:#F8F8F2">: [</span></span>
 <span class="line"><span style="color:#F8F8F2">          {</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">            "companyDocumentId"</span><span style="color:#F8F8F2">: </span><span style="color:#AE81FF">10699498</span><span style="color:#F8F8F2">,</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">            "companyDocumentType"</span><span style="color:#F8F8F2">: </span><span style="color:#CFCFC2">"annualReport"</span><span style="color:#F8F8F2">,</span></span>
@@ -147,7 +147,7 @@ export const json = `<pre style="color:#F8F8F2" tabindex="0"><code><span class="
 <span class="line"><span style="color:#66D9EF;font-style:italic">        "hasStock"</span><span style="color:#F8F8F2">: </span><span style="color:#AE81FF">false</span><span style="color:#F8F8F2">,</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">        "lei"</span><span style="color:#F8F8F2">: </span><span style="color:#AE81FF">null</span><span style="color:#F8F8F2">,</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">        "hasLEI"</span><span style="color:#F8F8F2">: </span><span style="color:#AE81FF">false</span><span style="color:#F8F8F2">,</span></span>
-<span class="line"><span style="color:#66D9EF;font-style:italic">        "salesToPublicActors"</span><span style="color:#F8F8F2">: [</span></span>
+<span class="line"><span style="color:#66D9EF;font-style:italic" id="sales">        "salesToPublicActors"</span><span style="color:#F8F8F2">: [</span></span>
 <span class="line"><span style="color:#F8F8F2">          {</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">            "actorName"</span><span style="color:#F8F8F2">: </span><span style="color:#CFCFC2">"Nässjö"</span><span style="color:#F8F8F2">,</span></span>
 <span class="line"><span style="color:#66D9EF;font-style:italic">            "actorType"</span><span style="color:#F8F8F2">: </span><span style="color:#CFCFC2">"Municipality"</span><span style="color:#F8F8F2">,</span></span>
