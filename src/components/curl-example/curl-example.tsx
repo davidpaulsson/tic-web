@@ -61,10 +61,9 @@ export function CurlExample() {
   ];
 
   return (
-    <div className="container space-y-12">
-      <h2 className="text-balance text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
-        Det som kan ta timmar
-        <br /> <span className="text-tic-lighter">löser TIC API på sekunder.</span>
+    <div className="container">
+      <h2 className="mb-14 text-balance text-2xl sm:text-3xl md:max-w-2xl md:text-4xl lg:text-5xl">
+        Det som kan ta timmar löser TIC API på sekunder.
       </h2>
       <div className="lg:grid lg:grid-cols-4 lg:grid-rows-1 lg:gap-5">
         <div ref={buttonAreaRef} className="rounded-xl bg-slate-950 p-5 max-lg:mb-5 lg:col-span-1">

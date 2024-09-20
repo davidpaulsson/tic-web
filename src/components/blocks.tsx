@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 
 import { REGIONS } from '@/lib/constants';
 import {
+  ContentfulBlockCarousel,
   ContentfulBlockContent,
   ContentfulBlockHero,
   ContentfulBlockProductFeature,
@@ -20,10 +21,12 @@ import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
 import { ProductFeature } from '@/components/product-feature';
 
 import { CurlExample } from './curl-example';
+import { Logger } from './logger';
 import { PlanSelection } from './plan-selection';
 import { PricingTable } from './pricing-table';
 import { SaferAndEasierBusiness } from './safer-and-easier-business';
 import { Sources } from './sources';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
 
 type Props = {
   region: (typeof REGIONS)[number];
@@ -31,6 +34,10 @@ type Props = {
 };
 
 export const Blocks = ({ blocks, region }: Props) => {
+  if (!blocks) {
+    return null;
+  }
+
   return blocks.map((block) => {
     switch (block.sys.contentType.sys.id) {
       case 'blockHero':
@@ -71,7 +78,6 @@ export const Blocks = ({ blocks, region }: Props) => {
       }
       case 'blockContent': {
         const { content } = block.fields as ContentfulBlockContent['fields'];
-
         return (
           <div key={block.sys.id} className="container my-8">
             <div key={block.sys.id} className="prose mx-auto max-w-prose prose-headings:text-pretty prose-headings:font-normal">
@@ -114,6 +120,49 @@ export const Blocks = ({ blocks, region }: Props) => {
           default:
             return null;
         }
+      // "blockCarousel" is "Block: Columns" in Contentful
+      case 'blockCarousel': {
+        const { cards, title } = block.fields as ContentfulBlockCarousel['fields'];
+        return (
+          <div key={block.sys.id} className="container">
+            {title && <h2 className="mb-14 text-balance text-2xl sm:text-3xl md:max-w-2xl md:text-4xl lg:text-5xl">{title}</h2>}
+            <div
+              className="grid gap-5"
+              style={{
+                gridTemplateColumns: `repeat(${cards.length}, 1fr)`,
+              }}
+            >
+              {cards.map((card) => {
+                return (
+                  <Card key={card.sys.id}>
+                    <CardHeader>
+                      <CardTitle>{card.fields.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <p>{card.fields.description}</p>
+                    </CardContent>
+                    {card.fields.links && card.fields.links.length > 0 && (
+                      <CardFooter>
+                        <ul>
+                          {card.fields.links
+                            .filter((link) => link.fields?.slug !== undefined)
+                            .map((link) => {
+                              return (
+                                <li key={link.fields.slug}>
+                                  <Link href={link.fields.slug}>{link.fields?.title}</Link>
+                                </li>
+                              );
+                            })}
+                        </ul>
+                      </CardFooter>
+                    )}
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+        );
+      }
       default:
         return null;
     }
