@@ -71,7 +71,7 @@ export const Sources = () => {
               ))}
             </Marquee>
           </div>
-          <p className="z-20 text-center text-sm text-white/60">Detta är endast ett urval av våra datakällor.</p>
+          <p className="z-20 text-center text-sm text-white/60">Ett urval av våra datakällor.</p>
 
           <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-black via-transparent to-black" />
         </div>

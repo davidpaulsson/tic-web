@@ -1,4 +1,4 @@
-import { CheckIcon } from 'lucide-react';
+import { CheckIcon } from '@/icons/check';
 
 export const ListItem = ({ children }: { children: React.ReactNode }) => (
   <li className="mb-3 flex gap-3 last:mb-0">

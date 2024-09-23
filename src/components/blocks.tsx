@@ -1,3 +1,11 @@
+import { DeviationIcon } from '@/icons/deviation';
+import { DocumentIcon } from '@/icons/document';
+import { HistoryIcon } from '@/icons/history';
+import { IntelligenceIcon } from '@/icons/intelligence';
+import { MoreIcon } from '@/icons/more';
+import { OverviewIcon } from '@/icons/overview';
+import { SaleIcon } from '@/icons/sale';
+import { SearchIcon } from '@/icons/search';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { Document, INLINES } from '@contentful/rich-text-types';
 
@@ -135,10 +143,35 @@ export const Blocks = ({ blocks, region }: Props) => {
                 return (
                   <Card key={card.sys.id}>
                     <CardHeader>
+                      {!!card.fields.icon &&
+                        (() => {
+                          switch (card.fields.icon) {
+                            case 'check':
+                              return <SearchIcon className="mb-8 h-11 w-11" />;
+                            case 'deviation':
+                              return <DeviationIcon className="mb-8 h-11 w-11" />;
+                            case 'document':
+                              return <DocumentIcon className="mb-8 h-11 w-11" />;
+                            case 'history':
+                              return <HistoryIcon className="mb-8 h-11 w-11" />;
+                            case 'intelligence':
+                              return <IntelligenceIcon className="mb-8 h-11 w-11" />;
+                            case 'more':
+                              return <MoreIcon className="mb-8 h-11 w-11" />;
+                            case 'overview':
+                              return <OverviewIcon className="mb-8 h-11 w-11" />;
+                            case 'sale':
+                              return <SaleIcon className="mb-8 h-11 w-11" />;
+                            case 'search':
+                              return <SearchIcon className="mb-8 h-11 w-11" />;
+                            default:
+                              return null;
+                          }
+                        })()}
                       <CardTitle>{card.fields.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p>{card.fields.description}</p>
+                      <p className="text-tic-light">{card.fields.description}</p>
                     </CardContent>
                     {card.fields.links && card.fields.links.length > 0 && (
                       <CardFooter>

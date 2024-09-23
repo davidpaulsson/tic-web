@@ -60,7 +60,7 @@ export const PlanSelection = () => {
                 <ListItem>Offentliga inköp (kommuner, regioner, myndigheter, universitet, högskolor)</ListItem>
                 <ListItem>Telefonnummer och franchisetillhörighet</ListItem>
                 <li className="mb-3 flex gap-3 text-tic-lighter last:mb-0">
-                  <PlusIcon className="mt-1 inline h-4 w-4 flex-shrink-0" /> <span>Allt i Free</span>
+                  <PlusIcon className="mt-1 inline h-4 w-4 flex-shrink-0" /> <span>Samt samma möjligheter som Free</span>
                 </li>
               </ul>
             </CardContent>
@@ -98,7 +98,7 @@ export const PlanSelection = () => {
                 <ListItem>Sök text i årsredovisningar med vår blixtsnabba sökmotor</ListItem>
                 <ListItem>Bidrag</ListItem>
                 <li className="mb-3 flex gap-3 text-tic-lighter last:mb-0">
-                  <PlusIcon className="mt-1 inline h-4 w-4 flex-shrink-0" /> <span>Allt i Basic</span>
+                  <PlusIcon className="mt-1 inline h-4 w-4 flex-shrink-0" /> <span>Samt samma möjligheter som Basic</span>
                 </li>
               </ul>
             </CardContent>

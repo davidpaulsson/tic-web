@@ -50,6 +50,7 @@ export type ContentfulComponentCard = {
     title: string;
     description: string;
     links: ContentfulPageResponse['items'];
+    icon: 'check' | 'deviation' | 'document' | 'history' | 'intelligence' | 'more' | 'overview' | 'sale' | 'search';
   };
 };
 
