@@ -7,12 +7,39 @@ import { OverviewIcon } from '@/icons/overview';
 import { SaleIcon } from '@/icons/sale';
 
 import { motion } from 'framer-motion';
-import { useRef, useState } from 'react';
+import { use, useEffect, useRef, useState } from 'react';
 import { useResizeObserver } from 'usehooks-ts';
 
 import { cn } from '@/lib/utils';
 
 import { SecionTitle } from '../section-title';
+
+const buttonList = [
+  {
+    id: 'intelligence',
+    title: 'Intelligence Score',
+    description: 'Vi betygssätter alla brister och fel i information vi hittar.',
+    icon: <IntelligenceIcon />,
+  },
+  {
+    id: 'mostRecentFinancialSummary',
+    title: 'Ekonomisk översikt',
+    description: 'Följ enkelt finansiell data om företaget.',
+    icon: <OverviewIcon />,
+  },
+  {
+    id: 'documents',
+    title: 'Ärendehistorik',
+    description: 'Ladda hem årsredovisningar och följ ärendehistorik.',
+    icon: <HistoryIcon />,
+  },
+  {
+    id: 'salesToPublicActors',
+    title: 'Offentlig försäljning',
+    description: 'Se försäljning till offentliga aktörer, kommuner, myndigheter, mfl.',
+    icon: <SaleIcon />,
+  },
+];
 
 export function CurlExampleClient({ children }: { children: React.ReactNode }) {
   const buttonAreaRef = useRef<HTMLDivElement>(null);
@@ -23,12 +50,16 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
     box: 'border-box',
   });
 
-  const scrollTo = (id: string) => {
-    setActiveButton(id);
+  useEffect(() => {
+    setTimeout(() => {
+      setActiveButton(buttonList[0].id);
+    }, 1000);
+  }, []);
 
+  useEffect(() => {
     if (scrollAreaRef.current) {
       const elements = Array.from(scrollAreaRef.current.querySelectorAll('span'));
-      const element = elements.find((el) => el.textContent?.includes(`"${id}"`));
+      const element = elements.find((el) => el.textContent?.includes(`"${activeButton}"`));
       if (!element) return;
       const scrollAreaTop = scrollAreaRef.current.getBoundingClientRect().top;
       const elementTop = element.getBoundingClientRect().top;
@@ -39,34 +70,11 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
         behavior: 'smooth',
       });
     }
-  };
+  }, [activeButton]);
 
-  const buttonList = [
-    {
-      id: 'intelligence',
-      title: 'Intelligence Score',
-      description: 'Vi betygssätter alla brister och fel i information vi hittar.',
-      icon: <IntelligenceIcon />,
-    },
-    {
-      id: 'mostRecentFinancialSummary',
-      title: 'Ekonomisk översikt',
-      description: 'Följ enkelt finansiell data om företaget.',
-      icon: <OverviewIcon />,
-    },
-    {
-      id: 'documents',
-      title: 'Ärendehistorik',
-      description: 'Ladda hem årsredovisningar och följ ärendehistorik.',
-      icon: <HistoryIcon />,
-    },
-    {
-      id: 'salesToPublicActors',
-      title: 'Offentlig försäljning',
-      description: 'Se försäljning till offentliga aktörer, kommuner, myndigheter, mfl.',
-      icon: <SaleIcon />,
-    },
-  ];
+  const scrollTo = (id: string) => {
+    setActiveButton(id);
+  };
 
   return (
     <div className="container">
@@ -100,6 +108,21 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
                   >
                     {description}
                   </motion.span>
+                  {activeButton === id && (
+                    <motion.div
+                      className="h-0.5 translate-y-3 rounded-xl bg-slate-300/25"
+                      initial={{ width: 0 }}
+                      animate={{
+                        width: activeButton === id ? '100%' : 0,
+                      }}
+                      transition={{ duration: 10, ease: 'linear' }}
+                      onAnimationComplete={() => {
+                        const currentIndex = buttonList.findIndex((button) => button.id === activeButton);
+                        const nextIndex = (currentIndex + 1) % buttonList.length;
+                        scrollTo(buttonList[nextIndex].id);
+                      }}
+                    />
+                  )}
                 </button>
               </li>
             ))}
