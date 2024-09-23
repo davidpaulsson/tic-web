@@ -36,7 +36,9 @@ const logos = [
 ];
 
 const LogoWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex size-20 items-center justify-center [&>svg]:h-auto [&>svg]:w-10">{children}</div>
+  <div className="flex size-20 items-center justify-center rounded-2xl border border-white/5 bg-gradient-to-b from-transparent to-white/5 [&>svg]:h-auto [&>svg]:w-10">
+    {children}
+  </div>
 );
 
 export const Sources = () => {
