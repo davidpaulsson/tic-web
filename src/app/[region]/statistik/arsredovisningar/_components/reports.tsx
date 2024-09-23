@@ -31,6 +31,8 @@ export function Reports() {
         </div>
 
         <div className="flex items-center gap-2 max-md:mb-4">
+          <Switch className="mr-2" onClick={() => setRange(range === 'daily' ? 'monthly' : 'daily')} checked={range !== 'daily'} />
+
           <button
             onClick={() => setRange(range === 'daily' ? 'monthly' : 'daily')}
             className={cn('text-sm', {
@@ -40,7 +42,7 @@ export function Reports() {
           >
             Dagligen
           </button>
-          <Switch onClick={() => setRange(range === 'daily' ? 'monthly' : 'daily')} checked={range !== 'daily'} />
+
           <button
             onClick={() => setRange(range === 'daily' ? 'monthly' : 'daily')}
             className={cn('text-sm', {
