@@ -8,7 +8,7 @@ import type { ContentfulExternalPage, ContentfulNavigationResponse, ContentfulPa
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { Sheet, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 
 type Props = {
   locale: string;
@@ -119,6 +119,11 @@ export const Header = async ({ locale }: Props) => {
               </SheetHeader>
               <ScrollArea>
                 <ul className="divide-y">
+                  <SheetClose asChild>
+                    <Link href="/sv" className="block text-nowrap py-4 hover:underline">
+                      Startsida
+                    </Link>
+                  </SheetClose>
                   {links.map((link) => (
                     <li key={link.slug}>
                       {link.slug.startsWith('http') ? (
@@ -126,9 +131,11 @@ export const Header = async ({ locale }: Props) => {
                           {link.title}
                         </a>
                       ) : (
-                        <Link href={`/${link.slug}`} className="block text-nowrap py-4 hover:underline">
-                          {link.title}
-                        </Link>
+                        <SheetClose asChild>
+                          <Link href={`/${link.slug}`} className="block text-nowrap py-4 hover:underline">
+                            {link.title}
+                          </Link>
+                        </SheetClose>
                       )}
                     </li>
                   ))}
