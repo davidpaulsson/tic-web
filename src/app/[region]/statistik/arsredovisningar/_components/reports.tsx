@@ -19,7 +19,7 @@ export function Reports() {
 
   return (
     <div className="container my-8 space-y-16 md:space-y-40">
-      <div className="md:flex md:items-start md:justify-between">
+      <div>
         <div>
           <HeroTitle>Bolagsverket statistik årsredovisningar</HeroTitle>
           <HeroSubtitle>
@@ -30,7 +30,7 @@ export function Reports() {
           </HeroSubtitle>
         </div>
 
-        <div className="flex items-center gap-2 max-md:mb-4">
+        <div className="my-4 flex items-center gap-2">
           <Switch className="mr-2" onClick={() => setRange(range === 'daily' ? 'monthly' : 'daily')} checked={range !== 'daily'} />
 
           <button
