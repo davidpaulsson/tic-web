@@ -2,14 +2,18 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 
+import confetti from 'canvas-confetti';
 import Link from 'next/link';
+import { startTransition, useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
+import { submitForm } from './accountant-form.action';
 import { Checkbox } from './ui/checkbox';
 
 const formSchema = z.object({
@@ -28,6 +32,8 @@ const formSchema = z.object({
 });
 
 export const AccountantForm = () => {
+  const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted'>('idle');
+
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,9 +47,24 @@ export const AccountantForm = () => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
+    setStatus('submitting');
+
+    startTransition(async () => {
+      try {
+        await submitForm({
+          FirstName: values.firstName,
+          LastName: values.lastName,
+          Email: values.email,
+        });
+        toast('Tack! Du får snart ett meddelande med uppgifter.');
+        confetti();
+        setStatus('submitted');
+        form.reset();
+      } catch (error) {
+        toast((error as Error).message);
+        setStatus('idle');
+      }
+    });
   }
 
   return (
@@ -123,6 +144,10 @@ export const AccountantForm = () => {
                   </>
                 )}
               />
+
+              {status === 'submitted' && (
+                <p className="col-span-full mt-2 text-balance text-sm text-tic-light">Tack! Du får snart ett meddelande med uppgifter.</p>
+              )}
             </form>
           </Form>
         </div>

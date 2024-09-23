@@ -117,11 +117,11 @@ export const Blocks = ({ blocks, region }: Props) => {
           case 'Data sources':
             return <Sources key={block.sys.id} />;
           case 'Plan selection':
-            return <PlanSelection key={block.sys.id} />;
+            return <PlanSelection key={block.sys.id} region={region} />;
           case 'Pricing table':
-            return <PricingTable key={block.sys.id} />;
+            return <PricingTable key={block.sys.id} region={region} />;
           case 'Safer and easier business':
-            return <SaferAndEasierBusiness key={block.sys.id} />;
+            return <SaferAndEasierBusiness key={block.sys.id} region={region} />;
           case 'API example':
             return <CurlExample key={block.sys.id} />;
           default:

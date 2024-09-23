@@ -1,5 +1,6 @@
 import { InfoIcon, PlusIcon } from 'lucide-react';
 
+import { REGIONS } from '@/lib/constants';
 import { asMoney } from '@/lib/utils';
 
 import { ListItem } from '@/components/list-item';
@@ -9,7 +10,7 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip
 import { GetStartedButton } from './get-started-button';
 import { SecionTitle } from './section-title';
 
-export const PlanSelection = () => {
+export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) => {
   return (
     <div className="container">
       <SecionTitle>Välj abonnemang och kom igång gratis redan idag.</SecionTitle>
@@ -36,7 +37,7 @@ export const PlanSelection = () => {
               </ul>
             </CardContent>
             <CardFooter>
-              <GetStartedButton plan="Free" />
+              <GetStartedButton plan="Free" region={region} />
             </CardFooter>
           </Card>
         </li>
@@ -65,7 +66,7 @@ export const PlanSelection = () => {
               </ul>
             </CardContent>
             <CardFooter>
-              <GetStartedButton plan="Basic" />
+              <GetStartedButton plan="Basic" region={region} />
             </CardFooter>
           </Card>
         </li>
@@ -103,7 +104,7 @@ export const PlanSelection = () => {
               </ul>
             </CardContent>
             <CardFooter>
-              <GetStartedButton plan="Premium" />
+              <GetStartedButton plan="Premium" region={region} />
             </CardFooter>
           </Card>
         </li>

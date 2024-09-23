@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 import { FrontChat } from '@/components/front-chat';
 import { ReactQueryClientProvider } from '@/components/react-query-client-provider';
 import { DotPattern } from '@/components/ui/dot-pattern';
-import { Toaster } from '@/components/ui/toaster';
+import { Toaster } from '@/components/ui/sonner';
 import { TooltipProvider } from '@/components/ui/tooltip';
 
 import './globals.css';
@@ -49,7 +49,7 @@ export default function RootLayout({
           <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
         </TooltipProvider>
         <FrontChat />
-        <Toaster />
+        <Toaster position="bottom-left" />
       </body>
     </html>
   );

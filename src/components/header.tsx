@@ -59,7 +59,7 @@ export const Header = async ({ locale }: Props) => {
         openMenu: 'Öppna meny',
         logIn: {
           title: 'Logga in',
-          url: '/',
+          url: 'https://app.tic.io/',
         },
       };
       break;
@@ -98,9 +98,9 @@ export const Header = async ({ locale }: Props) => {
             })}
             <li>
               <Button asChild variant="outline">
-                <Link href={dict.logIn.url} className="group flex gap-2">
+                <a href={dict.logIn.url} className="group flex gap-2">
                   {dict.logIn.title}
-                </Link>
+                </a>
               </Button>
             </li>
           </ul>
@@ -146,7 +146,7 @@ export const Header = async ({ locale }: Props) => {
               <ul className="space-y-4">
                 <li>
                   <Button className="w-full" asChild>
-                    <Link href={dict.logIn.url}>{dict.logIn.title}</Link>
+                    <a href={dict.logIn.url}>{dict.logIn.title}</a>
                   </Button>
                 </li>
               </ul>

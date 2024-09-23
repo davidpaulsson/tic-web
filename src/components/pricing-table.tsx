@@ -2,6 +2,7 @@ import { Check, InfoIcon, Minus } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
 
+import { REGIONS } from '@/lib/constants';
 import { asMoney, asNumber, cn } from '@/lib/utils';
 
 import { ListItem } from '@/components/list-item';
@@ -10,6 +11,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
+import { GetStartedButton } from './get-started-button';
 import { SecionTitle } from './section-title';
 
 const PLANS = [
@@ -250,7 +252,7 @@ const PLANS = [
   },
 ];
 
-export const PricingTable = () => {
+export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) => {
   return (
     <div className="container">
       <SecionTitle>Jämför detaljerna.</SecionTitle>
@@ -261,34 +263,22 @@ export const PricingTable = () => {
             <TableHead className="w-3/6"></TableHead>
             <TableHead className="!m-0 w-1/6 !p-0">
               <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-6 text-center text-2xl text-tic">
-                <div>Free</div>
-                <Button asChild variant="outline">
-                  <Link href="#" className="mt-4 block text-base">
-                    Kom igång gratis
-                  </Link>
-                </Button>
+                <div className="mb-4">Free</div>
+                <GetStartedButton plan="Free" region={region} />
               </div>
             </TableHead>
             <TableHead />
             <TableHead className="!m-0 w-1/6 !p-0">
               <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-6 text-center text-2xl text-tic">
-                <div>Basic</div>
-                <Button asChild>
-                  <Link href="#" className="mt-4 block text-base">
-                    Skapa konto
-                  </Link>
-                </Button>
+                <div className="mb-4">Basic</div>
+                <GetStartedButton plan="Basic" region={region} />
               </div>
             </TableHead>
             <TableHead />
             <TableHead className="!m-0 w-1/6 !p-0">
               <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-6 text-center text-2xl text-tic">
                 <div>Premium</div>
-                <Button asChild>
-                  <Link href="#" className="mt-4 block text-base">
-                    Kontakta sälj
-                  </Link>
-                </Button>
+                <GetStartedButton plan="Premium" region={region} />
               </div>
             </TableHead>
           </TableRow>
