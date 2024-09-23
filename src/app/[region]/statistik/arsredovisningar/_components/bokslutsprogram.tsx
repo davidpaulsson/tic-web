@@ -112,13 +112,13 @@ export function Bokslutsprogram({
 
   return (
     <Card className="flex flex-col">
-      <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
-        <div className="flex flex-1 flex-col justify-center gap-1 p-9">
+      <CardHeader className="flex flex-col items-stretch justify-between space-y-0 border-b !p-0 sm:flex-row">
+        <div className="p-6 md:p-9">
           <CardTitle className="mb-2">Bokslutsprogram</CardTitle>
           <CardDescription>Avser digitalt inlämnade hittills i år per bokslutsprogram.</CardDescription>
         </div>
 
-        <div className="flex items-center p-9">
+        <div className="flex items-center p-6 pt-0 md:p-9">
           <Input
             placeholder="Filtrera program…"
             value={(table.getColumn('name')?.getFilterValue() as string) ?? ''}
@@ -128,7 +128,7 @@ export function Bokslutsprogram({
         </div>
       </CardHeader>
 
-      <CardContent className="px-9">
+      <CardContent className="px-6 md:px-9">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

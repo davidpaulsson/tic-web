@@ -57,10 +57,10 @@ export function Arsredovisningsbrister({
 
   return (
     <Card>
-      <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
-        <div className="flex flex-1 flex-col justify-center gap-1 p-9">
+      <CardHeader className="flex flex-col items-stretch space-y-0 border-b !p-0 sm:flex-row">
+        <div className="p-6 md:p-9">
           <CardTitle className="mb-2">Antal brister vi identifierar i årsredovisningar</CardTitle>
-          <CardDescription>
+          <CardDescription className="max-w-prose">
             Exkluderar sen årsstämma, sen årsredovisning, likvidationsplikt och fel soliditetsberäkning. Avser brister The Intelligence
             Company AB (publ) identifierar.
           </CardDescription>
@@ -99,7 +99,7 @@ export function Arsredovisningsbrister({
         </div>
       </CardHeader>
 
-      <CardContent className="p-9">
+      <CardContent className="p-6 md:p-9">
         <ChartContainer config={chartConfig} className="aspect-auto h-80 w-full">
           <LineChart
             accessibilityLayer
