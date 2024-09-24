@@ -27,6 +27,7 @@ import { GetStartedForFree } from '@/components/get-started-for-free';
 import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
 import { ProductFeature } from '@/components/product-feature';
 
+import { AccountantForm } from './accountant-form';
 import { CurlExample } from './curl-example';
 import { PlanSelection } from './plan-selection';
 import { PricingTable } from './pricing-table';
@@ -124,6 +125,8 @@ export const Blocks = ({ blocks, region }: Props) => {
             return <SaferAndEasierBusiness key={block.sys.id} region={region} />;
           case 'API example':
             return <CurlExample key={block.sys.id} />;
+          case 'Accountant form':
+            return <AccountantForm key={block.sys.id} />;
           default:
             return null;
         }
