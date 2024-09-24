@@ -59,10 +59,10 @@ export const AccountantForm = () => {
           Email: values.email,
         });
         toast(message);
-        form.reset();
         if (success) {
           confetti();
           setStatus('submitted');
+          form.reset();
         }
       } catch (error) {
         toast('Uh-oh. Något gick fel. Försök igen.');
