@@ -5,6 +5,7 @@ import { IntelligenceIcon } from '@/icons/intelligence';
 import { MoreIcon } from '@/icons/more';
 import { OverviewIcon } from '@/icons/overview';
 import { SaleIcon } from '@/icons/sale';
+import { SocialIcon } from '@/icons/social';
 
 import { motion } from 'framer-motion';
 import { use, useEffect, useRef, useState } from 'react';
@@ -36,8 +37,14 @@ const buttonList = [
   {
     id: 'salesToPublicActors',
     title: 'Offentlig försäljning',
-    description: 'Se försäljning till offentliga aktörer, kommuner, myndigheter, mfl.',
+    description: 'Se försäljning till offentliga aktörer.',
     icon: <SaleIcon />,
+  },
+  {
+    id: 'phoneNumbers',
+    title: 'Telefonnummer & epost',
+    description: 'Få kontaktuppgifter till företagets nyckelpersoner.',
+    icon: <SocialIcon />,
   },
 ];
 
@@ -126,7 +133,7 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
                 </button>
               </li>
             ))}
-            <li className="flex w-full items-center justify-between text-pretty px-3 text-slate-50 opacity-50">
+            <li className="!mt-12 flex w-full items-center justify-between text-pretty px-3 text-slate-50 opacity-50">
               Och mycket mer <MoreIcon />
             </li>
           </ul>
