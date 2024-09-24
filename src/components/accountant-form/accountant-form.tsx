@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import confetti from 'canvas-confetti';
+import Image from 'next/image';
 import Link from 'next/link';
 import { startTransition, useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -10,11 +11,12 @@ import { toast } from 'sonner';
 import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
 import { submitForm } from './accountant-form.action';
-import { Checkbox } from './ui/checkbox';
+import placeholder from './placeholder.jpg';
 
 const formSchema = z.object({
   firstName: z.string().min(2, {
@@ -70,7 +72,9 @@ export const AccountantForm = () => {
   return (
     <div className="container">
       <div className="overflow-hidden rounded-lg md:grid md:grid-cols-2">
-        <div className="bg-tic-purple-light max-md:hidden" />
+        <div className="relative max-md:hidden">
+          <Image src={placeholder} alt="" placeholder="blur" layout="fill" className="object-cover" />
+        </div>
         <div className="bg-tic-fill p-8 md:p-16">
           <h2 className="mb-2 text-pretty text-xl md:text-4xl">Är du revisor eller auktoriserad redovisningskonsult?</h2>
           <p className="mb-5 text-tic-light">

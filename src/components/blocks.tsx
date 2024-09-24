@@ -23,18 +23,17 @@ import {
 } from '@/lib/contentful/types';
 import { cn } from '@/lib/utils';
 
+import { AccountantForm } from '@/components/accountant-form';
+import { CurlExample } from '@/components/curl-example';
 import { GetStartedForFree } from '@/components/get-started-for-free';
 import { Hero, HeroSubtitle, HeroTitle } from '@/components/hero';
+import { PlanSelection } from '@/components/plan-selection';
+import { PricingTable } from '@/components/pricing-table';
 import { ProductFeature } from '@/components/product-feature';
-
-import { AccountantForm } from './accountant-form';
-import { CurlExample } from './curl-example';
-import { PlanSelection } from './plan-selection';
-import { PricingTable } from './pricing-table';
-import { SaferAndEasierBusiness } from './safer-and-easier-business';
-import { SecionTitle } from './section-title';
-import { Sources } from './sources';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from './ui/card';
+import { SaferAndEasierBusiness } from '@/components/safer-and-easier-business';
+import { SecionTitle } from '@/components/section-title';
+import { Sources } from '@/components/sources';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 type Props = {
   region: (typeof REGIONS)[number];
