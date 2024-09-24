@@ -15,11 +15,11 @@ export const ProductFeature = (props: ContentfulBlockProductFeature['fields'] & 
           'order-[-1]': props.align === 'left',
         })}
       >
-        {props.label && <div className="mb-4 text-tic-lighter">{props.label}</div>}
+        {props.label && <div className="text-tic-muteder mb-4">{props.label}</div>}
 
         <div>
           <h2 className="mb-2 text-balance text-2xl md:text-3xl">{props.title}</h2>
-          <p className={cn('text-pretty text-lg text-tic-light', { 'mb-10': !!props.cta })}>{props.description}</p>
+          <p className={cn('text-tic-muted text-pretty text-lg', { 'mb-10': !!props.cta })}>{props.description}</p>
 
           {props.cta && (
             <Button asChild>

@@ -83,7 +83,7 @@ export const Header = async ({ locale }: Props) => {
                 return (
                   <li key={link.slug}>
                     <a href={link.slug} className="flex items-center gap-2 text-nowrap hover:underline" target="_blank">
-                      {link.title} <ExternalLink className="h-4 w-4 text-tic-lighter" />
+                      {link.title} <ExternalLink className="text-tic-muteder h-4 w-4" />
                     </a>
                   </li>
                 );

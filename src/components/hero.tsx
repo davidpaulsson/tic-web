@@ -11,5 +11,5 @@ export const HeroTitle = ({ children }: { children: React.ReactNode }) => (
 );
 
 export const HeroSubtitle = ({ children, className }: { children: React.ReactNode; className?: string }) => (
-  <p className={cn('text-pretty text-lg text-tic-light sm:max-w-[62ch] md:text-xl', className)}>{children}</p>
+  <p className={cn('text-tic-muted text-pretty text-lg sm:max-w-[62ch] md:text-xl', className)}>{children}</p>
 );

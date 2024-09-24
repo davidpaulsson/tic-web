@@ -8,13 +8,21 @@ const config = {
     extend: {
       colors: {
         tic: {
-          DEFAULT: '#102030',
-          light: '#304050',
-          lighter: '#708090',
-          fill: '#F7F6F6',
-          stroke: '#E5E7E9',
-          purple: '#4B3BB0',
-          'purple-light': '#A8ACE4',
+          50: '#ffffff',
+          100: '#f6f6f7',
+          fill: '#f6f6f7',
+          200: '#edf1f3',
+          300: '#dcdedf',
+          stroke: '#dcdedf',
+          400: '#b1bbc4',
+          500: '#708090',
+          600: '#506070',
+          muted: '#506070',
+          700: '#304050',
+          800: '#203040',
+          900: '#001020',
+          text: '#001020',
+          950: '#000010',
         },
       },
       keyframes: {

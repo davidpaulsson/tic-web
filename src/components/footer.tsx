@@ -62,7 +62,7 @@ export const Footer = async ({ locale }: { locale: string }) => {
   return (
     <div className="relative mt-16 h-[800px]" style={{ clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)' }}>
       <div className="fixed bottom-0 h-[800px] w-full">
-        <footer className="flex h-full items-end bg-slate-950 py-16 text-slate-50 md:mt-40 md:py-40">
+        <footer className="bg-tic-900 text-tic-50 flex h-full items-end py-16 md:mt-40 md:py-40">
           <div className="container py-16">
             <div className="space-y-8 pt-10">
               <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
@@ -70,10 +70,10 @@ export const Footer = async ({ locale }: { locale: string }) => {
                 <SocialLinks />
               </div>
 
-              <div className="flex flex-col-reverse items-start border-t border-t-slate-800 pt-8 md:flex-row md:justify-between">
+              <div className="border-t-tic-800 flex flex-col-reverse items-start border-t pt-8 md:flex-row md:justify-between">
                 <div>
                   <div className="mb-1">©{new Date().getFullYear()} The Intelligence Company AB</div>
-                  <div className="text-sm text-slate-300">Vi har kreditupplysningstillstånd från Integritetsskyddsmyndigheten.</div>
+                  <div className="text-tic-300 text-sm">Vi har kreditupplysningstillstånd från Integritetsskyddsmyndigheten.</div>
                 </div>
 
                 <ul className="mb-8 flex flex-col gap-2 md:mb-0 md:flex-row md:items-center md:gap-4">

@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import { asNumber } from '@/lib/utils';
+
 import Marquee from '../ui/marquee';
 import { NeonGradientCard } from '../ui/neon-gradient-card';
 import { ArbetsformedlingenLogo } from './logos/arbetsformedlingen-logo';
@@ -36,7 +38,7 @@ const logos = [
 ];
 
 const LogoWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex size-20 items-center justify-center rounded-2xl border border-white/5 bg-gradient-to-b from-transparent to-white/5 max-md:scale-75 [&>svg]:h-auto [&>svg]:w-10">
+  <div className="border-tic-50/5 to-tic-50/5 flex size-20 items-center justify-center rounded-2xl border bg-gradient-to-b from-transparent max-md:scale-75 [&>svg]:h-auto [&>svg]:w-10">
     {children}
   </div>
 );
@@ -47,12 +49,12 @@ export const Sources = () => {
 
   return (
     <div className="container">
-      <div className="overflow-hidden rounded-xl bg-slate-950">
+      <div className="bg-tic-900 overflow-hidden rounded-xl">
         <div className="relative grid place-content-center py-8 md:py-16">
-          <h2 className="z-10 text-balance px-6 text-xl text-white md:text-center md:text-3xl">
+          <h2 className="text-tic-100 z-10 text-balance px-6 text-xl md:text-center md:text-3xl">
             Vi analyserar all data, från varje källa.
           </h2>
-          <p className="z-10 mb-6 text-pretty px-6 text-xl text-white/60 md:mb-16 md:text-balance md:text-center md:text-3xl">
+          <p className="text-tic-400 z-10 mb-6 text-pretty px-6 text-xl md:mb-16 md:text-balance md:text-center md:text-3xl">
             Brister och avvikelser skapar vårt Intelligence Score.
           </p>
 
@@ -75,9 +77,9 @@ export const Sources = () => {
               ))}
             </Marquee>
           </div>
-          <p className="z-20 text-center text-sm text-white/60">Ett urval av våra datakällor.</p>
-
-          {/* <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-black via-transparent to-black" /> */}
+          <p className="text-tic-400 z-20 px-6 text-center text-sm">
+            {asNumber(2600008)} företag, {asNumber(9782721)} företagsdokument och över {asNumber(48000000)} datapunkter om företag.
+          </p>
         </div>
       </div>
     </div>

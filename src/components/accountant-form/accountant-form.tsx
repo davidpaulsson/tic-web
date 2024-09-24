@@ -79,7 +79,7 @@ export const AccountantForm = () => {
         </div>
         <div className="bg-tic-fill px-8 py-16 md:px-16 md:py-32">
           <h2 className="mb-2 text-pretty text-2xl">Är du revisor eller auktoriserad redovisningskonsult?</h2>
-          <p className="mb-5 text-tic-light">
+          <p className="text-tic-muted mb-5">
             Fyll i ditt namn och e-post så får du en kostnadsfri kopia på årsredovisningar som registreras samt vilka brister vi
             identiferar.
           </p>
@@ -138,7 +138,7 @@ export const AccountantForm = () => {
                       <FormControl>
                         <Checkbox checked={field.value} onCheckedChange={field.onChange} />
                       </FormControl>
-                      <FormLabel className="text-tic-light">
+                      <FormLabel className="text-tic-muted">
                         Jag godkänner{' '}
                         <Link href="/sv/integritetspolicy" className="text-tic underline transition-colors hover:no-underline">
                           integritetspolicyn
@@ -152,7 +152,7 @@ export const AccountantForm = () => {
               />
 
               {status === 'submitted' && (
-                <p className="col-span-full mt-2 text-balance text-sm text-tic-light">Tack! Du får snart ett meddelande med uppgifter.</p>
+                <p className="text-tic-muted col-span-full mt-2 text-balance text-sm">Tack! Du får snart ett meddelande med uppgifter.</p>
               )}
             </form>
           </Form>

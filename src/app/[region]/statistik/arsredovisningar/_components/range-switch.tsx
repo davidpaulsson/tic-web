@@ -24,7 +24,7 @@ export const RangeSwitch = ({ range }: { range: 'daily' | 'monthly' }) => {
         onClick={toggleQueryParams}
         className={cn('text-sm', {
           'text-black': range === 'daily',
-          'text-slate-500': range !== 'daily',
+          'text-tic-500': range !== 'daily',
         })}
       >
         Dagligen
@@ -34,7 +34,7 @@ export const RangeSwitch = ({ range }: { range: 'daily' | 'monthly' }) => {
         onClick={toggleQueryParams}
         className={cn('text-sm', {
           'text-black': range === 'monthly',
-          'text-slate-400': range !== 'monthly',
+          'text-tic-400': range !== 'monthly',
         })}
       >
         Månatlig

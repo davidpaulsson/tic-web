@@ -1,5 +1,6 @@
 import { codeToHtml } from 'shiki';
 
+import { Testomonials } from '../testomonials';
 import { CurlExampleClient } from './curl-example.client';
 
 export const CurlExample = async () => {
@@ -190,8 +191,11 @@ export const CurlExample = async () => {
   );
 
   return (
-    <CurlExampleClient>
-      <div dangerouslySetInnerHTML={{ __html: out }} />
-    </CurlExampleClient>
+    <div>
+      <CurlExampleClient>
+        <div dangerouslySetInnerHTML={{ __html: out }} />
+      </CurlExampleClient>
+      <Testomonials />
+    </div>
   );
 };

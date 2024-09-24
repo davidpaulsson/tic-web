@@ -144,7 +144,7 @@ export const ContactSales = ({ region }: { region: (typeof REGIONS)[number] }) =
           {status === 'submitting' ? 'Skickar...' : 'Skicka'}
         </Button>
 
-        {status === 'submitted' && <p className="col-span-full mt-2 text-balance text-sm text-tic-light">Tack! Du blir snart kontaktad.</p>}
+        {status === 'submitted' && <p className="text-tic-muted col-span-full mt-2 text-balance text-sm">Tack! Du blir snart kontaktad.</p>}
       </form>
     </Form>
   );

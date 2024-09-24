@@ -25,7 +25,7 @@ const PLANS = [
       <Tooltip>
         <TooltipTrigger className="inline-flex items-center gap-1">
           Från {asMoney(3995)}
-          <InfoIcon className="h-4 w-4 text-tic-light" />
+          <InfoIcon className="text-tic-muted h-4 w-4" />
         </TooltipTrigger>
         <TooltipContent>
           <p>Begär offert</p>
@@ -69,7 +69,7 @@ const PLANS = [
         Sök företagsinformation och gör urval via vår blixtsnabba sökmotor
         <Dialog>
           <DialogTrigger>
-            <InfoIcon className="ml-1 h-4 w-4 text-tic-light" />
+            <InfoIcon className="text-tic-muted ml-1 h-4 w-4" />
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
@@ -112,7 +112,7 @@ const PLANS = [
       <Tooltip>
         <TooltipTrigger className="inline-flex items-center gap-1">
           1 år
-          <InfoIcon className="h-4 w-4 text-tic-light" />
+          <InfoIcon className="text-tic-muted h-4 w-4" />
         </TooltipTrigger>
         <TooltipContent>
           <p>Senaste räkenskapsåret</p>
@@ -123,7 +123,7 @@ const PLANS = [
       <Tooltip>
         <TooltipTrigger className="inline-flex items-center gap-1">
           1 år
-          <InfoIcon className="h-4 w-4 text-tic-light" />
+          <InfoIcon className="text-tic-muted h-4 w-4" />
         </TooltipTrigger>
         <TooltipContent>
           <p>Senaste räkenskapsåret</p>
@@ -259,7 +259,6 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
     <div className="container">
       <SecionTitle>Jämför detaljerna.</SecionTitle>
       <Table>
-        {/* <TableCaption>Pricing Plans Comparison</TableCaption> */}
         <TableHeader>
           <TableRow className="!border-b-0 hover:bg-transparent">
             <TableHead className="w-3/6"></TableHead>
@@ -279,7 +278,7 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
             <TableHead />
             <TableHead className="!m-0 w-1/6 !p-0">
               <div className="min-h-12 rounded-t-lg border-x border-t border-tic-stroke bg-tic-fill p-8 pb-6 text-center text-2xl text-tic">
-                <div>Premium</div>
+                <div className="mb-4">Premium</div>
                 <GetStartedButton plan="Premium" region={region} />
               </div>
             </TableHead>
@@ -297,14 +296,14 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
                   '!border-b-0': isLast,
                 })}
               >
-                <TableCell className="font-medium">{plan.title}</TableCell>
+                <TableCell>{plan.title}</TableCell>
 
                 <TableCell className="border-x border-x-tic-stroke bg-tic-fill text-center">
                   {typeof plan.Free === 'boolean' ? (
                     plan.Free ? (
                       <CheckIcon className="inline h-4 w-4 flex-shrink-0" />
                     ) : (
-                      <Minus className="inline h-4 w-4 flex-shrink-0 text-slate-500" />
+                      <Minus className="text-tic-500 inline h-4 w-4 flex-shrink-0" />
                     )
                   ) : (
                     plan.Free
@@ -318,7 +317,7 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
                     plan.Basic ? (
                       <CheckIcon className="inline h-4 w-4 flex-shrink-0" />
                     ) : (
-                      <Minus className="inline h-4 w-4 flex-shrink-0 text-slate-500" />
+                      <Minus className="text-tic-500 inline h-4 w-4 flex-shrink-0" />
                     )
                   ) : (
                     plan.Basic
@@ -332,7 +331,7 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
                     plan.Premium ? (
                       <CheckIcon className="inline h-4 w-4 flex-shrink-0" />
                     ) : (
-                      <Minus className="inline h-4 w-4 flex-shrink-0 text-slate-500" />
+                      <Minus className="text-tic-500 inline h-4 w-4 flex-shrink-0" />
                     )
                   ) : (
                     plan.Premium
@@ -344,15 +343,15 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
           <TableRow className="hover:bg-transparent">
             <TableCell className="w-1/2"></TableCell>
             <TableCell className="!m-0 !p-0">
-              <div className="h-8 rounded-b-lg border-x border-b border-tic-stroke bg-tic-fill text-center text-2xl text-tic" />
+              <div className="h-8 rounded-b-lg border-x border-b border-tic-stroke bg-tic-fill text-center text-2xl" />
             </TableCell>
             <TableCell />
             <TableCell className="!m-0 !p-0">
-              <div className="h-8 rounded-b-lg border-x border-b border-tic-stroke bg-tic-fill text-center text-2xl text-tic" />
+              <div className="h-8 rounded-b-lg border-x border-b border-tic-stroke bg-tic-fill text-center text-2xl" />
             </TableCell>
             <TableCell />
             <TableCell className="!m-0 !p-0">
-              <div className="h-8 rounded-b-lg border-x border-b border-tic-stroke bg-tic-fill text-center text-2xl text-tic" />
+              <div className="h-8 rounded-b-lg border-x border-b border-tic-stroke bg-tic-fill text-center text-2xl" />
             </TableCell>
           </TableRow>
         </TableBody>

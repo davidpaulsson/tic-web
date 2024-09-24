@@ -36,8 +36,6 @@ import { SecionTitle } from '@/components/section-title';
 import { Sources } from '@/components/sources';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
-import { Testomonials } from './testomonials';
-
 type Props = {
   region: (typeof REGIONS)[number];
   blocks: ContentfulPageResponse['items'][number]['fields']['blocks'];
@@ -102,7 +100,7 @@ export const Blocks = ({ blocks, region }: Props) => {
                       <Link
                         key={node.data.target.sys.id}
                         href={`/${slug}`}
-                        className="text-tic-purple underline transition-colors hover:text-tic-purple-light hover:no-underline"
+                        className="hover:text-tic-muted underline transition-colors hover:no-underline"
                       >
                         {target}
                       </Link>
@@ -118,12 +116,7 @@ export const Blocks = ({ blocks, region }: Props) => {
         const component = block.fields as ContentfulBlockStatic['fields'];
         switch (component.block) {
           case 'Data sources':
-            return (
-              <React.Fragment key={block.sys.id}>
-                <Sources />
-                <Testomonials />
-              </React.Fragment>
-            );
+            return <Sources key={block.sys.id} />;
           case 'Plan selection':
             return <PlanSelection key={block.sys.id} region={region} />;
           case 'Pricing table':
@@ -181,7 +174,7 @@ export const Blocks = ({ blocks, region }: Props) => {
                       <CardTitle>{card.fields.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-tic-light">{card.fields.description}</p>
+                      <p className="text-tic-muted">{card.fields.description}</p>
                     </CardContent>
                     {card.fields.links && card.fields.links.length > 0 && (
                       <CardFooter>

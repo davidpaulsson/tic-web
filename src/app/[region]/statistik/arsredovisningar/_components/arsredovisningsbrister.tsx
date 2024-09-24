@@ -81,7 +81,7 @@ export function Arsredovisningsbrister({
                 >
                   <span className="text-muted-foreground flex items-center gap-2 whitespace-nowrap text-xs">
                     <span
-                      className="block h-2 w-2 whitespace-nowrap rounded-full bg-slate-300"
+                      className="bg-tic-300 block h-2 w-2 whitespace-nowrap rounded-full"
                       style={{
                         backgroundColor: isVisible && 'color' in config ? config.color : undefined,
                       }}

@@ -84,7 +84,7 @@ export const GetStartedForFree = ({ region }: { region: (typeof REGIONS)[number]
         </Button>
 
         {status === 'submitted' && (
-          <p className="col-span-full mt-2 text-balance text-sm text-tic-light">
+          <p className="text-tic-muted col-span-full mt-2 text-balance text-sm">
             Tack! Du får snart ett {isEmail ? 'e-post' : 'SMS'}-meddelande med uppgifter hur du kommer åt vårt API.
           </p>
         )}
