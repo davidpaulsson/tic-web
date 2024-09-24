@@ -10,6 +10,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { Document, INLINES } from '@contentful/rich-text-types';
 
 import Link from 'next/link';
+import React from 'react';
 
 import { REGIONS } from '@/lib/constants';
 import {
@@ -34,6 +35,8 @@ import { SaferAndEasierBusiness } from '@/components/safer-and-easier-business';
 import { SecionTitle } from '@/components/section-title';
 import { Sources } from '@/components/sources';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+
+import { Testomonials } from './testomonials';
 
 type Props = {
   region: (typeof REGIONS)[number];
@@ -115,7 +118,12 @@ export const Blocks = ({ blocks, region }: Props) => {
         const component = block.fields as ContentfulBlockStatic['fields'];
         switch (component.block) {
           case 'Data sources':
-            return <Sources key={block.sys.id} />;
+            return (
+              <React.Fragment key={block.sys.id}>
+                <Sources />
+                <Testomonials />
+              </React.Fragment>
+            );
           case 'Plan selection':
             return <PlanSelection key={block.sys.id} region={region} />;
           case 'Pricing table':
