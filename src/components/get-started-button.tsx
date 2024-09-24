@@ -4,6 +4,7 @@ import { REGIONS } from '@/lib/constants';
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
+import { ContactSales } from './contact-sales';
 import { GetStartedForFree } from './get-started-for-free';
 import { Button } from './ui/button';
 
@@ -47,11 +48,21 @@ export const GetStartedButton = ({ plan, region }: { plan: 'Free' | 'Basic' | 'P
       );
     case 'Premium':
       return (
-        <Button asChild>
-          <Link href="#" className="mt-4 block text-base">
-            Kontakta sälj
-          </Link>
-        </Button>
+        <Dialog>
+          <DialogTrigger>
+            <Button asChild className="text-base">
+              <span>Kontakta sälj</span>
+            </Button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Kontakta sälj</DialogTitle>
+              <DialogDescription>
+                <ContactSales region={region} />
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
       );
     default:
       return null;

@@ -23,7 +23,7 @@ export async function submitForm(data: { contact: string }) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': 'hiWKaqPwKVsSYn6eg2lnKQyRdlV7QZEC',
+      'x-api-key': process.env.TIC_INTERNAL_KEY!,
     },
     body: JSON.stringify(payload),
   });
