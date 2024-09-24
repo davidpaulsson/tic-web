@@ -80,7 +80,7 @@ export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) 
                   Från {asMoney(3995)} <span className="text-base">/mån</span>
                   <Tooltip>
                     <TooltipTrigger className="ml-2 inline-flex items-center gap-1">
-                      <InfoIcon className="h-3 w-3 text-tic-light" />
+                      <InfoIcon className="h-4 w-4 text-tic-light" />
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>Begär offert</p>

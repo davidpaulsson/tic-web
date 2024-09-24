@@ -1,3 +1,5 @@
+import { CheckIcon } from '@/icons/check';
+
 import { Check, InfoIcon, Minus } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
@@ -23,7 +25,7 @@ const PLANS = [
       <Tooltip>
         <TooltipTrigger className="inline-flex items-center gap-1">
           Från {asMoney(3995)}
-          <InfoIcon className="h-3 w-3 text-tic-light" />
+          <InfoIcon className="h-4 w-4 text-tic-light" />
         </TooltipTrigger>
         <TooltipContent>
           <p>Begär offert</p>
@@ -67,7 +69,7 @@ const PLANS = [
         Sök företagsinformation och gör urval via vår blixtsnabba sökmotor
         <Dialog>
           <DialogTrigger>
-            <InfoIcon className="ml-1 h-3 w-3 text-tic-light" />
+            <InfoIcon className="ml-1 h-4 w-4 text-tic-light" />
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
@@ -110,7 +112,7 @@ const PLANS = [
       <Tooltip>
         <TooltipTrigger className="inline-flex items-center gap-1">
           1 år
-          <InfoIcon className="h-3 w-3 text-tic-light" />
+          <InfoIcon className="h-4 w-4 text-tic-light" />
         </TooltipTrigger>
         <TooltipContent>
           <p>Senaste räkenskapsåret</p>
@@ -121,7 +123,7 @@ const PLANS = [
       <Tooltip>
         <TooltipTrigger className="inline-flex items-center gap-1">
           1 år
-          <InfoIcon className="h-3 w-3 text-tic-light" />
+          <InfoIcon className="h-4 w-4 text-tic-light" />
         </TooltipTrigger>
         <TooltipContent>
           <p>Senaste räkenskapsåret</p>
@@ -300,9 +302,9 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
                 <TableCell className="border-x border-x-tic-stroke bg-tic-fill text-center">
                   {typeof plan.Free === 'boolean' ? (
                     plan.Free ? (
-                      <Check className="inline h-4 w-4 text-tic-purple" />
+                      <CheckIcon className="inline h-4 w-4 flex-shrink-0" />
                     ) : (
-                      <Minus className="inline h-4 w-4 text-tic-purple" />
+                      <Minus className="inline h-4 w-4 flex-shrink-0 text-slate-500" />
                     )
                   ) : (
                     plan.Free
@@ -314,9 +316,9 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
                 <TableCell className="border-x border-x-tic-stroke bg-tic-fill text-center">
                   {typeof plan.Basic === 'boolean' ? (
                     plan.Basic ? (
-                      <Check className="inline h-4 w-4 text-tic-purple" />
+                      <CheckIcon className="inline h-4 w-4 flex-shrink-0" />
                     ) : (
-                      <Minus className="inline h-4 w-4 text-tic-purple" />
+                      <Minus className="inline h-4 w-4 flex-shrink-0 text-slate-500" />
                     )
                   ) : (
                     plan.Basic
@@ -328,9 +330,9 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
                 <TableCell className="border-x border-x-tic-stroke bg-tic-fill text-center">
                   {typeof plan.Premium === 'boolean' ? (
                     plan.Premium ? (
-                      <Check className="inline h-4 w-4 text-tic-purple" />
+                      <CheckIcon className="inline h-4 w-4 flex-shrink-0" />
                     ) : (
-                      <Minus className="inline h-4 w-4 text-tic-purple" />
+                      <Minus className="inline h-4 w-4 flex-shrink-0 text-slate-500" />
                     )
                   ) : (
                     plan.Premium
