@@ -64,7 +64,7 @@ export const GetStartedForFree = ({ region }: { region: (typeof REGIONS)[number]
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="grid w-full max-w-lg gap-x-3 md:grid-cols-5">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="grid w-full max-w-lg gap-x-3 max-md:gap-y-3 md:grid-cols-5">
         <FormField
           control={form.control}
           name="contact"
