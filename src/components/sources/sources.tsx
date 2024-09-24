@@ -46,9 +46,9 @@ export const Sources = () => {
   const secondRow = logos.slice(logos.length / 2);
 
   return (
-    <div className="relative bg-black">
-      <div className="container">
-        <div className="relative grid place-content-center bg-[#102030] py-32 md:py-60">
+    <div className="container">
+      <div className="overflow-hidden rounded-xl bg-slate-950">
+        <div className="relative grid place-content-center py-8 md:py-16">
           <h2 className="z-10 text-balance text-center text-xl text-white md:text-3xl">Vi analyserar all data, från varje källa.</h2>
           <p className="z-10 mb-16 text-balance text-center text-xl text-white/60 md:text-3xl">
             Brister och avvikelser skapar vårt Intelligence Score.
@@ -75,7 +75,7 @@ export const Sources = () => {
           </div>
           <p className="z-20 text-center text-sm text-white/60">Ett urval av våra datakällor.</p>
 
-          <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-black via-transparent to-black" />
+          {/* <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-r from-black via-transparent to-black" /> */}
         </div>
       </div>
     </div>
