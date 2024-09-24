@@ -48,13 +48,15 @@ export const GetStartedForFree = ({ region }: { region: (typeof REGIONS)[number]
 
     startTransition(async () => {
       try {
-        await submitForm(values);
-        toast(`Tack! Du får snart ett ${isEmail ? 'e-post' : 'SMS'}-meddelande med uppgifter hur du kommer åt vårt API.`);
-        confetti();
+        const { success, message } = await submitForm(values);
+        toast(message);
         setStatus('submitted');
         form.reset();
+        if (success) {
+          confetti();
+        }
       } catch (error) {
-        toast((error as Error).message);
+        toast('Uh-oh. Något gick fel. Försök igen.');
         setStatus('idle');
       }
     });
@@ -80,6 +82,7 @@ export const GetStartedForFree = ({ region }: { region: (typeof REGIONS)[number]
         <Button className="md:col-span-2" type="submit" disabled={status === 'submitting'}>
           {status === 'submitting' ? 'Skickar...' : dict[region].title}
         </Button>
+
         {status === 'submitted' && (
           <p className="col-span-full mt-2 text-balance text-sm text-tic-light">
             Tack! Du får snart ett {isEmail ? 'e-post' : 'SMS'}-meddelande med uppgifter hur du kommer åt vårt API.

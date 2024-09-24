@@ -4,9 +4,9 @@ import { parsePhoneNumberFromString } from 'libphonenumber-js';
 
 export async function submitForm(data: { contact: string }) {
   const contact = data.contact;
+  const isEmail = contact.includes('@');
   let payload;
-
-  if (contact.includes('@')) {
+  if (isEmail) {
     payload = { Email: contact };
   } else {
     // Assuming 'SE' as the default country code
@@ -32,11 +32,17 @@ export async function submitForm(data: { contact: string }) {
     const text = await response.text();
 
     if (text === 'There is already a sign-up with the given e-mail address or phone number') {
-      throw new Error('Det finns redan en registrering med den angivna e-postadressen eller telefonnumret.');
+      return {
+        success: false,
+        message: `Det finns redan en registrering med den angivna ${isEmail ? 'e-postadressen' : 'telefonnumret'}.`,
+      };
     }
 
     throw new Error(response.statusText);
   }
 
-  return { success: true };
+  return {
+    success: true,
+    message: `Tack! Du får snart ett ${isEmail ? 'e-post' : 'SMS'}-meddelande med uppgifter hur du kommer åt vårt API.`,
+  };
 }

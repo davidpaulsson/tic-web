@@ -14,11 +14,17 @@ export async function submitForm({ FirstName, LastName, Email }: { FirstName: st
     const text = await response.text();
     console.log(text);
     if (text === 'E-mail address has already been registered') {
-      throw new Error('Det finns redan en registrering med den angivna e-postadressen.');
+      return {
+        success: false,
+        message: 'Det finns redan en registrering med den angivna e-postadressen.',
+      };
     }
 
     throw new Error(response.statusText);
   }
 
-  return { success: true };
+  return {
+    success: true,
+    message: 'Tack! Du får snart ett meddelande med uppgifter.',
+  };
 }

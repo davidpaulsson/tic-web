@@ -53,17 +53,19 @@ export const AccountantForm = () => {
 
     startTransition(async () => {
       try {
-        await submitForm({
+        const { success, message } = await submitForm({
           FirstName: values.firstName,
           LastName: values.lastName,
           Email: values.email,
         });
-        toast('Tack! Du får snart ett meddelande med uppgifter.');
-        confetti();
+        toast(message);
         setStatus('submitted');
         form.reset();
+        if (success) {
+          confetti();
+        }
       } catch (error) {
-        toast((error as Error).message);
+        toast('Uh-oh. Något gick fel. Försök igen.');
         setStatus('idle');
       }
     });
