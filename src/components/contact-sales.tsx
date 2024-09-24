@@ -64,10 +64,10 @@ export const ContactSales = ({ region }: { region: (typeof REGIONS)[number] }) =
       try {
         const { success, message } = await submitForm(values);
         toast(message);
-        setStatus('submitted');
         form.reset();
         if (success) {
           confetti();
+          setStatus('submitted');
         }
       } catch (error) {
         toast('Uh-oh. Något gick fel. Försök igen.');
