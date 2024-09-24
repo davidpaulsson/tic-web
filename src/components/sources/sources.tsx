@@ -36,7 +36,7 @@ const logos = [
 ];
 
 const LogoWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="flex size-20 items-center justify-center rounded-2xl border border-white/5 bg-gradient-to-b from-transparent to-white/5 [&>svg]:h-auto [&>svg]:w-10">
+  <div className="flex size-20 items-center justify-center rounded-2xl border border-white/5 bg-gradient-to-b from-transparent to-white/5 max-md:scale-75 [&>svg]:h-auto [&>svg]:w-10">
     {children}
   </div>
 );
@@ -49,12 +49,14 @@ export const Sources = () => {
     <div className="container">
       <div className="overflow-hidden rounded-xl bg-slate-950">
         <div className="relative grid place-content-center py-8 md:py-16">
-          <h2 className="z-10 text-balance text-center text-xl text-white md:text-3xl">Vi analyserar all data, från varje källa.</h2>
-          <p className="z-10 mb-16 text-balance text-center text-xl text-white/60 md:text-3xl">
+          <h2 className="z-10 text-balance px-6 text-xl text-white md:text-center md:text-3xl">
+            Vi analyserar all data, från varje källa.
+          </h2>
+          <p className="z-10 mb-6 text-pretty px-6 text-xl text-white/60 md:mb-16 md:text-balance md:text-center md:text-3xl">
             Brister och avvikelser skapar vårt Intelligence Score.
           </p>
 
-          <div className="mb-16 flex w-full flex-col items-center justify-center space-y-10 overflow-hidden md:space-y-20">
+          <div className="mb-6 flex w-full flex-col items-center justify-center space-y-10 overflow-hidden md:mb-16 md:space-y-20">
             <Marquee pauseOnHover={false} className="[--duration:40s]">
               {firstRow.map((logo, index) => (
                 <LogoWrapper key={index}>{logo}</LogoWrapper>

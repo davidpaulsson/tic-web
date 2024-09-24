@@ -77,8 +77,8 @@ export const AccountantForm = () => {
         <div className="relative max-md:hidden">
           <Image src={placeholder} alt="" placeholder="blur" layout="fill" className="object-cover" />
         </div>
-        <div className="bg-tic-fill p-8 md:p-16">
-          <h2 className="mb-2 text-pretty text-xl md:text-4xl">Är du revisor eller auktoriserad redovisningskonsult?</h2>
+        <div className="bg-tic-fill px-8 py-16 md:px-16 md:py-32">
+          <h2 className="mb-2 text-pretty text-2xl">Är du revisor eller auktoriserad redovisningskonsult?</h2>
           <p className="mb-5 text-tic-light">
             Fyll i ditt namn och e-post så får du en kostnadsfri kopia på årsredovisningar som registreras samt vilka brister vi
             identiferar.
