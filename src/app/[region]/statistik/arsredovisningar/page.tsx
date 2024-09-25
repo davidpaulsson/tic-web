@@ -21,10 +21,15 @@ export default async function Page({
         <div>
           <HeroTitle>Bolagsverket statistik årsredovisningar</HeroTitle>
           <HeroSubtitle>
-            Statistik om registrerade årsredovisningar (även delårsrapporter) hos Bolagsverket. Uppdateras varje dag runt 00:00. Använd vårt
-            fria API om du vill själv ladda ner innehållet med mer statistik härifrån{' '}
-            <a href="https://docs.tic.io/api-statistics/bolagsverket/financial-reports-daily">docs.tio.io</a>. En tjänst från The
-            Intelligence Company AB (publ) som övervakar årsredovisningar och deras brister.
+            Statistik över registrerade årsredovisningar (inklusive delårsrapporter) hos Bolagsverket. Uppdateras dagligen runt midnatt.
+            Använd vårt kostnadsfria API för att ladda ner mer statistik – läs mer på{' '}
+            <a
+              className="text-tic-700 no-underline hover:underline"
+              href="https://docs.tic.io/api-statistics/bolagsverket/financial-reports-daily"
+            >
+              docs.tio.io
+            </a>
+            .
           </HeroSubtitle>
         </div>
 

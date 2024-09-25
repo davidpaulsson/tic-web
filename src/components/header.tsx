@@ -1,4 +1,4 @@
-import { ExternalLink, Menu } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
@@ -69,7 +69,7 @@ export const Header = async ({ locale }: Props) => {
 
   return (
     <header className="container sticky top-6 z-20 md:grid md:place-content-center">
-      <nav className="border-tic-300/50 flex items-center justify-between rounded-2xl border bg-white/30 px-6 py-4 backdrop-blur">
+      <nav className="border-tic-300/50 bg-tic-50/50 flex items-center justify-between rounded-2xl border px-6 py-4 backdrop-blur">
         <div className="flex w-full items-center gap-14">
           <Link href={`/${locale}`}>
             <span className="sr-only">{dict.goToHomepage}</span>
@@ -83,7 +83,7 @@ export const Header = async ({ locale }: Props) => {
                 return (
                   <li key={link.slug}>
                     <a href={link.slug} className="flex items-center gap-2 text-nowrap hover:underline" target="_blank">
-                      {link.title} <ExternalLink className="text-tic-500er h-4 w-4" />
+                      {link.title}
                     </a>
                   </li>
                 );

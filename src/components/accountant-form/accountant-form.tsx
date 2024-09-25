@@ -72,11 +72,11 @@ export const AccountantForm = () => {
 
   return (
     <div className="container">
-      <div className="overflow-hidden rounded-2xl md:grid md:grid-cols-2">
+      <div className="overflow-hidden rounded-2xl shadow-2xl md:grid md:grid-cols-2">
         <div className="relative max-md:hidden">
-          <Image src={placeholder} alt="" placeholder="blur" layout="fill" className="object-cover" />
+          <Image src={placeholder} alt="" placeholder="blur" layout="fill" className="object-cover object-center" />
         </div>
-        <div className="bg-tic-100 px-8 py-16 md:px-16 md:py-32">
+        <div className="bg-tic-50 border-tic-200 rounded-br-2xl rounded-tr-2xl border-b border-r border-t px-8 py-16 md:px-16 md:py-32">
           <h2 className="mb-2 text-pretty text-2xl">Är du revisor eller auktoriserad redovisningskonsult?</h2>
           <p className="text-tic-500 mb-5">
             Fyll i ditt namn och e-post så får du en kostnadsfri kopia på årsredovisningar som registreras samt vilka brister vi
