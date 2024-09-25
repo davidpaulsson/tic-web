@@ -85,9 +85,9 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="container mb-5">
-      <SecionTitle>Det som kan ta timmar löser TIC API på sekunder.</SecionTitle>
+      <SecionTitle>Skapa kraftfulla applikationer med affärsdata utan krångel.</SecionTitle>
       <div className="lg:grid lg:grid-cols-4 lg:grid-rows-1 lg:gap-6">
-        <div ref={buttonAreaRef} className="bg-tic-900 rounded-xl p-6 max-lg:mb-5 lg:col-span-1">
+        <div ref={buttonAreaRef} className="bg-tic-900 rounded-2xl p-6 max-lg:mb-5 lg:col-span-1">
           <ul className="max-lg:grid max-lg:gap-6 max-md:grid-cols-1 lg:space-y-5">
             {buttonList.map(({ id, title, description, icon }) => (
               <li key={id}>
@@ -95,7 +95,7 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
                   onClick={() => scrollTo(id)}
                   aria-pressed={activeButton === id}
                   className={cn(
-                    'bg-tic-800 flex h-full w-full flex-col items-start justify-start overflow-hidden rounded-lg p-3 text-left transition',
+                    'bg-tic-800 flex h-full w-full flex-col items-start justify-start overflow-hidden rounded-2xl p-3 text-left transition',
                     {
                       'bg-tic-700': activeButton === id,
                       'opacity-50 hover:opacity-75': activeButton !== id,
@@ -118,7 +118,7 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
 
                   {activeButton === id && (
                     <motion.div
-                      className="bg-tic-400 h-0.5 translate-y-3 rounded-xl"
+                      className="bg-tic-400 h-0.5 translate-y-3 rounded-2xl"
                       initial={{ width: 0 }}
                       animate={{
                         width: activeButton === id ? '100%' : 0,
@@ -144,13 +144,13 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
           <div
             ref={scrollAreaRef}
             id="response"
-            className="bg-tic-900 overflow-hidden scroll-smooth rounded-xl p-6 font-mono text-xs lg:col-span-3 [&_span]:whitespace-pre-wrap"
+            className="bg-tic-900 overflow-hidden scroll-smooth rounded-2xl p-6 font-mono text-xs lg:col-span-3 [&_span]:whitespace-pre-wrap"
             style={{ height }}
           >
             {children}
           </div>
         ) : (
-          <div className="bg-tic-900 rounded-xl lg:col-span-3" />
+          <div className="bg-tic-900 rounded-2xl lg:col-span-3" />
         )}
       </div>
     </div>

@@ -8,7 +8,7 @@ export const Testomonials = () => {
   const { quote, image, title, name } = {
     name: 'John Severinson',
     title: 'Chief Digital Officer, Parks and Resorts Scandinavia',
-    quote: 'Är impad över snabbheten i API:et och hur det integrerar olika datakällor. Det här har ju all potential att bli API:ernas API.',
+    quote: 'Snabbheten och integrationen av olika datakällor imponerar. Det här har all potential att bli API:ernas API.',
     image: john,
   };
 
@@ -34,13 +34,13 @@ export const Testomonials = () => {
   return (
     <div className="container">
       <div className="grid gap-12 md:grid-cols-2 md:items-center">
-        <div className="bg-tic-100 border-tic-200 rounded-xl border p-6 md:p-10">
+        <div className="bg-tic-100 border-tic-200 rounded-2xl border p-6 md:p-10">
           <div className="space-y-6">
             <span className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
               <Image className="aspect-square h-full w-full" src={image} alt={name} />
             </span>
 
-            <blockquote className="max-w-prose text-balance text-xl md:text-2xl">{quote}</blockquote>
+            <blockquote className="max-w-prose text-pretty text-xl md:text-2xl">{quote}</blockquote>
 
             <div className="flex items-center space-x-4">
               <div>

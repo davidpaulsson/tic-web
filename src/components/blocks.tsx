@@ -102,7 +102,7 @@ export const Blocks = ({ blocks, region }: Props) => {
                       <Link
                         key={node.data.target.sys.id}
                         href={`/${slug}`}
-                        className="hover:text-tic-muted underline transition-colors hover:no-underline"
+                        className="hover:text-tic-500 underline transition-colors hover:no-underline"
                       >
                         {target}
                       </Link>
@@ -179,7 +179,7 @@ export const Blocks = ({ blocks, region }: Props) => {
                       <CardTitle>{card.fields.title}</CardTitle>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-tic-muted">{card.fields.description}</p>
+                      <p className="text-tic-500">{card.fields.description}</p>
                     </CardContent>
                     {card.fields.links && card.fields.links.length > 0 && (
                       <CardFooter>

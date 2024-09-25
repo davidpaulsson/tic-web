@@ -43,7 +43,6 @@ export const AccountantForm = () => {
       firstName: '',
       lastName: '',
       email: '',
-      accept: false,
     },
   });
 
@@ -73,13 +72,13 @@ export const AccountantForm = () => {
 
   return (
     <div className="container">
-      <div className="overflow-hidden rounded-lg md:grid md:grid-cols-2">
+      <div className="overflow-hidden rounded-2xl md:grid md:grid-cols-2">
         <div className="relative max-md:hidden">
           <Image src={placeholder} alt="" placeholder="blur" layout="fill" className="object-cover" />
         </div>
-        <div className="bg-tic-fill px-8 py-16 md:px-16 md:py-32">
+        <div className="bg-tic-100 px-8 py-16 md:px-16 md:py-32">
           <h2 className="mb-2 text-pretty text-2xl">Är du revisor eller auktoriserad redovisningskonsult?</h2>
-          <p className="text-tic-muted mb-5">
+          <p className="text-tic-500 mb-5">
             Fyll i ditt namn och e-post så får du en kostnadsfri kopia på årsredovisningar som registreras samt vilka brister vi
             identiferar.
           </p>
@@ -129,30 +128,8 @@ export const AccountantForm = () => {
                 Skicka
               </Button>
 
-              <FormField
-                control={form.control}
-                name="accept"
-                render={({ field }) => (
-                  <>
-                    <FormItem className="flex items-center space-x-3 space-y-0">
-                      <FormControl>
-                        <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                      </FormControl>
-                      <FormLabel className="text-tic-muted">
-                        Jag godkänner{' '}
-                        <Link href="/sv/integritetspolicy" className="text-tic underline transition-colors hover:no-underline">
-                          integritetspolicyn
-                        </Link>
-                        .
-                      </FormLabel>
-                    </FormItem>
-                    <FormMessage />
-                  </>
-                )}
-              />
-
               {status === 'submitted' && (
-                <p className="text-tic-muted col-span-full mt-2 text-balance text-sm">Tack! Du får snart ett meddelande med uppgifter.</p>
+                <p className="text-tic-500 col-span-full mt-2 text-balance text-sm">Tack! Du får snart ett meddelande med uppgifter.</p>
               )}
             </form>
           </Form>

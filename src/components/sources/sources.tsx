@@ -49,7 +49,7 @@ export const Sources = () => {
 
   return (
     <div className="container">
-      <div className="bg-tic-900 overflow-hidden rounded-xl">
+      <div className="bg-tic-900 overflow-hidden rounded-2xl">
         <div className="relative grid place-content-center py-8 md:py-16">
           <h2 className="text-tic-100 z-10 text-balance px-6 text-xl md:text-center md:text-3xl">
             Vi analyserar all data, från varje källa.
@@ -77,9 +77,7 @@ export const Sources = () => {
               ))}
             </Marquee>
           </div>
-          <p className="text-tic-400 z-20 px-6 text-center text-sm">
-            {asNumber(2600008)} företag, {asNumber(9782721)} företagsdokument och över {asNumber(48000000)} datapunkter om företag.
-          </p>
+          <p className="text-tic-400 z-20 px-6 text-center text-sm">Detta är endast ett urval av våra datakällor.</p>
         </div>
       </div>
     </div>

@@ -36,7 +36,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={params?.slug?.[0] || 'sv'}>
-      <body className={cn(hyperlegible.className, 'text-tic-text text-base')}>
+      <body className={cn(hyperlegible.className, 'text-tic-950 text-base')}>
         <DotPattern
           width={20}
           height={20}

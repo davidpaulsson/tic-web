@@ -4,9 +4,9 @@ import { GetStartedButton } from './get-started-button';
 
 export const SaferAndEasierBusiness = ({ region }: { region: (typeof REGIONS)[number] }) => {
   return (
-    <div className="container py-40">
+    <div className="container">
       <h2 className="mb-2 text-balance text-center text-xl md:text-3xl">Säkrare och enklare affärer.</h2>
-      <p className="text-tic-muted mx-auto mb-10 max-w-prose text-balance text-center text-lg md:text-xl">
+      <p className="text-tic-500 mx-auto mb-10 max-w-prose text-balance text-center text-lg md:text-xl">
         Vår AI-plattformen övervakar ständigt hundratals datakällor för att identifiera avvikelser och mönster i register, årsredovisningar
         och andra källor. Få koll på vem du gör affärer och slipp obehagliga överraskningar.
       </p>

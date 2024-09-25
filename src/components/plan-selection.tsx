@@ -20,7 +20,7 @@ export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) 
             <CardHeader>
               <CardTitle>
                 Free
-                <span className="text-tic-muted block">
+                <span className="text-tic-500 block">
                   Gratis <span className="text-base">Betalkort krävs ej</span>
                 </span>
               </CardTitle>
@@ -46,7 +46,7 @@ export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) 
             <CardHeader>
               <CardTitle>
                 Basic
-                <span className="text-tic-muted block">
+                <span className="text-tic-500 block">
                   {asMoney(995)} <span className="text-base">/mån</span>
                 </span>
               </CardTitle>
@@ -60,7 +60,7 @@ export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) 
                 <ListItem>Ladda ner alla årsredovisningar PDF/XBRL/iXBRL/JSON</ListItem>
                 <ListItem>Offentliga inköp (kommuner, regioner, myndigheter, universitet, högskolor)</ListItem>
                 <ListItem>Telefonnummer och franchisetillhörighet</ListItem>
-                <li className="text-tic-muted mb-3 flex gap-3 last:mb-0">
+                <li className="text-tic-500 mb-3 flex gap-3 last:mb-0">
                   <PlusIcon className="mt-1 inline h-4 w-4 flex-shrink-0" /> <span>Samt samma möjligheter som Free</span>
                 </li>
               </ul>
@@ -76,11 +76,11 @@ export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) 
             <CardHeader>
               <CardTitle>
                 Premium
-                <span className="text-tic-muted block">
+                <span className="text-tic-500 block">
                   Från {asMoney(3995)} <span className="text-base">/mån</span>
                   <Tooltip>
                     <TooltipTrigger className="ml-2 inline-flex items-center gap-1">
-                      <InfoIcon className="text-tic-muted h-4 w-4" />
+                      <InfoIcon className="text-tic-500 h-4 w-4" />
                     </TooltipTrigger>
                     <TooltipContent>
                       <p>Begär offert</p>
@@ -98,7 +98,7 @@ export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) 
                 <ListItem>Varumärken och patent</ListItem>
                 <ListItem>Sök text i årsredovisningar med vår blixtsnabba sökmotor</ListItem>
                 <ListItem>Bidrag</ListItem>
-                <li className="text-tic-muted mb-3 flex gap-3 last:mb-0">
+                <li className="text-tic-500 mb-3 flex gap-3 last:mb-0">
                   <PlusIcon className="mt-1 inline h-4 w-4 flex-shrink-0" /> <span>Samt samma möjligheter som Basic</span>
                 </li>
               </ul>

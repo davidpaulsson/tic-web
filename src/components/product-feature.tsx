@@ -8,18 +8,18 @@ import { Button } from '@/components/ui/button';
 
 export const ProductFeature = (props: ContentfulBlockProductFeature['fields'] & { align: 'left' | 'right' }) => (
   <section className="container">
-    <div className="grid-cols-12 overflow-hidden rounded-lg border border-tic-stroke bg-tic-fill md:grid">
+    <div className="border-tic-300 bg-tic-100 grid-cols-12 overflow-hidden rounded-2xl border md:grid">
       <div className="col-span-7 hidden bg-tic-purple-light md:block" />
       <div
         className={cn('col-span-5 p-8 md:p-16', {
           'order-[-1]': props.align === 'left',
         })}
       >
-        {props.label && <div className="text-tic-muteder mb-4">{props.label}</div>}
+        {props.label && <div className="text-tic-500er mb-4">{props.label}</div>}
 
         <div>
           <h2 className="mb-2 text-balance text-2xl md:text-3xl">{props.title}</h2>
-          <p className={cn('text-tic-muted text-pretty text-lg', { 'mb-10': !!props.cta })}>{props.description}</p>
+          <p className={cn('text-tic-500 text-pretty text-lg', { 'mb-10': !!props.cta })}>{props.description}</p>
 
           {props.cta && (
             <Button asChild>
