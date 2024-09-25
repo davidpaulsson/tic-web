@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ReactTyped } from 'react-typed';
 
-import { asMoney, asNumber, cn } from '@/lib/utils';
+import { asMoney, asNumber, asPercentage, cn } from '@/lib/utils';
 
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 
@@ -19,7 +19,7 @@ export const SearchAsYouType = () => {
 
   return (
     <div className="container">
-      <div className="rounded-2xl bg-[#ECECE7] p-6 md:p-12 md:!pb-6">
+      <div className="bg-tic-200 rounded-2xl p-6 md:p-12 md:!pb-6">
         <h3 className="text-lg">Bygg en intuitiv sökupplevelse på nolltid.</h3>
         <p className="mb-24 max-w-prose text-balance opacity-50">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minus cum aliquam doloribus debitis.
@@ -87,7 +87,7 @@ export const SearchAsYouType = () => {
                               <span className="mb-2 block text-sm leading-none text-slate-500">Omsättning</span>
                               <span className="block text-sm leading-none">
                                 {company.document.mostRecentFinancialSummary?.rs_NetSalesK
-                                  ? asMoney(company.document.mostRecentFinancialSummary?.rs_NetSalesK)
+                                  ? asMoney(company.document.mostRecentFinancialSummary?.rs_NetSalesK * 1000)
                                   : '-'}
                               </span>
                             </div>
@@ -103,7 +103,7 @@ export const SearchAsYouType = () => {
                               <span className="mb-2 block text-sm leading-none text-slate-500">Vinstmarginal (%)</span>
                               <span className="block text-sm leading-none">
                                 {company.document.mostRecentFinancialSummary?.km_NetProfitMargin
-                                  ? asNumber(company.document.mostRecentFinancialSummary?.km_NetProfitMargin)
+                                  ? asPercentage(company.document.mostRecentFinancialSummary?.km_NetProfitMargin)
                                   : '-'}
                               </span>
                             </div>

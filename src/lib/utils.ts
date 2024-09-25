@@ -21,3 +21,7 @@ export const asMoney = (value: number) => {
 export const asNumber = (value: number) => {
   return new Intl.NumberFormat('sv-SE').format(value);
 };
+
+export const asPercentage = (value: number) => {
+  return `${(value * 100).toFixed(1)}%`;
+};
