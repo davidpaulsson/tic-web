@@ -128,7 +128,14 @@ export type ContentfulBlockStatic = {
   };
   fields: {
     internalTitle: string;
-    block: 'Accountant form' | 'API example' | 'Data sources' | 'Plan selection' | 'Pricing table' | 'Safer and easier business';
+    block:
+      | 'Accountant form'
+      | 'API example'
+      | 'Data sources'
+      | 'Plan selection'
+      | 'Pricing table'
+      | 'Safer and easier business'
+      | 'Testomonials';
   };
 };
 

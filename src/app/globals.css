@@ -16,6 +16,20 @@
     --chart-10: 210 65% 30%;
   }
 
+  html {
+    hanging-punctuation: first last;
+  }
+
+  blockquote {
+    &::before {
+      content: open-quote;
+    }
+
+    &::after {
+      content: close-quote;
+    }
+  }
+
   html,
   body {
     font-family: 'Atkinson Hyperlegible', sans-serif;

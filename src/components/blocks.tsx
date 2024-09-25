@@ -36,6 +36,8 @@ import { SecionTitle } from '@/components/section-title';
 import { Sources } from '@/components/sources';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
+import { Testomonials } from './testomonials';
+
 type Props = {
   region: (typeof REGIONS)[number];
   blocks: ContentfulPageResponse['items'][number]['fields']['blocks'];
@@ -127,10 +129,13 @@ export const Blocks = ({ blocks, region }: Props) => {
             return <CurlExample key={block.sys.id} />;
           case 'Accountant form':
             return <AccountantForm key={block.sys.id} />;
+          case 'Testomonials':
+            return <Testomonials key={block.sys.id} />;
           default:
             return null;
         }
-      // "blockCarousel" is "Block: Columns" in Contentful
+      // "blockCarousel" is "Block: Columns" in Contentful,
+      // should probably be renamed at some point
       case 'blockCarousel': {
         const { cards, title } = block.fields as ContentfulBlockCarousel['fields'];
         return (
