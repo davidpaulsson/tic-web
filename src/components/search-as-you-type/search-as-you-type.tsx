@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ReactTyped } from 'react-typed';
 
-import { asNumber, cn } from '@/lib/utils';
+import { asMoney, asNumber, cn } from '@/lib/utils';
 
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 
@@ -68,20 +68,18 @@ export const SearchAsYouType = () => {
                               </span>
                             </div>
                             <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">Omsättning (tkr)</span>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">Omsättning</span>
                               <span className="block text-sm leading-none">
                                 {company.document.mostRecentFinancialSummary?.rs_NetSalesK
-                                  ? asNumber(company.document.mostRecentFinancialSummary?.rs_NetSalesK)
+                                  ? asMoney(company.document.mostRecentFinancialSummary?.rs_NetSalesK)
                                   : '-'}
                               </span>
                             </div>
                             <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">
-                                Resultat efter finansiella poster (tkr)
-                              </span>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">Resultat efter finansiella poster</span>
                               <span className="block text-sm leading-none">
                                 {company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK
-                                  ? asNumber(company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK)
+                                  ? asMoney(company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK * 1000)
                                   : '-'}
                               </span>
                             </div>
