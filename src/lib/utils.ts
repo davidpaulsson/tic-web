@@ -23,5 +23,5 @@ export const asNumber = (value: number) => {
 };
 
 export const asPercentage = (value: number) => {
-  return `${(value * 100).toFixed(1)}%`;
+  return `${asNumber(Number(value.toFixed(1)))}%`;
 };

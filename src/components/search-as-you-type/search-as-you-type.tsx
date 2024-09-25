@@ -103,7 +103,7 @@ export const SearchAsYouType = () => {
                               <span className="mb-2 block text-sm leading-none text-slate-500">Vinstmarginal (%)</span>
                               <span className="block text-sm leading-none">
                                 {company.document.mostRecentFinancialSummary?.km_NetProfitMargin
-                                  ? asPercentage(company.document.mostRecentFinancialSummary?.km_NetProfitMargin)
+                                  ? asPercentage(company.document.mostRecentFinancialSummary?.km_NetProfitMargin * 100)
                                   : '-'}
                               </span>
                             </div>
