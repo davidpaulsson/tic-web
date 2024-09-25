@@ -27,7 +27,7 @@ export const Testomonials = () => {
     },
     {
       amountM: 6.9,
-      label: 'svenskar (+15 år)',
+      label: 'personer (+15 år)',
     },
   ];
 
