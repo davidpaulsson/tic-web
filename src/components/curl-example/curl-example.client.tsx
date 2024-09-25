@@ -95,7 +95,7 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
                   onClick={() => scrollTo(id)}
                   aria-pressed={activeButton === id}
                   className={cn(
-                    'bg-tic-800 flex h-full w-full flex-col items-start justify-start overflow-hidden rounded-2xl p-3 text-left transition',
+                    'bg-tic-800 flex h-full w-full flex-col items-start justify-start overflow-hidden rounded-xl p-3 text-left transition',
                     {
                       'bg-tic-700': activeButton === id,
                       'opacity-50 hover:opacity-75': activeButton !== id,
