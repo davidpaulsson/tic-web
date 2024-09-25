@@ -1,6 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-explicit-unknown */
-
 export interface CompaniesResponse {
   facet_counts: any[];
   found: number;
@@ -34,9 +31,9 @@ export interface Document {
   status: Status[];
   mostRecentAnnualReportOverview?: MostRecentAnnualReportOverview;
   isRegisteredForVAT?: boolean;
-  isRegisteredForFTax: any;
+  isRegisteredForFTax: unknown;
   isRegisteredForPayroll?: boolean;
-  ftaxTerminationReason: any;
+  ftaxTerminationReason: unknown;
   bankAccounts: BankAccount[];
   addresses: Address[];
 }
@@ -68,7 +65,7 @@ export interface MostRecentAnnualReportOverview {
   netSales: number;
   operatingProfit: number;
   profitForTheYear: number;
-  grossMargin: any;
+  grossMargin: unknown;
   operatingMargin: number;
   netProfitMargin: number;
   equityAssetsRatio: number;
@@ -80,7 +77,7 @@ export interface MostRecentAnnualReportOverview {
 export interface BankAccount {
   bankAccountType: string;
   accountNumber: string;
-  swifT_BIC: any;
+  swifT_BIC: unknown;
 }
 
 export interface Address {
