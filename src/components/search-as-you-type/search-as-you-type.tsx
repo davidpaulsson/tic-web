@@ -21,7 +21,7 @@ export const SearchAsYouType = () => {
     <div className="container">
       <div className="rounded-2xl bg-[#ECECE7] p-6 md:p-12 md:!pb-6">
         <h3 className="text-lg">Bygg en intuitiv sökupplevelse på nolltid.</h3>
-        <p className="mb-24 max-w-prose text-balance opacity-75">
+        <p className="mb-24 max-w-prose text-balance opacity-50">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minus cum aliquam doloribus debitis.
         </p>
 
@@ -55,11 +55,21 @@ export const SearchAsYouType = () => {
                     <CommandGroup heading="Företag">
                       {companies.map((company) => (
                         <CommandItem key={company.document.id} className="grid gap-2 md:gap-4">
-                          <div>{company.document.names[0]?.nameOrIdentifier || '-'}</div>
-                          <div className="grid gap-2 space-y-2 md:grid-cols-3 md:gap-4 md:space-y-0">
+                          <div className="text-base">{company.document.names[0]?.nameOrIdentifier || '-'}</div>
+
+                          <div className="grid grid-cols-2 gap-2 space-y-2 md:grid-cols-4 md:gap-4 md:space-y-0">
+                            {/* Company Information */}
                             <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">Telefonnummer</span>
-                              <span className="block text-sm leading-none">{company.document.phoneNumbers[0]?.e164PhoneNumber || '-'}</span>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">Registreringsnummer</span>
+                              <span className="block text-sm leading-none">{company.document.registrationNumber || '-'}</span>
+                            </div>
+                            <div>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">Registreringsdatum</span>
+                              <span className="block text-sm leading-none">
+                                {company.document.registrationDate
+                                  ? new Date(company.document.registrationDate * 1000).toLocaleDateString('sv-SE')
+                                  : '-'}
+                              </span>
                             </div>
                             <div>
                               <span className="mb-2 block text-sm leading-none text-slate-500">SNI-kod</span>
@@ -67,6 +77,12 @@ export const SearchAsYouType = () => {
                                 {company.document.sniCodes[0]?.sni_2007Code || '-'} - {company.document.sniCodes[0]?.sni_2007Name || '-'}
                               </span>
                             </div>
+                            <div>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">Stad</span>
+                              <span className="block text-sm leading-none">{company.document.addresses[0]?.city || '-'}</span>
+                            </div>
+
+                            {/* Financial Information */}
                             <div>
                               <span className="mb-2 block text-sm leading-none text-slate-500">Omsättning</span>
                               <span className="block text-sm leading-none">
@@ -91,21 +107,11 @@ export const SearchAsYouType = () => {
                                   : '-'}
                               </span>
                             </div>
+
+                            {/* Contact Information */}
                             <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">Stad</span>
-                              <span className="block text-sm leading-none">{company.document.addresses[0]?.city || '-'}</span>
-                            </div>
-                            <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">Registreringsnummer</span>
-                              <span className="block text-sm leading-none">{company.document.registrationNumber || '-'}</span>
-                            </div>
-                            <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">Registreringsdatum</span>
-                              <span className="block text-sm leading-none">
-                                {company.document.registrationDate
-                                  ? new Date(company.document.registrationDate * 1000).toLocaleDateString('sv-SE')
-                                  : '-'}
-                              </span>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">Telefonnummer</span>
+                              <span className="block text-sm leading-none">{company.document.phoneNumbers[0]?.e164PhoneNumber || '-'}</span>
                             </div>
                           </div>
                         </CommandItem>
