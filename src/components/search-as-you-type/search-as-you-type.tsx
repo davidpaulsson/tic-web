@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ReactTyped } from 'react-typed';
 
-import { cn } from '@/lib/utils';
+import { asNumber, cn } from '@/lib/utils';
 
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 
@@ -25,7 +25,7 @@ export const SearchAsYouType = () => {
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minus cum aliquam doloribus debitis.
         </p>
 
-        <Command className="rounded-lg border shadow-md dark:border-slate-800" shouldFilter={false}>
+        <Command className="rounded-xl border shadow-xl" shouldFilter={false}>
           <ReactTyped
             strings={[
               'Sök företagsnamn',
@@ -45,29 +45,69 @@ export const SearchAsYouType = () => {
             attr="placeholder"
             loop
           >
-            <CommandInput placeholder="Testa vår sök" value={value} onValueChange={setValue} />
+            <CommandInput placeholder="Sök" value={value} onValueChange={setValue} />
           </ReactTyped>
           <CommandList className="h-96">
             {value !== '' ? (
               <>
                 {companies?.length > 0 ? (
                   <>
-                    <CommandGroup heading="Companies">
+                    <CommandGroup heading="Företag">
                       {companies.map((company) => (
                         <CommandItem key={company.document.id} className="grid gap-2 md:gap-4">
-                          <div className="block text-sm font-bold">{company.document.names[0]?.nameOrIdentifier || '-'}</div>
+                          <div>{company.document.names[0]?.nameOrIdentifier || '-'}</div>
                           <div className="grid gap-2 space-y-2 md:grid-cols-3 md:gap-4 md:space-y-0">
                             <div>
-                              <span className="mb-2 block text-xs leading-none text-slate-500">Reg. number</span>
-                              <span className="block text-sm leading-none">{company.document.registrationNumber}</span>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">Telefonnummer</span>
+                              <span className="block text-sm leading-none">{company.document.phoneNumbers[0]?.e164PhoneNumber || '-'}</span>
                             </div>
                             <div>
-                              <span className="mb-2 block text-xs leading-none text-slate-500">City</span>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">SNI-kod</span>
+                              <span className="block text-sm leading-none">
+                                {company.document.sniCodes[0]?.sni_2007Code || '-'} - {company.document.sniCodes[0]?.sni_2007Name || '-'}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">Omsättning (tkr)</span>
+                              <span className="block text-sm leading-none">
+                                {company.document.mostRecentFinancialSummary?.rs_NetSalesK
+                                  ? asNumber(company.document.mostRecentFinancialSummary?.rs_NetSalesK)
+                                  : '-'}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">
+                                Resultat efter finansiella poster (tkr)
+                              </span>
+                              <span className="block text-sm leading-none">
+                                {company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK
+                                  ? asNumber(company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK)
+                                  : '-'}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">Vinstmarginal (%)</span>
+                              <span className="block text-sm leading-none">
+                                {company.document.mostRecentFinancialSummary?.km_NetProfitMargin
+                                  ? asNumber(company.document.mostRecentFinancialSummary?.km_NetProfitMargin)
+                                  : '-'}
+                              </span>
+                            </div>
+                            <div>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">Stad</span>
                               <span className="block text-sm leading-none">{company.document.addresses[0]?.city || '-'}</span>
                             </div>
                             <div>
-                              <span className="mb-2 block text-xs leading-none text-slate-500">Phone number</span>
-                              <span className="block text-sm leading-none">{company.document.phoneNumbers[0]?.e164PhoneNumber || '-'}</span>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">Registreringsnummer</span>
+                              <span className="block text-sm leading-none">{company.document.registrationNumber || '-'}</span>
+                            </div>
+                            <div>
+                              <span className="mb-2 block text-sm leading-none text-slate-500">Registreringsdatum</span>
+                              <span className="block text-sm leading-none">
+                                {company.document.registrationDate
+                                  ? new Date(company.document.registrationDate * 1000).toLocaleDateString('sv-SE')
+                                  : '-'}
+                              </span>
                             </div>
                           </div>
                         </CommandItem>
@@ -75,7 +115,7 @@ export const SearchAsYouType = () => {
                     </CommandGroup>
                   </>
                 ) : (
-                  <CommandEmpty className="text-pretty p-4 text-sm text-red-500 dark:text-red-400">No results found.</CommandEmpty>
+                  <CommandEmpty className="text-pretty p-4 text-sm text-red-500">No results found.</CommandEmpty>
                 )}
               </>
             ) : null}

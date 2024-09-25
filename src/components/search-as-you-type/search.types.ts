@@ -30,12 +30,26 @@ export interface Document {
   intelligence: any[];
   status: Status[];
   mostRecentAnnualReportOverview?: MostRecentAnnualReportOverview;
+  mostRecentFinancialSummary: MostRecentFinancialSummary;
   isRegisteredForVAT?: boolean;
   isRegisteredForFTax: unknown;
   isRegisteredForPayroll?: boolean;
   ftaxTerminationReason: unknown;
   bankAccounts: BankAccount[];
   addresses: Address[];
+}
+
+export interface MostRecentFinancialSummary {
+  rs_NetSalesK: number;
+  rs_OperatingProfitK: number;
+  rs_ProfitAfterFinancialItemsK: number;
+  rs_GrossMargin: number;
+  rs_OperatingMargin: number;
+  km_NetProfitMargin: number;
+  km_EquityAssetsRatio: number;
+  km_QuickRatio: number;
+  km_NetSalesChange: number;
+  numberOfEmployees?: number;
 }
 
 export interface Name {
