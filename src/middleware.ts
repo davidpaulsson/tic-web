@@ -28,6 +28,7 @@ export function middleware(request: NextRequest) {
   // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
   if (
     [
+      '/icon.svg',
       '/og-image.png',
       '/og-image-statistik.png',
       // ...other files in `public`

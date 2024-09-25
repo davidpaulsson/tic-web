@@ -23,6 +23,14 @@ const metadata: Metadata = {
     template: '%s | The Intelligence Company',
     default: 'The Intelligence Company',
   },
+  icons: {
+    icon: [
+      {
+        type: 'image/svg+xml',
+        url: '/icon.svg',
+      },
+    ],
+  },
 };
 
 export { metadata };
