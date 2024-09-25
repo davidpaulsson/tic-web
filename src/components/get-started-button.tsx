@@ -1,3 +1,6 @@
+import { AccountIcon } from '@/icons/account';
+import { StartIcon } from '@/icons/start';
+
 import Link from 'next/link';
 
 import { REGIONS } from '@/lib/constants';
@@ -20,10 +23,15 @@ export const GetStartedButton = ({ plan, region }: { plan: 'Free' | 'Basic' | 'P
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Kom igång gratis</DialogTitle>
-              <DialogDescription>
-                <GetStartedForFree region={region} />
+              <DialogTitle className="mb-0 flex flex-col items-center justify-center text-center text-xl">
+                <StartIcon className="mb-2 size-8" />
+                Kom igång gratis
+              </DialogTitle>
+              <DialogDescription className="pb-4 text-center">
+                Nu är du bara ett steg ifrån att komma igång med TIC. Fyll i ditt mobilnummer eller din e-postadress nedan så skickar vi en
+                länk som hjälper dig vidare. Varmt välkommen!
               </DialogDescription>
+              <GetStartedForFree region={region} />
             </DialogHeader>
           </DialogContent>
         </Dialog>
@@ -38,10 +46,15 @@ export const GetStartedButton = ({ plan, region }: { plan: 'Free' | 'Basic' | 'P
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Skapa ett konto</DialogTitle>
-              <DialogDescription>
-                <GetStartedForFree region={region} />
+              <DialogTitle className="mb-0 flex flex-col items-center justify-center text-center text-xl">
+                <AccountIcon className="mb-2 size-8" />
+                Skapa ett konto
+              </DialogTitle>
+              <DialogDescription className="pb-4 text-center">
+                Nu är du bara ett steg ifrån att komma igång med TIC. Fyll i ditt mobilnummer eller din e-postadress nedan så skickar vi en
+                länk som hjälper dig vidare. Varmt välkommen!
               </DialogDescription>
+              <GetStartedForFree region={region} />
             </DialogHeader>
           </DialogContent>
         </Dialog>
@@ -56,10 +69,15 @@ export const GetStartedButton = ({ plan, region }: { plan: 'Free' | 'Basic' | 'P
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Kontakta sälj</DialogTitle>
-              <DialogDescription>
-                <ContactSales region={region} />
+              <DialogTitle className="mb-0 flex flex-col items-center justify-center text-center text-xl">
+                <AccountIcon className="mb-2 size-8" />
+                Kontakta sälj
+              </DialogTitle>
+              <DialogDescription className="pb-4 text-center">
+                Nu är du bara ett steg ifrån att komma igång med TIC. Fyll i formuläret nedan så kontaktar vi dig inom kort. Varmt
+                välkommen!
               </DialogDescription>
+              <ContactSales region={region} />
             </DialogHeader>
           </DialogContent>
         </Dialog>
