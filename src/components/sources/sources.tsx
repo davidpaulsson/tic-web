@@ -38,7 +38,7 @@ const logos = [
 ];
 
 const LogoWrapper = ({ children }: { children: React.ReactNode }) => (
-  <div className="border-tic-50/5 to-tic-50/5 flex size-20 items-center justify-center rounded-2xl border bg-gradient-to-b from-transparent max-md:scale-75 [&>svg]:h-auto [&>svg]:w-10">
+  <div className="flex size-20 items-center justify-center rounded-2xl border border-tic-50/5 bg-gradient-to-b from-transparent to-tic-50/5 max-md:scale-75 [&>svg]:h-auto [&>svg]:w-10">
     {children}
   </div>
 );
@@ -49,12 +49,12 @@ export const Sources = () => {
 
   return (
     <div className="container">
-      <div className="bg-tic-900 overflow-hidden rounded-2xl">
+      <div className="overflow-hidden rounded-2xl bg-tic-900">
         <div className="relative grid place-content-center py-8 md:py-16">
-          <h2 className="text-tic-100 z-10 text-balance px-6 text-xl md:text-center md:text-3xl">
+          <h2 className="z-10 mb-1 text-balance px-6 text-xl text-tic-100 md:text-center md:text-3xl">
             Vi analyserar all data, från varje källa.
           </h2>
-          <p className="text-tic-400 z-10 mb-6 text-pretty px-6 text-xl md:mb-16 md:text-balance md:text-center md:text-3xl">
+          <p className="z-10 mb-6 text-pretty px-6 text-xl text-tic-400 md:mb-16 md:text-balance md:px-2 md:text-center md:text-2xl">
             Brister och avvikelser skapar vårt Intelligence Score.
           </p>
 
@@ -77,7 +77,7 @@ export const Sources = () => {
               ))}
             </Marquee>
           </div>
-          <p className="text-tic-400 z-20 px-6 text-center text-sm">Detta är endast ett urval av våra datakällor.</p>
+          <p className="z-20 px-6 text-center text-sm text-tic-400">Detta är endast ett urval av våra datakällor.</p>
         </div>
       </div>
     </div>

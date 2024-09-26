@@ -19,10 +19,11 @@ export const SearchAsYouType = () => {
 
   return (
     <div className="container">
-      <div className="bg-tic-200 rounded-2xl p-6 md:p-12 md:!pb-6">
-        <h3 className="text-lg">Bygg en intuitiv sökupplevelse på nolltid.</h3>
-        <p className="mb-24 max-w-prose text-balance opacity-50">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa minus cum aliquam doloribus debitis.
+      <div className="rounded-2xl bg-tic-200 px-6 pb-6 pt-8 md:pt-16">
+        <h2 className="mb-1 text-balance text-xl md:text-center md:text-3xl">Bygg en intuitiv sökupplevelse på nolltid.</h2>
+        <p className="mb-6 text-pretty text-xl opacity-50 md:mb-16 md:text-balance md:px-2 md:text-center md:text-2xl">
+          Att söka i offentliga register kan vara både tidskrävande och kostsamt. Med vår blixtsnabba sökmotor får du tillgång till relevant
+          information på ett ögonblick – och till en bråkdel av vad du normalt betalar.
         </p>
 
         <Command className="rounded-xl border shadow-xl" shouldFilter={false}>
