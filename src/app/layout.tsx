@@ -3,7 +3,7 @@ import { Atkinson_Hyperlegible } from 'next/font/google';
 
 import { cn } from '@/lib/utils';
 
-import { FrontChat } from '@/components/front-chat';
+import Intercom from '@/components/intercom';
 import { ReactQueryClientProvider } from '@/components/react-query-client-provider';
 import { DotPattern } from '@/components/ui/dot-pattern';
 import { Toaster } from '@/components/ui/sonner';
@@ -55,7 +55,7 @@ export default function RootLayout({
 
         <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
 
-        <FrontChat />
+        <Intercom />
         <Toaster position="bottom-left" />
       </body>
     </html>
