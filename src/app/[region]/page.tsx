@@ -68,7 +68,6 @@ export default async function Page({ params }: Readonly<{ params: { region: (typ
 
   return (
     <main className="space-y-16 md:space-y-40">
-      <SearchAsYouType />
       <Blocks region={params.region} blocks={content.blocks} />
     </main>
   );

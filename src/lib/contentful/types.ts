@@ -135,7 +135,8 @@ export type ContentfulBlockStatic = {
       | 'Plan selection'
       | 'Pricing table'
       | 'Safer and easier business'
-      | 'Testomonials';
+      | 'Testomonials'
+      | 'Search as you type';
   };
 };
 

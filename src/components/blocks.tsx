@@ -36,6 +36,7 @@ import { SecionTitle } from '@/components/section-title';
 import { Sources } from '@/components/sources';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
+import { SearchAsYouType } from './search-as-you-type';
 import { Testomonials } from './testomonials';
 import { Table, TableBody, TableCell, TableHead, TableRow } from './ui/table';
 
@@ -139,6 +140,8 @@ export const Blocks = ({ blocks, region }: Props) => {
             return <AccountantForm key={block.sys.id} />;
           case 'Testomonials':
             return <Testomonials key={block.sys.id} />;
+          case 'Search as you type':
+            return <SearchAsYouType key={block.sys.id} />;
           default:
             return null;
         }
