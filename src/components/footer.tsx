@@ -60,48 +60,44 @@ export const Footer = async ({ locale }: { locale: string }) => {
   });
 
   return (
-    <div className="relative mt-16 h-[800px]" style={{ clipPath: 'polygon(0% 0, 100% 0%, 100% 100%, 0 100%)' }}>
-      <div className="fixed bottom-0 h-[800px] w-full">
-        <footer className="bg-tic-900 text-tic-50 flex h-full items-end py-16 md:mt-40 md:py-40">
-          <div className="container py-16">
-            <div className="space-y-8 pt-10">
-              <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-                <Logo className="w-32" />
-                <SocialLinks />
-              </div>
-
-              <div className="border-t-tic-800 flex flex-col-reverse items-start border-t pt-8 md:flex-row md:justify-between">
-                <div>
-                  <div className="mb-1">©{new Date().getFullYear()} The Intelligence Company AB</div>
-                  <div className="text-tic-300 text-sm">Vi har kreditupplysningstillstånd från Integritetsskyddsmyndigheten.</div>
-                </div>
-
-                <ul className="mb-8 flex flex-col gap-2 md:mb-0 md:flex-row md:items-center md:gap-4">
-                  {links.map((link) => {
-                    const isLast = link === links[links.length - 1];
-                    return (
-                      <>
-                        <li key={link.slug}>
-                          {link.slug.startsWith('http') ? (
-                            <a href={link.slug} className="hover:underline" target="_blank">
-                              {link.title}
-                            </a>
-                          ) : (
-                            <Link href={`/${link.slug}`} className="hover:underline">
-                              {link.title}
-                            </Link>
-                          )}
-                        </li>
-                        {!isLast && <Dot width={2} height={2} className="hidden md:block" />}
-                      </>
-                    );
-                  })}
-                </ul>
-              </div>
-            </div>
+    <footer className="mt-20 flex h-full items-end bg-tic-900 text-tic-50 md:mt-40">
+      <div className="container pb-16 pt-32">
+        <div className="space-y-8 pt-10">
+          <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+            <Logo className="w-24 md:w-32" />
+            <SocialLinks />
           </div>
-        </footer>
+
+          <div className="flex flex-col-reverse items-start border-t border-t-tic-800 pt-8 md:flex-row md:justify-between">
+            <div>
+              <div className="mb-1">©{new Date().getFullYear()} The Intelligence Company AB</div>
+              <div className="text-sm text-tic-300">Vi har kreditupplysningstillstånd från Integritetsskyddsmyndigheten.</div>
+            </div>
+
+            <ul className="mb-8 flex flex-col gap-2 md:mb-0 md:flex-row md:items-center md:gap-4">
+              {links.map((link) => {
+                const isLast = link === links[links.length - 1];
+                return (
+                  <>
+                    <li key={link.slug}>
+                      {link.slug.startsWith('http') ? (
+                        <a href={link.slug} className="hover:underline" target="_blank">
+                          {link.title}
+                        </a>
+                      ) : (
+                        <Link href={`/${link.slug}`} className="hover:underline">
+                          {link.title}
+                        </Link>
+                      )}
+                    </li>
+                    {!isLast && <Dot width={2} height={2} className="hidden md:block" />}
+                  </>
+                );
+              })}
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
+    </footer>
   );
 };

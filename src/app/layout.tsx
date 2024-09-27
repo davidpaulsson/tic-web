@@ -7,7 +7,6 @@ import { FrontChat } from '@/components/front-chat';
 import { ReactQueryClientProvider } from '@/components/react-query-client-provider';
 import { DotPattern } from '@/components/ui/dot-pattern';
 import { Toaster } from '@/components/ui/sonner';
-import { TooltipProvider } from '@/components/ui/tooltip';
 
 import './globals.css';
 
@@ -44,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang={params?.slug?.[0] || 'sv'}>
-      <body className={cn(hyperlegible.className, 'text-tic-950 text-base')}>
+      <body className={cn(hyperlegible.className, 'text-base text-tic-950')}>
         <DotPattern
           width={20}
           height={20}
@@ -53,9 +52,9 @@ export default function RootLayout({
           cr={1}
           className={cn('z-[-1] [mask-image:linear-gradient(to_bottom,white,transparent,transparent)]')}
         />
-        <TooltipProvider delayDuration={100}>
-          <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
-        </TooltipProvider>
+
+        <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
+
         <FrontChat />
         <Toaster position="bottom-left" />
       </body>

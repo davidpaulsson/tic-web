@@ -1,17 +1,15 @@
 import { CheckIcon } from '@/icons/check';
 
-import { Check, InfoIcon, Minus } from 'lucide-react';
-import Link from 'next/link';
+import { InfoIcon, Minus } from 'lucide-react';
 import React from 'react';
 
 import { REGIONS } from '@/lib/constants';
 import { asMoney, asNumber, cn } from '@/lib/utils';
 
 import { ListItem } from '@/components/list-item';
-import { Button } from '@/components/ui/button';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 import { GetStartedButton } from './get-started-button';
 import { SecionTitle } from './section-title';
@@ -22,15 +20,15 @@ const PLANS = [
     Free: '0 kr',
     Basic: asMoney(995),
     Premium: (
-      <Tooltip>
-        <TooltipTrigger className="inline-flex items-center gap-1">
+      <Popover>
+        <PopoverTrigger className="inline-flex items-center gap-1">
           Från {asMoney(3995)}
-          <InfoIcon className="text-tic-500 h-4 w-4" />
-        </TooltipTrigger>
-        <TooltipContent>
+          <InfoIcon className="h-4 w-4 text-tic-500" />
+        </PopoverTrigger>
+        <PopoverContent className="w-auto px-3 py-2 text-sm">
           <p>Begär offert</p>
-        </TooltipContent>
-      </Tooltip>
+        </PopoverContent>
+      </Popover>
     ),
   },
   {
@@ -69,7 +67,7 @@ const PLANS = [
         Sök företagsinformation och gör urval via vår blixtsnabba sökmotor
         <Dialog>
           <DialogTrigger>
-            <InfoIcon className="text-tic-500 ml-1 h-4 w-4" />
+            <InfoIcon className="ml-1 h-4 w-4 text-tic-500" />
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
@@ -109,26 +107,26 @@ const PLANS = [
   {
     title: 'Ekonomisk översikt',
     Free: (
-      <Tooltip>
-        <TooltipTrigger className="inline-flex items-center gap-1">
+      <Popover>
+        <PopoverTrigger className="inline-flex items-center gap-1">
           1 år
-          <InfoIcon className="text-tic-500 h-4 w-4" />
-        </TooltipTrigger>
-        <TooltipContent>
+          <InfoIcon className="h-4 w-4 text-tic-500" />
+        </PopoverTrigger>
+        <PopoverContent className="w-auto px-3 py-2 text-sm">
           <p>Senaste räkenskapsåret</p>
-        </TooltipContent>
-      </Tooltip>
+        </PopoverContent>
+      </Popover>
     ),
     Basic: (
-      <Tooltip>
-        <TooltipTrigger className="inline-flex items-center gap-1">
+      <Popover>
+        <PopoverTrigger className="inline-flex items-center gap-1">
           1 år
-          <InfoIcon className="text-tic-500 h-4 w-4" />
-        </TooltipTrigger>
-        <TooltipContent>
+          <InfoIcon className="h-4 w-4 text-tic-500" />
+        </PopoverTrigger>
+        <PopoverContent className="w-auto px-3 py-2 text-sm">
           <p>Senaste räkenskapsåret</p>
-        </TooltipContent>
-      </Tooltip>
+        </PopoverContent>
+      </Popover>
     ),
     Premium: '4 år',
   },
@@ -252,6 +250,18 @@ const PLANS = [
     Basic: asMoney(39),
     Premium: asMoney(19),
   },
+  {
+    title: 'Köp till fler anrop +2000',
+    Free: asMoney(1000),
+    Basic: asMoney(500),
+    Premium: 'Obegränsat',
+  },
+  {
+    title: 'Köp till fler anrop +10000',
+    Free: asMoney(3000),
+    Basic: asMoney(1500),
+    Premium: 'Obegränsat',
+  },
 ];
 
 export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) => {
@@ -263,21 +273,21 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
           <TableRow className="!border-b-0 hover:bg-transparent">
             <TableHead className="w-3/6"></TableHead>
             <TableHead className="!m-0 w-1/6 !p-0">
-              <div className="border-tic-100 min-h-12 rounded-t-lg border-x border-t bg-[#F6F6F7]/40 p-8 pb-6 text-center text-2xl text-tic">
+              <div className="text-tic min-h-12 rounded-t-lg border-x border-t border-tic-100 bg-[#F6F6F7]/40 p-8 pb-6 text-center text-2xl">
                 <div className="mb-4">Free</div>
                 <GetStartedButton plan="Free" region={region} />
               </div>
             </TableHead>
             <TableHead />
             <TableHead className="!m-0 w-1/6 !p-0">
-              <div className="border-tic-100 min-h-12 rounded-t-lg border-x border-t bg-[#F6F6F7]/40 p-8 pb-6 text-center text-2xl text-tic">
+              <div className="text-tic min-h-12 rounded-t-lg border-x border-t border-tic-100 bg-[#F6F6F7]/40 p-8 pb-6 text-center text-2xl">
                 <div className="mb-4">Basic</div>
                 <GetStartedButton plan="Basic" region={region} />
               </div>
             </TableHead>
             <TableHead />
             <TableHead className="!m-0 w-1/6 !p-0">
-              <div className="border-tic-100 min-h-12 rounded-t-lg border-x border-t bg-[#F6F6F7]/40 p-8 pb-6 text-center text-2xl text-tic">
+              <div className="text-tic min-h-12 rounded-t-lg border-x border-t border-tic-100 bg-[#F6F6F7]/40 p-8 pb-6 text-center text-2xl">
                 <div className="mb-4">Premium</div>
                 <GetStartedButton plan="Premium" region={region} />
               </div>
@@ -298,12 +308,12 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
               >
                 <TableCell>{plan.title}</TableCell>
 
-                <TableCell className="border-tic-100 border-x bg-[#F6F6F7]/40 text-center">
+                <TableCell className="border-x border-tic-100 bg-[#F6F6F7]/40 text-center">
                   {typeof plan.Free === 'boolean' ? (
                     plan.Free ? (
                       <CheckIcon className="inline h-4 w-4 flex-shrink-0" />
                     ) : (
-                      <Minus className="text-tic-500 inline h-4 w-4 flex-shrink-0" />
+                      <Minus className="inline h-4 w-4 flex-shrink-0 text-tic-500" />
                     )
                   ) : (
                     plan.Free
@@ -312,12 +322,12 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
 
                 <TableCell />
 
-                <TableCell className="border-tic-100 border-x bg-[#F6F6F7]/40 text-center">
+                <TableCell className="border-x border-tic-100 bg-[#F6F6F7]/40 text-center">
                   {typeof plan.Basic === 'boolean' ? (
                     plan.Basic ? (
                       <CheckIcon className="inline h-4 w-4 flex-shrink-0" />
                     ) : (
-                      <Minus className="text-tic-500 inline h-4 w-4 flex-shrink-0" />
+                      <Minus className="inline h-4 w-4 flex-shrink-0 text-tic-500" />
                     )
                   ) : (
                     plan.Basic
@@ -326,12 +336,12 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
 
                 <TableCell />
 
-                <TableCell className="border-tic-100 border-x bg-[#F6F6F7]/40 text-center">
+                <TableCell className="border-x border-tic-100 bg-[#F6F6F7]/40 text-center">
                   {typeof plan.Premium === 'boolean' ? (
                     plan.Premium ? (
                       <CheckIcon className="inline h-4 w-4 flex-shrink-0" />
                     ) : (
-                      <Minus className="text-tic-500 inline h-4 w-4 flex-shrink-0" />
+                      <Minus className="inline h-4 w-4 flex-shrink-0 text-tic-500" />
                     )
                   ) : (
                     plan.Premium
@@ -343,40 +353,18 @@ export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) =
           <TableRow className="hover:bg-transparent">
             <TableCell className="w-1/2"></TableCell>
             <TableCell className="!m-0 !p-0">
-              <div className="border-tic-100 h-8 rounded-b-lg border-x border-b bg-[#F6F6F7]/40 text-center text-2xl" />
+              <div className="h-8 rounded-b-lg border-x border-b border-tic-100 bg-[#F6F6F7]/40 text-center text-2xl" />
             </TableCell>
             <TableCell />
             <TableCell className="!m-0 !p-0">
-              <div className="border-tic-100 h-8 rounded-b-lg border-x border-b bg-[#F6F6F7]/40 text-center text-2xl" />
+              <div className="h-8 rounded-b-lg border-x border-b border-tic-100 bg-[#F6F6F7]/40 text-center text-2xl" />
             </TableCell>
             <TableCell />
             <TableCell className="!m-0 !p-0">
-              <div className="border-tic-100 h-8 rounded-b-lg border-x border-b bg-[#F6F6F7]/40 text-center text-2xl" />
+              <div className="h-8 rounded-b-lg border-x border-b border-tic-100 bg-[#F6F6F7]/40 text-center text-2xl" />
             </TableCell>
           </TableRow>
         </TableBody>
-        <TableFooter className="!border-none">
-          <TableRow className="border-t-transparent bg-white hover:bg-white">
-            <TableCell className="w-3/6 !pt-8 text-lg">Lägg till fler anrop</TableCell>
-          </TableRow>
-
-          <TableRow className="bg-white hover:bg-white">
-            <TableCell className="w-3/6">Köp till fler anrop +2000</TableCell>
-            <TableCell className="text-center">{asMoney(1000)}</TableCell>
-            <TableCell />
-            <TableCell className="text-center">{asMoney(500)}</TableCell>
-            <TableCell />
-            <TableCell className="text-center">Obegränsat</TableCell>
-          </TableRow>
-          <TableRow className="bg-white hover:bg-white">
-            <TableCell className="w-3/6">Köp till fler anrop +10000</TableCell>
-            <TableCell className="text-center">{asMoney(3000)}</TableCell>
-            <TableCell />
-            <TableCell className="text-center">{asMoney(1500)}</TableCell>
-            <TableCell />
-            <TableCell className="text-center">Obegränsat</TableCell>
-          </TableRow>
-        </TableFooter>
       </Table>
     </div>
   );

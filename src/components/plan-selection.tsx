@@ -4,8 +4,8 @@ import { REGIONS } from '@/lib/constants';
 import { asMoney } from '@/lib/utils';
 
 import { ListItem } from '@/components/list-item';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 import { GetStartedButton } from './get-started-button';
 import { SecionTitle } from './section-title';
@@ -20,7 +20,7 @@ export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) 
             <CardHeader>
               <CardTitle>
                 Free
-                <span className="text-tic-500 block">
+                <span className="block text-tic-500">
                   Gratis <span className="text-base">Betalkort krävs ej</span>
                 </span>
               </CardTitle>
@@ -46,7 +46,7 @@ export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) 
             <CardHeader>
               <CardTitle>
                 Basic
-                <span className="text-tic-500 block">
+                <span className="block text-tic-500">
                   {asMoney(995)} <span className="text-base">/mån</span>
                 </span>
               </CardTitle>
@@ -60,7 +60,7 @@ export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) 
                 <ListItem>Ladda ner alla årsredovisningar PDF/XBRL/iXBRL/JSON</ListItem>
                 <ListItem>Offentliga inköp (kommuner, regioner, myndigheter, universitet, högskolor)</ListItem>
                 <ListItem>Telefonnummer och franchisetillhörighet</ListItem>
-                <li className="text-tic-500 mb-3 flex gap-3 last:mb-0">
+                <li className="mb-3 flex gap-3 text-tic-500 last:mb-0">
                   <PlusIcon className="mt-1 inline h-4 w-4 flex-shrink-0" /> <span>Samt samma möjligheter som Free</span>
                 </li>
               </ul>
@@ -76,16 +76,14 @@ export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) 
             <CardHeader>
               <CardTitle>
                 Premium
-                <span className="text-tic-500 block">
+                <span className="block text-tic-500">
                   Från {asMoney(3995)} <span className="text-base">/mån</span>
-                  <Tooltip>
-                    <TooltipTrigger className="ml-2 inline-flex items-center gap-1">
-                      <InfoIcon className="text-tic-500 h-4 w-4" />
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>Begär offert</p>
-                    </TooltipContent>
-                  </Tooltip>
+                  <Popover>
+                    <PopoverTrigger className="ml-2 inline-flex items-center gap-1">
+                      <InfoIcon className="h-4 w-4 text-tic-500" />
+                    </PopoverTrigger>
+                    <PopoverContent className="w-auto px-3 py-2 text-sm">Begär offert</PopoverContent>
+                  </Popover>
                 </span>
               </CardTitle>
               <CardDescription>För verksamheter med stora behov.</CardDescription>
@@ -98,7 +96,7 @@ export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) 
                 <ListItem>Varumärken och patent</ListItem>
                 <ListItem>Sök text i årsredovisningar med vår blixtsnabba sökmotor</ListItem>
                 <ListItem>Bidrag</ListItem>
-                <li className="text-tic-500 mb-3 flex gap-3 last:mb-0">
+                <li className="mb-3 flex gap-3 text-tic-500 last:mb-0">
                   <PlusIcon className="mt-1 inline h-4 w-4 flex-shrink-0" /> <span>Samt samma möjligheter som Basic</span>
                 </li>
               </ul>
