@@ -79,7 +79,9 @@ export const SearchAsYouType = () => {
                                         type: 'conjunction',
                                       }).format(sniNames);
                                       return (
-                                        <div className="text-sm lowercase text-tic-600 first-letter:uppercase">{formattedSniNames}.</div>
+                                        <div className="text-pretty text-sm lowercase text-tic-600 first-letter:uppercase">
+                                          {formattedSniNames}.
+                                        </div>
                                       );
                                     })()
                                   : null}
