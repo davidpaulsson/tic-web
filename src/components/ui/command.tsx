@@ -8,11 +8,13 @@ import { cn } from '@/lib/utils';
 
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 
+import { Badge } from './badge';
+
 const Command = React.forwardRef<React.ElementRef<typeof CommandPrimitive>, React.ComponentPropsWithoutRef<typeof CommandPrimitive>>(
   ({ className, ...props }, ref) => (
     <CommandPrimitive
       ref={ref}
-      className={cn('bg-tic-50 text-tic-950 flex h-full w-full flex-col overflow-hidden rounded-2xl', className)}
+      className={cn('flex h-full w-full flex-col overflow-hidden rounded-2xl bg-tic-50 text-tic-950', className)}
       {...props}
     />
   ),
@@ -25,7 +27,7 @@ const CommandDialog = ({ children, ...props }: CommandDialogProps) => {
   return (
     <Dialog {...props}>
       <DialogContent className="overflow-hidden p-0 shadow-lg">
-        <Command className="[&_[cmdk-group-heading]]:text-tic-900 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
+        <Command className="[&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:text-tic-900 [&_[cmdk-group]:not([hidden])_~[cmdk-group]]:pt-0 [&_[cmdk-group]]:px-2 [&_[cmdk-input-wrapper]_svg]:h-5 [&_[cmdk-input-wrapper]_svg]:w-5 [&_[cmdk-input]]:h-12 [&_[cmdk-item]]:px-2 [&_[cmdk-item]]:py-3 [&_[cmdk-item]_svg]:h-5 [&_[cmdk-item]_svg]:w-5">
           {children}
         </Command>
       </DialogContent>
@@ -37,17 +39,35 @@ const CommandInput = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Input>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Input>
 >(({ className, ...props }, ref) => (
-  <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
-    <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
-    <CommandPrimitive.Input
-      ref={ref}
-      className={cn(
-        'bg-tic-50 placeholder:text-tic-500 flex w-full rounded-2xl py-3 text-xl outline-none disabled:cursor-not-allowed disabled:opacity-50',
-        className,
-      )}
-      {...props}
-    />
-  </div>
+  <>
+    <Badge variant="secondary" className="mx-2 mt-2 inline-flex items-center gap-2 whitespace-nowrap py-1 md:hidden">
+      <span className="relative flex h-1.5 w-1.5">
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500" />
+        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500" />
+      </span>
+
+      <span className="text-tic-500">Sök medan du skriver</span>
+    </Badge>
+    <div className="flex items-center border-b px-3" cmdk-input-wrapper="">
+      <Search className="mr-2 h-4 w-4 shrink-0 opacity-50" />
+      <CommandPrimitive.Input
+        ref={ref}
+        className={cn(
+          'flex w-full rounded-2xl bg-tic-50 py-3 text-xl outline-none placeholder:text-tic-500 disabled:cursor-not-allowed disabled:opacity-50',
+          className,
+        )}
+        {...props}
+      />
+      <Badge variant="secondary" className="ml-2 hidden items-center gap-2 whitespace-nowrap py-1 md:flex">
+        <span className="relative flex h-1.5 w-1.5">
+          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500" />
+          <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green-500" />
+        </span>
+
+        <span className="text-tic-500">Sök medan du skriver</span>
+      </Badge>
+    </div>
+  </>
 ));
 
 CommandInput.displayName = CommandPrimitive.Input.displayName;
@@ -75,7 +95,7 @@ const CommandGroup = React.forwardRef<
   <CommandPrimitive.Group
     ref={ref}
     className={cn(
-      'text-tic-950 dark:text-tic-50 [&_[cmdk-group-heading]]:text-tic-500 dark:[&_[cmdk-group-heading]]:text-tic-400 overflow-hidden p-1 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium',
+      'overflow-hidden p-1 text-tic-950 dark:text-tic-50 [&_[cmdk-group-heading]]:px-2 [&_[cmdk-group-heading]]:py-1.5 [&_[cmdk-group-heading]]:text-xs [&_[cmdk-group-heading]]:font-medium [&_[cmdk-group-heading]]:text-tic-500 dark:[&_[cmdk-group-heading]]:text-tic-400',
       className,
     )}
     {...props}
@@ -88,7 +108,7 @@ const CommandSeparator = React.forwardRef<
   React.ElementRef<typeof CommandPrimitive.Separator>,
   React.ComponentPropsWithoutRef<typeof CommandPrimitive.Separator>
 >(({ className, ...props }, ref) => (
-  <CommandPrimitive.Separator ref={ref} className={cn('bg-tic-200 dark:bg-tic-800 -mx-1 h-px', className)} {...props} />
+  <CommandPrimitive.Separator ref={ref} className={cn('-mx-1 h-px bg-tic-200 dark:bg-tic-800', className)} {...props} />
 ));
 CommandSeparator.displayName = CommandPrimitive.Separator.displayName;
 
@@ -99,7 +119,7 @@ const CommandItem = React.forwardRef<
   <CommandPrimitive.Item
     ref={ref}
     className={cn(
-      'data-[selected=true]:text-tic-900 dark:data-[selected=true]:bg-tic-800 dark:data-[selected=true]:text-tic-50 data-[selected=true]:bg-tic-100 relative flex cursor-default select-none items-center rounded-sm px-2 py-1.5 text-sm outline-none data-[disabled=true]:pointer-events-none data-[disabled=true]:opacity-50',
+      'relative mb-1 flex cursor-default select-none items-center rounded-lg border border-tic-100 px-2 py-1.5 text-sm outline-none data-[disabled=true]:pointer-events-none data-[selected=true]:bg-tic-100 data-[selected=true]:text-tic-900 data-[disabled=true]:opacity-50',
       className,
     )}
     {...props}
@@ -109,7 +129,7 @@ const CommandItem = React.forwardRef<
 CommandItem.displayName = CommandPrimitive.Item.displayName;
 
 const CommandShortcut = ({ className, ...props }: React.HTMLAttributes<HTMLSpanElement>) => {
-  return <span className={cn('text-tic-500 dark:text-tic-400 ml-auto text-xs tracking-widest', className)} {...props} />;
+  return <span className={cn('ml-auto text-xs tracking-widest text-tic-500 dark:text-tic-400', className)} {...props} />;
 };
 CommandShortcut.displayName = 'CommandShortcut';
 

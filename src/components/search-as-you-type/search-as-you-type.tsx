@@ -1,14 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import uniqBy from 'lodash/uniqBy';
+import { Fragment, useState } from 'react';
 import { ReactTyped } from 'react-typed';
 
-import { asMoney, asNumber, asPercentage, cn } from '@/lib/utils';
+import { asMoney, asPercentage, cn } from '@/lib/utils';
 
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from '@/components/ui/command';
 
-import { SecionTitle } from '../section-title';
-import { Badge } from '../ui/badge';
+import { Skeleton } from '../ui/skeleton';
 import { useSearch } from './use-search';
 
 export const SearchAsYouType = () => {
@@ -19,9 +19,9 @@ export const SearchAsYouType = () => {
 
   return (
     <div className="container">
-      <div className="rounded-2xl bg-tic-200 px-6 pb-6 pt-8 md:pt-16">
+      <div className="relative rounded-2xl bg-tic-200 px-6 pb-6 pt-8 md:pt-16">
         <h2 className="mb-1 text-balance text-xl md:text-center md:text-3xl">Bygg en intuitiv sökupplevelse på nolltid.</h2>
-        <p className="mb-6 text-pretty text-xl opacity-50 md:mb-16 md:text-balance md:px-2 md:text-center md:text-2xl">
+        <p className="mb-6 text-pretty text-base text-tic-500 sm:max-w-[62ch] md:m-auto md:mb-16 md:text-balance md:px-2 md:text-center md:text-lg">
           Att söka i offentliga register kan vara både tidskrävande och kostsamt. Med vår blixtsnabba sökmotor får du tillgång till relevant
           information på ett ögonblick – och till en bråkdel av vad du normalt betalar.
         </p>
@@ -30,16 +30,16 @@ export const SearchAsYouType = () => {
           <ReactTyped
             strings={[
               'Sök företagsnamn',
-              'Sök organisationsnummer',
+              'Sök org. nummer',
               'Sök bankgiro',
-              'Sök gatuaddress',
+              'Sök address',
               'Sök e-post',
               'Sök telefonnummer',
+              'Sök LEI',
               'Sök verksamhetsbeskrivning',
-              'Sök LEI-kod',
-              'Sök SNI näringsgren (beskrivning)',
-              'Sök börsbolag kortnamn',
-              'Sök ISIN-kod',
+              'Sök SNI',
+              'Sök börsbolag',
+              'Sök ISIN',
             ]}
             typeSpeed={40}
             backSpeed={50}
@@ -53,82 +53,131 @@ export const SearchAsYouType = () => {
               <>
                 {companies?.length > 0 ? (
                   <>
-                    <CommandGroup heading="Företag">
-                      {companies.map((company) => (
-                        <CommandItem key={company.document.id} className="grid gap-2 md:gap-4">
-                          <div className="text-base">{company.document.names[0]?.nameOrIdentifier || '-'}</div>
+                    <CommandGroup>
+                      {companies.map((company) => {
+                        return (
+                          <>
+                            <CommandItem key={company.document.id} className="grid gap-2">
+                              <div className="text-base">
+                                {company.document.names.length > 0
+                                  ? uniqBy(company.document.names, 'nameOrIdentifier').map((name, index) => (
+                                      <Fragment key={index}>
+                                        {name.nameOrIdentifier || '-'}
+                                        {index < uniqBy(company.document.names, 'nameOrIdentifier').length - 1 && ', '}
+                                      </Fragment>
+                                    ))
+                                  : null}
 
-                          <div className="grid grid-cols-2 gap-2 space-y-2 md:grid-cols-4 md:gap-4 md:space-y-0">
-                            {/* Company Information */}
-                            <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">Registreringsnummer</span>
-                              <span className="block text-sm leading-none">{company.document.registrationNumber || '-'}</span>
-                            </div>
-                            <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">Registreringsdatum</span>
-                              <span className="block text-sm leading-none">
-                                {company.document.registrationDate
-                                  ? new Date(company.document.registrationDate * 1000).toLocaleDateString('sv-SE')
-                                  : '-'}
-                              </span>
-                            </div>
-                            <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">SNI-kod</span>
-                              <span className="block text-sm leading-none">
-                                {company.document.sniCodes[0]?.sni_2007Code || '-'} - {company.document.sniCodes[0]?.sni_2007Name || '-'}
-                              </span>
-                            </div>
-                            <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">Stad</span>
-                              <span className="block text-sm leading-none">{company.document.addresses[0]?.city || '-'}</span>
-                            </div>
+                                <div className="text-sm lowercase text-tic-600 first-letter:uppercase">
+                                  {company.document.sniCodes.length > 0
+                                    ? (() => {
+                                        const uniqueSniCodes = uniqBy(company.document.sniCodes, 'sni_2007Name');
+                                        const sniNames = uniqueSniCodes.map((sniCode) => sniCode.sni_2007Name).filter(Boolean);
+                                        const formattedSniNames = new Intl.ListFormat('sv-SE', {
+                                          style: 'long',
+                                          type: 'conjunction',
+                                        }).format(sniNames);
+                                        return formattedSniNames + '.';
+                                      })()
+                                    : null}
+                                </div>
+                              </div>
 
-                            {/* Financial Information */}
-                            <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">Omsättning</span>
-                              <span className="block text-sm leading-none">
-                                {company.document.mostRecentFinancialSummary?.rs_NetSalesK
-                                  ? asMoney(company.document.mostRecentFinancialSummary?.rs_NetSalesK * 1000)
-                                  : '-'}
-                              </span>
-                            </div>
-                            <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">Resultat efter finansiella poster</span>
-                              <span className="block text-sm leading-none">
-                                {company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK
-                                  ? asMoney(company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK * 1000)
-                                  : '-'}
-                              </span>
-                            </div>
-                            <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">Vinstmarginal (%)</span>
-                              <span className="block text-sm leading-none">
-                                {company.document.mostRecentFinancialSummary?.km_NetProfitMargin
-                                  ? asPercentage(company.document.mostRecentFinancialSummary?.km_NetProfitMargin * 100)
-                                  : '-'}
-                              </span>
-                            </div>
+                              <div className="grid grid-cols-1 gap-2 md:grid-cols-5">
+                                <div className="space-y-1">
+                                  <span className="block text-sm leading-tight text-slate-500">Reg. nummer</span>
+                                  <div className="text-sm leading-tight">{company.document.registrationNumber || '-'}</div>
+                                </div>
 
-                            {/* Contact Information */}
-                            <div>
-                              <span className="mb-2 block text-sm leading-none text-slate-500">Telefonnummer</span>
-                              <span className="block text-sm leading-none">{company.document.phoneNumbers[0]?.e164PhoneNumber || '-'}</span>
-                            </div>
-                          </div>
-                        </CommandItem>
-                      ))}
+                                <div className="space-y-1">
+                                  <span className="block text-sm leading-tight text-slate-500">Reg. datum</span>
+                                  <div className="text-sm leading-tight">
+                                    {company.document.registrationDate
+                                      ? new Date(company.document.registrationDate * 1000).toLocaleDateString('sv-SE')
+                                      : '-'}
+                                  </div>
+                                </div>
+
+                                <div className="space-y-1">
+                                  <span className="block text-sm leading-tight text-slate-500">Omsättning</span>
+                                  <div className="text-sm leading-tight">
+                                    {company.document.mostRecentFinancialSummary?.rs_NetSalesK
+                                      ? asMoney(company.document.mostRecentFinancialSummary?.rs_NetSalesK * 1000)
+                                      : '-'}
+                                  </div>
+                                </div>
+
+                                <div className="space-y-1">
+                                  <span className="block text-sm leading-tight text-slate-500">Resultat</span>
+                                  <div className="text-sm leading-tight">
+                                    {company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK
+                                      ? asMoney(company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK * 1000)
+                                      : '-'}
+                                  </div>
+                                </div>
+
+                                <div className="space-y-1">
+                                  <span className="block text-sm leading-tight text-slate-500">Vinstmarginal</span>
+                                  <div className="text-sm leading-tight">
+                                    {company.document.mostRecentFinancialSummary?.km_NetProfitMargin
+                                      ? asPercentage(company.document.mostRecentFinancialSummary?.km_NetProfitMargin * 100)
+                                      : '-'}
+                                  </div>
+                                </div>
+
+                                {/* Contact Information */}
+                                {/* <div>
+                                  <div className="space-y-1">
+                                    <span className="block text-sm leading-tight text-slate-500">Stad</span>
+                                    <div className="text-sm leading-tight">
+                                      {company.document.addresses.length > 0
+                                        ? uniqBy(company.document.addresses, 'city').map((address, index) => (
+                                            <span key={index}>
+                                              {address.city || '-'}
+                                              {index < uniqBy(company.document.addresses, 'city').length - 1 && ', '}
+                                            </span>
+                                          ))
+                                        : '-'}
+                                    </div>
+                                  </div>
+
+                                  <div className="space-y-1">
+                                    <span className="block text-sm leading-tight text-slate-500">Telefonnummer</span>
+                                    <div className="text-sm leading-tight">
+                                      {company.document.phoneNumbers.length > 0
+                                        ? uniqBy(company.document.phoneNumbers, 'e164PhoneNumber').map((phoneNumber, index) => (
+                                            <span key={index}>
+                                              {phoneNumber.e164PhoneNumber || '-'}
+                                              {index < uniqBy(company.document.phoneNumbers, 'e164PhoneNumber').length - 1 && ', '}
+                                            </span>
+                                          ))
+                                        : '-'}
+                                    </div>
+                                  </div>
+                                </div> */}
+                              </div>
+                            </CommandItem>
+                            <CommandSeparator />
+                          </>
+                        );
+                      })}
                     </CommandGroup>
                   </>
                 ) : (
-                  <CommandEmpty className="text-pretty p-4 text-sm text-red-500">No results found.</CommandEmpty>
+                  <CommandEmpty className="text-pretty p-4 text-sm text-tic-500">Inga resultat hittades.</CommandEmpty>
                 )}
               </>
-            ) : null}
+            ) : (
+              <>
+                <Skeleton className="m-1 h-28 rounded-lg" />
+                <Skeleton className="m-1 h-28 rounded-lg" />
+              </>
+            )}
           </CommandList>
         </Command>
 
         <div
-          className={cn('mt-3 text-sm opacity-75 transition-opacity', {
+          className={cn('ml-4 mt-3 text-sm text-tic-500 transition-opacity', {
             'opacity-0': !found,
           })}
         >

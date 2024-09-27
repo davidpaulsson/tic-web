@@ -7,7 +7,7 @@ import { OverviewIcon } from '@/icons/overview';
 import { SaleIcon } from '@/icons/sale';
 import { SearchIcon } from '@/icons/search';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { Document, INLINES } from '@contentful/rich-text-types';
+import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types';
 
 import Link from 'next/link';
 import React from 'react';
@@ -37,6 +37,7 @@ import { Sources } from '@/components/sources';
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 
 import { Testomonials } from './testomonials';
+import { Table, TableBody, TableCell, TableHead, TableRow } from './ui/table';
 
 type Props = {
   region: (typeof REGIONS)[number];
@@ -90,20 +91,27 @@ export const Blocks = ({ blocks, region }: Props) => {
         const { content } = block.fields as ContentfulBlockContent['fields'];
         return (
           <div key={block.sys.id} className="container my-8">
-            <div key={block.sys.id} className="prose mx-auto max-w-prose prose-headings:text-pretty prose-headings:font-normal">
+            <div
+              key={block.sys.id}
+              className="prose mx-auto max-w-prose text-tic-600 prose-headings:text-pretty prose-headings:font-normal prose-headings:text-tic-950 prose-li:m-0"
+            >
               {documentToReactComponents(content as unknown as Document, {
                 renderNode: {
+                  [BLOCKS.TABLE]: (node, children) => (
+                    <Table className="m-0">
+                      <TableBody className="rounded-2xl border border-tic-200">{children}</TableBody>
+                    </Table>
+                  ),
+                  [BLOCKS.TABLE_ROW]: (node, children) => <TableRow>{children}</TableRow>,
+                  [BLOCKS.TABLE_CELL]: (node, children) => <TableCell>{children}</TableCell>,
+                  [BLOCKS.TABLE_HEADER_CELL]: (node, children) => <TableHead>{children}</TableHead>,
                   [INLINES.ENTRY_HYPERLINK]: (node) => {
                     const slug = node.data.target.fields.slug;
                     // @ts-expect-error weak typing
                     const target = node.content[0].value;
 
                     return (
-                      <Link
-                        key={node.data.target.sys.id}
-                        href={`/${slug}`}
-                        className="hover:text-tic-500 underline transition-colors hover:no-underline"
-                      >
+                      <Link key={node.data.target.sys.id} href={`/${slug}`} className="text-tic-950 no-underline hover:underline">
                         {target}
                       </Link>
                     );

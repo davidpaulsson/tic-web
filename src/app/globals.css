@@ -54,8 +54,12 @@
   }
 
   .prose ul li p,
-  .prose ol li p {
+  .prose ol li p,
+  .prose table p {
     margin: 0;
+  }
+  .prose a {
+    @apply text-tic-950 no-underline hover:underline;
   }
 }
 

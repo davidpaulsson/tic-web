@@ -54,7 +54,7 @@ export const Sources = () => {
           <h2 className="z-10 mb-1 text-balance px-6 text-xl text-tic-100 md:text-center md:text-3xl">
             Vi analyserar all data, från varje källa.
           </h2>
-          <p className="z-10 mb-6 text-pretty px-6 text-xl text-tic-400 md:mb-16 md:text-balance md:px-2 md:text-center md:text-2xl">
+          <p className="z-10 mb-6 text-pretty px-6 text-base text-tic-400 sm:max-w-[62ch] md:m-auto md:mb-16 md:text-balance md:px-2 md:text-center md:text-lg">
             Brister och avvikelser skapar vårt Intelligence Score.
           </p>
 
