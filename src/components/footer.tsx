@@ -60,7 +60,7 @@ export const Footer = async ({ locale }: { locale: string }) => {
   });
 
   return (
-    <footer className="mt-20 flex h-full items-end bg-tic-900 text-tic-50 md:mt-40">
+    <footer className="mt-16 flex h-full items-end bg-tic-900 text-tic-50 md:mt-40">
       <div className="container pb-16 pt-32">
         <div className="space-y-8 pt-10">
           <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
