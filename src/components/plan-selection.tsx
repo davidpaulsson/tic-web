@@ -4,8 +4,8 @@ import { REGIONS } from '@/lib/constants';
 import { asMoney } from '@/lib/utils';
 
 import { ListItem } from '@/components/list-item';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 import { GetStartedButton } from './get-started-button';
 import { SecionTitle } from './section-title';

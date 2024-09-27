@@ -7,9 +7,9 @@ import { REGIONS } from '@/lib/constants';
 import { asMoney, asNumber, cn } from '@/lib/utils';
 
 import { ListItem } from '@/components/list-item';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/Popover';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Table, TableBody, TableCell, TableFooter, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 import { GetStartedButton } from './get-started-button';
 import { SecionTitle } from './section-title';
