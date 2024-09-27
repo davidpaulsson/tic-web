@@ -58,29 +58,31 @@ export const SearchAsYouType = () => {
                         return (
                           <>
                             <CommandItem key={company.document.id} className="grid gap-2">
-                              <div className="text-base">
-                                {company.document.names.length > 0
-                                  ? uniqBy(company.document.names, 'nameOrIdentifier').map((name, index) => (
-                                      <Fragment key={index}>
-                                        {name.nameOrIdentifier || '-'}
-                                        {index < uniqBy(company.document.names, 'nameOrIdentifier').length - 1 && ', '}
-                                      </Fragment>
-                                    ))
-                                  : null}
-
-                                <div className="text-sm lowercase text-tic-600 first-letter:uppercase">
-                                  {company.document.sniCodes.length > 0
-                                    ? (() => {
-                                        const uniqueSniCodes = uniqBy(company.document.sniCodes, 'sni_2007Name');
-                                        const sniNames = uniqueSniCodes.map((sniCode) => sniCode.sni_2007Name).filter(Boolean);
-                                        const formattedSniNames = new Intl.ListFormat('sv-SE', {
-                                          style: 'long',
-                                          type: 'conjunction',
-                                        }).format(sniNames);
-                                        return formattedSniNames + '.';
-                                      })()
+                              <div>
+                                <div className="text-base">
+                                  {company.document.names.length > 0
+                                    ? uniqBy(company.document.names, 'nameOrIdentifier').map((name, index) => (
+                                        <Fragment key={index}>
+                                          {name.nameOrIdentifier || '-'}
+                                          {index < uniqBy(company.document.names, 'nameOrIdentifier').length - 1 && ', '}
+                                        </Fragment>
+                                      ))
                                     : null}
                                 </div>
+
+                                {company.document.sniCodes.length > 0
+                                  ? (() => {
+                                      const uniqueSniCodes = uniqBy(company.document.sniCodes, 'sni_2007Name');
+                                      const sniNames = uniqueSniCodes.map((sniCode) => sniCode.sni_2007Name).filter(Boolean);
+                                      const formattedSniNames = new Intl.ListFormat('sv-SE', {
+                                        style: 'long',
+                                        type: 'conjunction',
+                                      }).format(sniNames);
+                                      return (
+                                        <div className="text-sm lowercase text-tic-600 first-letter:uppercase">{formattedSniNames}.</div>
+                                      );
+                                    })()
+                                  : null}
                               </div>
 
                               <div className="grid grid-cols-1 gap-2 md:grid-cols-5">
