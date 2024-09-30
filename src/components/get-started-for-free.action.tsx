@@ -43,6 +43,6 @@ export async function submitForm(data: { contact: string }) {
 
   return {
     success: true,
-    message: `Tack! Du får snart ett ${isEmail ? 'e-post' : 'SMS'}-meddelande med uppgifter hur du kommer åt vårt API.`,
+    message: `Tack! Du får snart ett ${isEmail ? 'e-postmeddelande' : 'SMS-meddelande'} med uppgifter hur du kommer åt vårt API.`,
   };
 }

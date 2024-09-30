@@ -18,6 +18,7 @@ import { submitForm } from './contact-sales.action';
 
 export const ContactSales = ({ region }: { region: (typeof REGIONS)[number] }) => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted'>('idle');
+  const [message, setMessage] = useState<string | null>(null);
 
   const formSchema = z
     .object({
@@ -64,6 +65,7 @@ export const ContactSales = ({ region }: { region: (typeof REGIONS)[number] }) =
       try {
         const { success, message } = await submitForm(values);
         toast(message);
+        setMessage(message);
         if (success) {
           confetti();
           setStatus('submitted');
@@ -144,7 +146,7 @@ export const ContactSales = ({ region }: { region: (typeof REGIONS)[number] }) =
           {status === 'submitting' ? 'Skickar...' : 'Skicka'}
         </Button>
 
-        {status === 'submitted' && <p className="text-tic-500 col-span-full mt-2 text-balance text-sm">Tack! Du blir snart kontaktad.</p>}
+        {status === 'submitted' && <p className="col-span-full mt-2 text-balance text-sm text-tic-500">{message}</p>}
       </form>
     </Form>
   );

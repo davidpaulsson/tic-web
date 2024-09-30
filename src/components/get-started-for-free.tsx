@@ -31,6 +31,7 @@ const dict = {
 
 export const GetStartedForFree = ({ region }: { region: (typeof REGIONS)[number] }) => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted'>('idle');
+  const [message, setMessage] = useState<string | null>(null);
 
   const formSchema = z.object({
     contact: z.union([z.string().email(dict[region].invalid), z.string().regex(/^\d+$/, dict[region].invalid)]),
@@ -50,10 +51,13 @@ export const GetStartedForFree = ({ region }: { region: (typeof REGIONS)[number]
       try {
         const { success, message } = await submitForm(values);
         toast(message);
+        setMessage(message);
         if (success) {
           confetti();
           setStatus('submitted');
           form.reset();
+        } else {
+          setStatus('idle');
         }
       } catch (error) {
         toast('Uh-oh. Något gick fel. Försök igen.');
@@ -61,8 +65,6 @@ export const GetStartedForFree = ({ region }: { region: (typeof REGIONS)[number]
       }
     });
   }
-
-  const isEmail = form.watch('contact').includes('@');
 
   return (
     <Form {...form}>
@@ -83,11 +85,7 @@ export const GetStartedForFree = ({ region }: { region: (typeof REGIONS)[number]
           {status === 'submitting' ? 'Skickar...' : dict[region].title}
         </Button>
 
-        {status === 'submitted' && (
-          <p className="text-tic-500 col-span-full mt-2 text-balance text-sm">
-            Tack! Du får snart ett {isEmail ? 'e-post' : 'SMS'}-meddelande med uppgifter hur du kommer åt vårt API.
-          </p>
-        )}
+        {status === 'submitted' && message && <p className="col-span-full mt-2 text-balance text-sm text-tic-500">{message}</p>}
       </form>
     </Form>
   );

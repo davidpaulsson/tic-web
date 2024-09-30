@@ -12,7 +12,6 @@ export async function submitForm({ FirstName, LastName, Email }: { FirstName: st
 
   if (!response.ok) {
     const text = await response.text();
-    console.log(text);
     if (text === 'E-mail address has already been registered') {
       return {
         success: false,
