@@ -15,11 +15,12 @@ import { Logo } from './logo';
 const SocialLinks = () => (
   <ul className="flex gap-8">
     {[
-      { label: 'Instagram', href: '#', icon: <InstagramIcon /> },
-      { label: 'X', href: '#', icon: <XIcon /> },
-      { label: 'Facebook', href: '#', icon: <FacebookIcon /> },
-      { label: 'LinkedIn', href: '#', icon: <LinkedinIcon /> },
+      { label: 'Instagram', href: null, icon: <InstagramIcon /> },
+      { label: 'X', href: null, icon: <XIcon /> },
+      { label: 'Facebook', href: null, icon: <FacebookIcon /> },
+      { label: 'LinkedIn', href: 'https://www.linkedin.com/company/tic-the-intelligence-company', icon: <LinkedinIcon /> },
     ].map((link) => {
+      if (!link.href) return null;
       return (
         <li key={link.label}>
           <a href={link.href} className="text-xl">
