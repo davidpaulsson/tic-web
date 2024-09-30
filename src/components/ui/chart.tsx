@@ -153,7 +153,7 @@ const ChartTooltipContent = React.forwardRef<
       <div
         ref={ref}
         className={cn(
-          'border-tic-200 border-tic-200/50 dark:border-tic-800 dark:border-tic-800/50 dark:bg-tic-900 grid min-w-[8rem] items-start gap-1.5 rounded-2xl border bg-white px-2.5 py-1.5 text-xs shadow-xl',
+          'grid min-w-[8rem] items-start gap-1.5 rounded-2xl border border-tic-200 border-tic-200/50 bg-white px-2.5 py-1.5 text-xs shadow-xl dark:border-tic-800 dark:border-tic-800/50 dark:bg-tic-900',
           className,
         )}
       >
@@ -168,7 +168,7 @@ const ChartTooltipContent = React.forwardRef<
               <div
                 key={item.dataKey}
                 className={cn(
-                  '[&>svg]:text-tic-500 dark:[&>svg]:text-tic-400 flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5',
+                  'flex w-full flex-wrap items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5 [&>svg]:text-tic-500 dark:[&>svg]:text-tic-400',
                   indicator === 'dot' && 'items-center',
                 )}
               >
@@ -202,7 +202,7 @@ const ChartTooltipContent = React.forwardRef<
                         <span className="text-tic-500 dark:text-tic-400">{itemConfig?.label || item.name}</span>
                       </div>
                       {item.value && (
-                        <span className="text-tic-950 dark:text-tic-50 font-mono font-medium tabular-nums">
+                        <span className="font-mono font-medium tabular-nums text-tic-950 dark:text-tic-50">
                           {item.value.toLocaleString('sv-SE')}
                         </span>
                       )}
@@ -244,7 +244,7 @@ const ChartLegendContent = React.forwardRef<
         return (
           <div
             key={item.value}
-            className={cn('[&>svg]:text-tic-500 dark:[&>svg]:text-tic-400 flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3')}
+            className={cn('flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3 [&>svg]:text-tic-500 dark:[&>svg]:text-tic-400')}
           >
             {itemConfig?.icon && !hideIcon ? (
               <itemConfig.icon />

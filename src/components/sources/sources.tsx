@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 import { asNumber } from '@/lib/utils';
 
@@ -74,9 +74,10 @@ export const Sources = () => {
                   alt="TIC Intelligence"
                   className="relative z-10 rounded-3xl"
                   style={{
-                    maxWidth: "100%",
-                    height: "auto"
-                  }} />
+                    maxWidth: '100%',
+                    height: 'auto',
+                  }}
+                />
               </NeonGradientCard>
             </div>
 

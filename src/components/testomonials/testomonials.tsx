@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from 'next/image';
 
 import { asNumber } from '@/lib/utils';
 
@@ -34,7 +34,7 @@ export const Testomonials = () => {
   return (
     <div className="container">
       <div className="grid gap-12 md:grid-cols-2 md:items-center">
-        <div className="bg-tic-100 border-tic-200 rounded-2xl border p-6 md:p-10">
+        <div className="rounded-2xl border border-tic-200 bg-tic-100 p-6 md:p-10">
           <div className="space-y-6">
             <span className="relative flex h-10 w-10 shrink-0 overflow-hidden rounded-full">
               <Image
@@ -42,9 +42,10 @@ export const Testomonials = () => {
                 src={image}
                 alt={name}
                 style={{
-                  maxWidth: "100%",
-                  height: "auto"
-                }} />
+                  maxWidth: '100%',
+                  height: 'auto',
+                }}
+              />
             </span>
 
             <blockquote className="max-w-prose text-pretty text-xl md:text-2xl">{quote}</blockquote>
@@ -52,7 +53,7 @@ export const Testomonials = () => {
             <div className="flex items-center space-x-4">
               <div>
                 <p className="mb-1 leading-tight">{name}</p>
-                <p className="text-tic-500 text-pretty leading-tight">{title}</p>
+                <p className="text-pretty leading-tight text-tic-500">{title}</p>
               </div>
             </div>
           </div>

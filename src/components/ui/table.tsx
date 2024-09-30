@@ -21,7 +21,7 @@ TableBody.displayName = 'TableBody';
 
 const TableFooter = React.forwardRef<HTMLTableSectionElement, React.HTMLAttributes<HTMLTableSectionElement>>(
   ({ className, ...props }, ref) => (
-    <tfoot ref={ref} className={cn('bg-tic-100 border-t font-normal [&>tr]:last:border-b-0', className)} {...props} />
+    <tfoot ref={ref} className={cn('border-t bg-tic-100 font-normal [&>tr]:last:border-b-0', className)} {...props} />
   ),
 );
 TableFooter.displayName = 'TableFooter';
@@ -29,7 +29,7 @@ TableFooter.displayName = 'TableFooter';
 const TableRow = React.forwardRef<HTMLTableRowElement, React.HTMLAttributes<HTMLTableRowElement>>(({ className, ...props }, ref) => (
   <tr
     ref={ref}
-    className={cn('hover:bg-tic-100 data-[state=selected]:bg-tic-100 border-b-tic-200 border-b transition-colors', className)}
+    className={cn('border-b border-b-tic-200 transition-colors hover:bg-tic-100 data-[state=selected]:bg-tic-100', className)}
     {...props}
   />
 ));
@@ -38,7 +38,7 @@ TableRow.displayName = 'TableRow';
 const TableHead = React.forwardRef<HTMLTableCellElement, React.ThHTMLAttributes<HTMLTableCellElement>>(({ className, ...props }, ref) => (
   <th
     ref={ref}
-    className={cn('text-tic-950 h-12 px-2 text-left align-middle font-normal md:px-4 [&:has([role=checkbox])]:pr-0', className)}
+    className={cn('h-12 px-2 text-left align-middle font-normal text-tic-950 md:px-4 [&:has([role=checkbox])]:pr-0', className)}
     {...props}
   />
 ));
@@ -50,7 +50,7 @@ const TableCell = React.forwardRef<HTMLTableCellElement, React.TdHTMLAttributes<
 TableCell.displayName = 'TableCell';
 
 const TableCaption = React.forwardRef<HTMLTableCaptionElement, React.HTMLAttributes<HTMLTableCaptionElement>>(
-  ({ className, ...props }, ref) => <caption ref={ref} className={cn('text-tic-500 mt-4 text-sm', className)} {...props} />,
+  ({ className, ...props }, ref) => <caption ref={ref} className={cn('mt-4 text-sm text-tic-500', className)} {...props} />,
 );
 TableCaption.displayName = 'TableCaption';
 

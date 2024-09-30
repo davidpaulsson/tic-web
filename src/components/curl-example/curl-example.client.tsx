@@ -87,7 +87,7 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
     <div className="container mb-5">
       <SecionTitle>Skapa kraftfulla applikationer med affärsdata utan krångel.</SecionTitle>
       <div className="lg:grid lg:grid-cols-4 lg:grid-rows-1 lg:gap-6">
-        <div ref={buttonAreaRef} className="bg-tic-900 rounded-2xl p-6 max-lg:mb-5 lg:col-span-1">
+        <div ref={buttonAreaRef} className="rounded-2xl bg-tic-900 p-6 max-lg:mb-5 lg:col-span-1">
           <ul className="max-lg:grid max-lg:gap-6 max-md:grid-cols-1 lg:space-y-5">
             {buttonList.map(({ id, title, description, icon }) => (
               <li key={id}>
@@ -95,19 +95,19 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
                   onClick={() => scrollTo(id)}
                   aria-pressed={activeButton === id}
                   className={cn(
-                    'bg-tic-800 flex h-full w-full flex-col items-start justify-start overflow-hidden rounded-xl p-3 text-left transition',
+                    'flex h-full w-full flex-col items-start justify-start overflow-hidden rounded-xl bg-tic-800 p-3 text-left transition',
                     {
                       'bg-tic-700': activeButton === id,
                       'opacity-50 hover:opacity-75': activeButton !== id,
                     },
                   )}
                 >
-                  <span className="text-tic-100 flex w-full items-center justify-between text-pretty">
+                  <span className="flex w-full items-center justify-between text-pretty text-tic-100">
                     {title} {icon}
                   </span>
                   <motion.span
                     initial={false}
-                    className="text-tic-400 block text-pretty pr-6 text-sm"
+                    className="block text-pretty pr-6 text-sm text-tic-400"
                     animate={{
                       height: activeButton === id ? 'auto' : 0,
                       opacity: activeButton === id ? 1 : 0,
@@ -118,7 +118,7 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
 
                   {activeButton === id && (
                     <motion.div
-                      className="bg-tic-400 h-0.5 translate-y-3 rounded-2xl"
+                      className="h-0.5 translate-y-3 rounded-2xl bg-tic-400"
                       initial={{ width: 0 }}
                       animate={{
                         width: activeButton === id ? '100%' : 0,
@@ -134,7 +134,7 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
                 </button>
               </li>
             ))}
-            <li className="text-tic-600 !mt-12 flex w-full items-center justify-between text-pretty px-3">
+            <li className="!mt-12 flex w-full items-center justify-between text-pretty px-3 text-tic-600">
               Och mycket mer <MoreIcon />
             </li>
           </ul>
@@ -144,13 +144,13 @@ export function CurlExampleClient({ children }: { children: React.ReactNode }) {
           <div
             ref={scrollAreaRef}
             id="response"
-            className="bg-tic-900 overflow-hidden scroll-smooth rounded-2xl p-6 font-mono text-xs lg:col-span-3 [&_span]:whitespace-pre-wrap"
+            className="overflow-hidden scroll-smooth rounded-2xl bg-tic-900 p-6 font-mono text-xs lg:col-span-3 [&_span]:whitespace-pre-wrap"
             style={{ height }}
           >
             {children}
           </div>
         ) : (
-          <div className="bg-tic-900 rounded-2xl lg:col-span-3" />
+          <div className="rounded-2xl bg-tic-900 lg:col-span-3" />
         )}
       </div>
     </div>

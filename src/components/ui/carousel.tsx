@@ -247,7 +247,7 @@ const CarouselDots = ({ api }: { api: CarouselApi }) => {
 
   return (
     <div className="container flex gap-1 pt-16">
-      <button className="flex gap-2 text-tic-purple" onClick={() => setIsPlaying(!isPlaying)}>
+      <button className="text-tic-purple flex gap-2" onClick={() => setIsPlaying(!isPlaying)}>
         {isPlaying ? <PauseCircle size={12} /> : <PlayCircle size={12} />}
         <span className="sr-only">{isPlaying ? 'Pause' : 'Play'}</span>
       </button>

@@ -1,7 +1,7 @@
 'use client';
 
 import { ChevronRight } from 'lucide-react';
-import Image from "next/image";
+import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 
@@ -53,7 +53,7 @@ export const Carousel = ({ carousel, locale }: { carousel: ContentfulBlockCarous
           },
         }}
       >
-        <CarouselContent className="gap-6 text-tic-blue">
+        <CarouselContent className="text-tic-blue gap-6">
           {carousel.cards.map((card) => (
             <CarouselItem
               key={card.sys.id}
