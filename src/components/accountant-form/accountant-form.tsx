@@ -76,7 +76,7 @@ export const AccountantForm = () => {
     <div className="container">
       <div className="overflow-hidden rounded-2xl shadow-2xl md:grid md:grid-cols-2">
         <div className="relative max-md:hidden">
-          <Image src={placeholder} alt="" placeholder="blur" layout="fill" className="object-cover object-center" />
+          <Image src={placeholder} alt="" placeholder="blur" className="object-cover object-center" fill sizes="50vw" />
         </div>
         <div className="rounded-br-2xl rounded-tr-2xl border-b border-r border-t border-tic-200 bg-tic-50 px-8 py-16 md:px-16 md:py-32">
           <h2 className="mb-2 text-pretty text-2xl">Är du revisor eller auktoriserad redovisningskonsult?</h2>
