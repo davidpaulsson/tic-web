@@ -2,6 +2,7 @@
 
 import uniqBy from 'lodash/uniqBy';
 import { Fragment, useState } from 'react';
+import ReactDOM from 'react-dom';
 import { ReactTyped } from 'react-typed';
 
 import { asMoney, asPercentage, cn } from '@/lib/utils';
@@ -16,6 +17,8 @@ export const SearchAsYouType = () => {
   const { companies, found, searchTimeMs } = useSearch({
     query: value,
   });
+
+  ReactDOM.preconnect('https://api.tic.io', { crossOrigin: 'anonymous' });
 
   return (
     <div className="container">
