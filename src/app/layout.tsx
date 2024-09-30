@@ -1,3 +1,5 @@
+import { i18n } from '@/i18n-config';
+
 import type { Metadata } from 'next';
 import { Atkinson_Hyperlegible } from 'next/font/google';
 
@@ -42,7 +44,7 @@ export default function RootLayout({
   params: { slug: string[] };
 }>) {
   return (
-    <html lang={params?.slug?.[0] || 'sv'}>
+    <html lang={params?.slug?.[0] || i18n.defaultLocale}>
       <body className={cn(hyperlegible.className, 'text-base text-tic-950')}>
         <DotPattern
           width={20}
