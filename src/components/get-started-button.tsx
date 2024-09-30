@@ -1,9 +1,6 @@
+import { Locale } from '@/i18n-config';
 import { AccountIcon } from '@/icons/account';
 import { StartIcon } from '@/icons/start';
-
-import Link from 'next/link';
-
-import { REGIONS } from '@/lib/constants';
 
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 
@@ -11,7 +8,7 @@ import { ContactSales } from './contact-sales';
 import { GetStartedForFree } from './get-started-for-free';
 import { Button } from './ui/button';
 
-export const GetStartedButton = ({ plan, region }: { plan: 'Free' | 'Basic' | 'Premium'; region: (typeof REGIONS)[number] }) => {
+export const GetStartedButton = ({ plan, region }: { plan: 'Free' | 'Basic' | 'Premium'; region: Locale }) => {
   switch (plan) {
     case 'Free':
       return (

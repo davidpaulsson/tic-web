@@ -1,6 +1,7 @@
+import { Locale } from '@/i18n-config';
+
 import { InfoIcon, PlusIcon } from 'lucide-react';
 
-import { REGIONS } from '@/lib/constants';
 import { asMoney } from '@/lib/utils';
 
 import { ListItem } from '@/components/list-item';
@@ -10,7 +11,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { GetStartedButton } from './get-started-button';
 import { SecionTitle } from './section-title';
 
-export const PlanSelection = ({ region }: { region: (typeof REGIONS)[number] }) => {
+export const PlanSelection = ({ region }: { region: Locale }) => {
   return (
     <div className="container">
       <SecionTitle>Välj abonnemang och kom igång gratis redan idag.</SecionTitle>

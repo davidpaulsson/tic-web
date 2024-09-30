@@ -1,6 +1,7 @@
+import { Locale, i18n } from '@/i18n-config';
+
 import { notFound } from 'next/navigation';
 
-import { REGIONS } from '@/lib/constants';
 import { getContentfulClient } from '@/lib/contentful/get-client';
 import type { ContentfulPageResponse } from '@/lib/contentful/types';
 
@@ -10,7 +11,7 @@ import { Logger } from '@/components/logger';
 export async function generateStaticParams() {
   const cf = getContentfulClient();
   const resp = await Promise.all(
-    REGIONS.map(async (region) => {
+    i18n.locales.map(async (region) => {
       return cf.getEntries({
         content_type: 'page',
         limit: 1000,
@@ -27,7 +28,7 @@ export async function generateStaticParams() {
   }));
 }
 
-export async function generateMetadata({ params }: Readonly<{ params: { region: (typeof REGIONS)[number]; slug: string[] } }>) {
+export async function generateMetadata({ params }: Readonly<{ params: { region: Locale; slug: string[] } }>) {
   const cf = getContentfulClient();
   const entry = (await cf.getEntries({
     content_type: 'page',
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: Readonly<{ params: { region: 
   };
 }
 
-export default async function Page({ params }: Readonly<{ params: { region: (typeof REGIONS)[number]; slug: string[] } }>) {
+export default async function Page({ params }: Readonly<{ params: { region: Locale; slug: string[] } }>) {
   const cf = getContentfulClient();
   const entry = (await cf.getEntries({
     content_type: 'page',

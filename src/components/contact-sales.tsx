@@ -1,5 +1,6 @@
 'use client';
 
+import { Locale } from '@/i18n-config';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import confetti from 'canvas-confetti';
@@ -8,15 +9,13 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import { z } from 'zod';
 
-import { REGIONS } from '@/lib/constants';
-
 import { Button } from '@/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 
 import { submitForm } from './contact-sales.action';
 
-export const ContactSales = ({ region }: { region: (typeof REGIONS)[number] }) => {
+export const ContactSales = ({ region }: { region: Locale }) => {
   const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted'>('idle');
   const [message, setMessage] = useState<string | null>(null);
 

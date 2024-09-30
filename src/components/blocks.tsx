@@ -1,3 +1,4 @@
+import { Locale } from '@/i18n-config';
 import { DeviationIcon } from '@/icons/deviation';
 import { DocumentIcon } from '@/icons/document';
 import { HistoryIcon } from '@/icons/history';
@@ -12,7 +13,6 @@ import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types';
 import Link from 'next/link';
 import React from 'react';
 
-import { REGIONS } from '@/lib/constants';
 import {
   ContentfulBlockCarousel,
   ContentfulBlockContent,
@@ -41,7 +41,7 @@ import { Testomonials } from './testomonials';
 import { Table, TableBody, TableCell, TableHead, TableRow } from './ui/table';
 
 type Props = {
-  region: (typeof REGIONS)[number];
+  region: Locale;
   blocks: ContentfulPageResponse['items'][number]['fields']['blocks'];
 };
 

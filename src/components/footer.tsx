@@ -1,3 +1,4 @@
+import { Locale } from '@/i18n-config';
 import { Dot } from '@/icons/dot';
 import { FacebookIcon } from '@/icons/facebook';
 import { InstagramIcon } from '@/icons/instagram';
@@ -33,14 +34,14 @@ const SocialLinks = () => (
   </ul>
 );
 
-export const Footer = async ({ locale }: { locale: string }) => {
+export const Footer = async ({ region }: { region: Locale }) => {
   const { isEnabled } = draftMode();
   const cf = getContentfulClient(isEnabled);
   const entry = (await cf.getEntries({
     content_type: 'navigation',
     'fields.internalTitle': 'Footer',
     limit: 1,
-    locale: locale,
+    locale: region,
   })) as unknown as ContentfulNavigationResponse;
 
   const links = entry?.items?.[0]?.fields?.links.map((link) => {

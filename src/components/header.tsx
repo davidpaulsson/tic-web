@@ -1,3 +1,5 @@
+import { Locale } from '@/i18n-config';
+
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
@@ -10,17 +12,17 @@ import { Button } from '@/components/ui/button';
 import { MobileNav } from './mobile-nav';
 
 type Props = {
-  locale: string;
+  region: Locale;
 };
 
-export const Header = async ({ locale }: Props) => {
+export const Header = async ({ region }: Props) => {
   const { isEnabled } = draftMode();
   const cf = getContentfulClient(isEnabled);
   const entry = (await cf.getEntries({
     content_type: 'navigation',
     'fields.internalTitle': 'Header',
     limit: 1,
-    locale: locale,
+    locale: region,
   })) as unknown as ContentfulNavigationResponse;
 
   const links = entry?.items?.[0]?.fields?.links.map((link) => {
@@ -41,17 +43,17 @@ export const Header = async ({ locale }: Props) => {
   });
 
   let dict;
-  switch (locale) {
-    case 'en':
-      dict = {
-        goToHomepage: 'Go to homepage',
-        openMenu: 'Open menu',
-        logIn: {
-          title: 'Log in',
-          url: '/',
-        },
-      };
-      break;
+  switch (region) {
+    // case 'en':
+    //   dict = {
+    //     goToHomepage: 'Go to homepage',
+    //     openMenu: 'Open menu',
+    //     logIn: {
+    //       title: 'Log in',
+    //       url: '/',
+    //     },
+    //   };
+    //   break;
     case 'sv':
       dict = {
         goToHomepage: 'Gå till startsidan',
@@ -63,14 +65,14 @@ export const Header = async ({ locale }: Props) => {
       };
       break;
     default:
-      throw new Error(`Unsupported locale: ${locale}`);
+      throw new Error(`Unsupported locale: ${region}`);
   }
 
   return (
     <header className="container sticky top-6 z-20 md:grid md:place-content-center">
       <nav className="flex items-center justify-between rounded-2xl border border-tic-300/50 bg-tic-50/50 px-6 py-3 backdrop-blur">
         <div className="flex w-full items-center gap-14">
-          <Link href={`/${locale}`}>
+          <Link href={`/${region}`}>
             <span className="sr-only">{dict.goToHomepage}</span>
             <Logo className="w-12" />
           </Link>
@@ -106,7 +108,7 @@ export const Header = async ({ locale }: Props) => {
         </div>
 
         {/** up to md screen */}
-        <MobileNav dict={dict} links={links} />
+        <MobileNav dict={dict} links={links} region={region} />
       </nav>
     </header>
   );

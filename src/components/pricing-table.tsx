@@ -1,9 +1,9 @@
+import { Locale } from '@/i18n-config';
 import { CheckIcon } from '@/icons/check';
 
 import { InfoIcon, Minus } from 'lucide-react';
 import React from 'react';
 
-import { REGIONS } from '@/lib/constants';
 import { asMoney, asNumber, cn } from '@/lib/utils';
 
 import { ListItem } from '@/components/list-item';
@@ -264,7 +264,7 @@ const PLANS = [
   },
 ];
 
-export const PricingTable = ({ region }: { region: (typeof REGIONS)[number] }) => {
+export const PricingTable = ({ region }: { region: Locale }) => {
   return (
     <div className="container">
       <SecionTitle>Jämför detaljerna.</SecionTitle>
