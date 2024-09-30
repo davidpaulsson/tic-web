@@ -1,4 +1,3 @@
-import { Menu } from 'lucide-react';
 import { draftMode } from 'next/headers';
 import Link from 'next/link';
 
@@ -7,8 +6,8 @@ import type { ContentfulExternalPage, ContentfulNavigationResponse, ContentfulPa
 
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Sheet, SheetClose, SheetContent, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+
+import { MobileNav } from './mobile-nav';
 
 type Props = {
   locale: string;
@@ -107,52 +106,7 @@ export const Header = async ({ locale }: Props) => {
         </div>
 
         {/** up to md screen */}
-        <Sheet>
-          <SheetTrigger className="flex h-10 w-10 items-center justify-end md:hidden">
-            <Menu />
-            <span className="sr-only">{dict.openMenu}</span>
-          </SheetTrigger>
-          <SheetContent className="flex flex-col justify-between">
-            <div>
-              <SheetHeader>
-                <SheetTitle>The Intelligence Company</SheetTitle>
-              </SheetHeader>
-              <ScrollArea>
-                <ul className="divide-y">
-                  <SheetClose asChild>
-                    <Link href="/sv" className="block text-nowrap py-4 hover:underline">
-                      Startsida
-                    </Link>
-                  </SheetClose>
-                  {links.map((link) => (
-                    <li key={link.slug}>
-                      {link.slug.startsWith('http') ? (
-                        <a href={link.slug} className="block py-4 hover:underline" target="_blank">
-                          {link.title}
-                        </a>
-                      ) : (
-                        <SheetClose asChild>
-                          <Link href={`/${link.slug}`} className="block text-nowrap py-4 hover:underline">
-                            {link.title}
-                          </Link>
-                        </SheetClose>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </ScrollArea>
-            </div>
-            <SheetFooter>
-              <ul className="space-y-4">
-                <li>
-                  <Button className="w-full" asChild>
-                    <a href={dict.logIn.url}>{dict.logIn.title}</a>
-                  </Button>
-                </li>
-              </ul>
-            </SheetFooter>
-          </SheetContent>
-        </Sheet>
+        <MobileNav dict={dict} links={links} />
       </nav>
     </header>
   );

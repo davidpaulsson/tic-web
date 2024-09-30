@@ -67,7 +67,7 @@ export const Sources = () => {
 
             <div className="relative">
               <NeonGradientCard>
-                <Image src={tic} width={140} height={140} alt="TIC Intelligence" className="relative z-10" />
+                <Image src={tic} width={140} height={140} alt="TIC Intelligence" className="relative z-10 rounded-3xl" />
               </NeonGradientCard>
             </div>
 
