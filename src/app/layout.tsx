@@ -1,6 +1,7 @@
 import { i18n } from '@/i18n-config';
 
 import type { Metadata } from 'next';
+import PlausibleProvider from 'next-plausible';
 import { Atkinson_Hyperlegible } from 'next/font/google';
 
 import { cn } from '@/lib/utils';
@@ -44,22 +45,24 @@ export default function RootLayout({
   params: { slug: string[] };
 }>) {
   return (
-    <html lang={params?.slug?.[0] || i18n.defaultLocale}>
-      <body className={cn(hyperlegible.className, 'text-base text-tic-950')}>
-        <DotPattern
-          width={20}
-          height={20}
-          cx={1}
-          cy={1}
-          cr={1}
-          className={cn('z-[-1] [mask-image:linear-gradient(to_bottom,white,transparent,transparent)]')}
-        />
+    <PlausibleProvider domain="tic.io" trackOutboundLinks>
+      <html lang={params?.slug?.[0] || i18n.defaultLocale}>
+        <body className={cn(hyperlegible.className, 'text-base text-tic-950')}>
+          <DotPattern
+            width={20}
+            height={20}
+            cx={1}
+            cy={1}
+            cr={1}
+            className={cn('z-[-1] [mask-image:linear-gradient(to_bottom,white,transparent,transparent)]')}
+          />
 
-        <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
+          <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
 
-        <Intercom />
-        <Toaster position="bottom-left" />
-      </body>
-    </html>
+          <Intercom />
+          <Toaster position="bottom-left" />
+        </body>
+      </html>
+    </PlausibleProvider>
   );
 }
