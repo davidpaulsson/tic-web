@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "prettier": "prettier --write ."
+    "prettier": "prettier --write .",
+    "generate-types": "npx openapi-typescript https://api.tic.io/docs/v1/swagger.json -o ./src/types/tic.d.ts"
   },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.22.9",
@@ -75,6 +76,6 @@
     "prettier-plugin-tailwindcss": "^0.6.5",
     "shiki": "^1.17.7",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.2"
   }
 }
