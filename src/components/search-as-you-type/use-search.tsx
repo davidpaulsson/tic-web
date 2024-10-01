@@ -2,19 +2,17 @@ import { useQuery } from '@tanstack/react-query';
 
 import { useEffect, useState } from 'react';
 
-import { CompaniesResponse, Hit } from './search.types';
+import { components } from '@/types/tic';
 
 export const useSearch = ({ query = '*' }: { query?: string }) => {
-  const [companies, setCompanies] = useState<Hit[]>([]);
+  const [companies, setCompanies] = useState<components['schemas']['TypesenseCompanyDocumentHit'][]>([]);
   const [found, setFound] = useState<number | undefined>();
   const [searchTimeMs, setSearchTimeMs] = useState<number | undefined>();
-
   const { data, status } = useQuery({
     queryKey: ['search-as-you-type', query],
-    queryFn: async (): Promise<CompaniesResponse> => {
+    queryFn: async (): Promise<components['schemas']['TypesenseCompanyDocumentTypesenseSearchResponse']> => {
       if (query === '*' || query.trim() === '') {
         // Return an empty response if the query is empty
-        // @ts-expect-error
         return { hits: [] };
       } else {
         try {
@@ -62,7 +60,7 @@ export const useSearch = ({ query = '*' }: { query?: string }) => {
 
   useEffect(() => {
     if (status === 'success') {
-      setCompanies(data.hits);
+      setCompanies(data.hits || []);
       setFound(data.found);
       setSearchTimeMs(data.search_time_ms);
     }

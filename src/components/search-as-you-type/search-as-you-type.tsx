@@ -2,7 +2,6 @@
 
 import uniqBy from 'lodash/uniqBy';
 import { Fragment, useState } from 'react';
-import ReactDOM from 'react-dom';
 import { ReactTyped } from 'react-typed';
 
 import { asMoney, asPercentage, cn } from '@/lib/utils';
@@ -17,8 +16,6 @@ export const SearchAsYouType = () => {
   const { companies, found, searchTimeMs } = useSearch({
     query: value,
   });
-
-  ReactDOM.preconnect('https://api.tic.io', { crossOrigin: 'anonymous' });
 
   return (
     <div className="container">
@@ -58,25 +55,31 @@ export const SearchAsYouType = () => {
                   <>
                     <CommandGroup>
                       {companies.map((company) => {
+                        if (!company.document) return null;
                         return (
                           <>
                             <CommandItem key={company.document.id} className="grid gap-2">
                               <div>
                                 <div className="text-base">
-                                  {company.document.names.length > 0
-                                    ? uniqBy(company.document.names, 'nameOrIdentifier').map((name, index) => (
-                                        <Fragment key={index}>
-                                          {name.nameOrIdentifier || '-'}
-                                          {index < uniqBy(company.document.names, 'nameOrIdentifier').length - 1 && ', '}
-                                        </Fragment>
-                                      ))
+                                  {(company.document.names || []).length > 0
+                                    ? uniqBy(company.document.names, 'nameOrIdentifier').map((name, index) => {
+                                        if (!company.document) return null;
+                                        return (
+                                          <Fragment key={index}>
+                                            {name.nameOrIdentifier || '-'}
+                                            {index < uniqBy(company.document.names, 'nameOrIdentifier').length - 1 && ', '}
+                                          </Fragment>
+                                        );
+                                      })
                                     : null}
                                 </div>
 
-                                {company.document.sniCodes.length > 0
+                                {(company.document.sniCodes || []).length > 0
                                   ? (() => {
                                       const uniqueSniCodes = uniqBy(company.document.sniCodes, 'sni_2007Name');
-                                      const sniNames = uniqueSniCodes.map((sniCode) => sniCode.sni_2007Name).filter(Boolean);
+                                      const sniNames = uniqueSniCodes
+                                        .map((sniCode) => sniCode.sni_2007Name)
+                                        .filter((name): name is string => Boolean(name));
                                       const formattedSniNames = new Intl.ListFormat('sv-SE', {
                                         style: 'long',
                                         type: 'conjunction',
