@@ -247,14 +247,14 @@ const CarouselDots = ({ api }: { api: CarouselApi }) => {
 
   return (
     <div className="container flex gap-1 pt-16">
-      <button className="flex gap-2 text-tic-blue-dark" onClick={() => setIsPlaying(!isPlaying)}>
+      <button className="text-tic-purple flex gap-2" onClick={() => setIsPlaying(!isPlaying)}>
         {isPlaying ? <PauseCircle size={12} /> : <PlayCircle size={12} />}
         <span className="sr-only">{isPlaying ? 'Pause' : 'Play'}</span>
       </button>
 
       {Array.from(Array(api?.scrollSnapList().length || 0).keys()).map((index) => (
         <motion.button
-          className="h-3 overflow-hidden rounded-full bg-tic-blue/10"
+          className="bg-tic-blue/10 h-3 overflow-hidden rounded-full"
           initial={false}
           animate={{
             width: index === current ? 64 : 24,
@@ -266,7 +266,7 @@ const CarouselDots = ({ api }: { api: CarouselApi }) => {
           <span className="sr-only">Teknikområde {index + 1}</span>
           {index === current && isPlaying && (
             <motion.span
-              className="block h-3 rounded-full bg-tic-blue/25"
+              className="bg-tic-blue/25 block h-3 rounded-full"
               initial={{ width: 0 }}
               animate={{
                 width: 64,

@@ -16,11 +16,30 @@
     --chart-10: 210 65% 30%;
   }
 
+  html {
+    hanging-punctuation: first last;
+  }
+
+  blockquote {
+    &::before {
+      content: open-quote;
+    }
+
+    &::after {
+      content: close-quote;
+    }
+  }
+
   html,
   body {
     font-family: 'Atkinson Hyperlegible', sans-serif;
     font-weight: 400;
     font-style: normal;
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizelegibility;
   }
 }
 
@@ -33,15 +52,17 @@
     margin-left: auto;
     max-width: 1280px;
   }
-  .prose h1,
-  .prose h2,
-  .prose h3,
-  .prose h4,
-  .prose h5 {
-    @apply text-tic-blue-dark;
-  }
+
   .prose ul li p,
-  .prose ol li p {
+  .prose ol li p,
+  .prose table p {
     margin: 0;
   }
+  .prose a {
+    @apply text-tic-950 no-underline hover:underline;
+  }
+}
+
+.shiki {
+  background-color: transparent !important;
 }

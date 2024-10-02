@@ -53,7 +53,7 @@ export const Carousel = ({ carousel, locale }: { carousel: ContentfulBlockCarous
           },
         }}
       >
-        <CarouselContent className="gap-6 text-tic-blue">
+        <CarouselContent className="text-tic-blue gap-6">
           {carousel.cards.map((card) => (
             <CarouselItem
               key={card.sys.id}

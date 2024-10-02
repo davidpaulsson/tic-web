@@ -71,8 +71,8 @@ export function Arsredovisningar({
 
   return (
     <Card>
-      <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">
-        <div className="flex flex-1 flex-col justify-center gap-1 px-6 py-5 sm:py-6">
+      <CardHeader className="flex flex-col items-stretch space-y-0 border-b !p-0 sm:flex-row">
+        <div className="p-6 md:p-9">
           <CardTitle className="mb-2">Registrerade årsredovisningar</CardTitle>
           <CardDescription className="max-w-prose">
             Digitala årsredovisningar registreras alla dagar i veckan, medan pappersbaserade årsredovisningar endast registreras på helgfria
@@ -95,7 +95,7 @@ export function Arsredovisningar({
                 >
                   <span className="text-muted-foreground flex items-center gap-2 text-xs">
                     <span
-                      className="block h-2 w-2 rounded-full bg-slate-300"
+                      className="block h-2 w-2 rounded-full bg-tic-300"
                       style={{
                         backgroundColor: isVisible && 'color' in config ? config.color : undefined,
                       }}
@@ -109,7 +109,7 @@ export function Arsredovisningar({
         </div>
       </CardHeader>
 
-      <CardContent className="px-2 sm:p-6">
+      <CardContent>
         <ChartContainer config={chartConfig} className="aspect-auto h-80 w-full">
           <LineChart
             accessibilityLayer

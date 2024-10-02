@@ -7,14 +7,27 @@ export type ContentfulPageResponse = {
   total: number;
   skip: number;
   limit: number;
-  items: {
-    fields: {
-      internalTitle: string;
-      title: string;
-      slug: string;
-      blocks: (ContentfulBlockHero | ContentfulBlockProductFeature | ContentfulBlockContent | ContentfulBlockCarousel)[];
-    };
-  }[];
+  items: ContentfulPage[];
+};
+
+export type ContentfulPage = {
+  sys: {
+    id: string;
+    contentType: { sys: { id: 'page' } };
+  };
+  fields: {
+    internalTitle: string;
+    title: string;
+    description: string;
+    slug: string;
+    blocks: (
+      | ContentfulBlockHero
+      | ContentfulBlockProductFeature
+      | ContentfulBlockContent
+      | ContentfulBlockCarousel
+      | ContentfulBlockStatic
+    )[];
+  };
 };
 
 export type ContentfulBlockCarousel = {
@@ -37,6 +50,7 @@ export type ContentfulComponentCard = {
     title: string;
     description: string;
     links: ContentfulPageResponse['items'];
+    icon: 'check' | 'deviation' | 'document' | 'history' | 'intelligence' | 'more' | 'overview' | 'sale' | 'search';
   };
 };
 
@@ -47,16 +61,7 @@ export type ContentfulComponentLink = {
   };
   fields: {
     label: string;
-    link: {
-      sys: {
-        id: string;
-        contentType: { sys: { id: 'page' } };
-      };
-      fields: {
-        title: string;
-        slug: string;
-      };
-    };
+    link: ContentfulPage | ContentfulExternalPage;
   };
 };
 
@@ -78,7 +83,6 @@ export type ContentfulBlockProductFeature = {
     label: string;
     description: string;
     cta: ContentfulComponentLink;
-    icon: ContentfulAsset;
   };
 };
 
@@ -113,7 +117,37 @@ export type ContentfulBlockHero = {
     internalTitle: string;
     title: string;
     subtitle: string;
-    cta: ContentfulComponentLink[];
+    cta: (ContentfulComponentLink | ContentfulComponentStatic)[];
+  };
+};
+
+export type ContentfulBlockStatic = {
+  sys: {
+    id: string;
+    contentType: { sys: { id: 'blockStatic' } };
+  };
+  fields: {
+    internalTitle: string;
+    block:
+      | 'Accountant form'
+      | 'API example'
+      | 'Data sources'
+      | 'Plan selection'
+      | 'Pricing table'
+      | 'Safer and easier business'
+      | 'Testomonials'
+      | 'Search as you type';
+  };
+};
+
+export type ContentfulComponentStatic = {
+  sys: {
+    id: string;
+    contentType: { sys: { id: 'componentStatic' } };
+  };
+  fields: {
+    internalTitle: string;
+    component: '"Get started for free" form';
   };
 };
 
@@ -126,12 +160,18 @@ export type ContentfulNavigationResponse = {
   limit: number;
   items: {
     fields: {
-      links: {
-        fields: {
-          title: string;
-          slug: string;
-        };
-      }[];
+      links: (ContentfulPage | ContentfulExternalPage)[];
     };
   }[];
+};
+
+export type ContentfulExternalPage = {
+  sys: {
+    id: string;
+    contentType: { sys: { id: 'externalPage' } };
+  };
+  fields: {
+    title: string;
+    url: string;
+  };
 };

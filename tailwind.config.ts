@@ -7,10 +7,18 @@ const config = {
   theme: {
     extend: {
       colors: {
-        'tic-blue': {
-          DEFAULT: '#012E5C', // Original color
-          dark: '#01183E', // Darker shade of tic-blue
-          light: '#02468B', // Lighter shade of tic-blue
+        tic: {
+          50: '#ffffff',
+          100: '#f6f6f7',
+          200: '#edf1f3',
+          300: '#dcdedf',
+          400: '#b1bbc4',
+          500: '#708090',
+          600: '#506070',
+          700: '#304050',
+          800: '#203040',
+          900: '#001020',
+          950: '#000010',
         },
       },
       keyframes: {
@@ -22,10 +30,26 @@ const config = {
           from: { height: 'var(--radix-accordion-content-height)' },
           to: { height: '0' },
         },
+        marquee: {
+          from: { transform: 'translateX(0)' },
+          to: { transform: 'translateX(calc(-100% - var(--gap)))' },
+        },
+        'marquee-vertical': {
+          from: { transform: 'translateY(0)' },
+          to: { transform: 'translateY(calc(-100% - var(--gap)))' },
+        },
+        'background-position-spin': {
+          '0%': { backgroundPosition: 'top center' },
+          '100%': { backgroundPosition: 'bottom center' },
+        },
       },
       animation: {
+        'ping-slow': 'ping 2s cubic-bezier(0, 0, 0.2, 1) infinite',
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        marquee: 'marquee var(--duration) linear infinite',
+        'marquee-vertical': 'marquee-vertical var(--duration) linear infinite',
+        backgroundPositionSpin: 'background-position-spin 3000ms infinite alternate',
       },
     },
   },

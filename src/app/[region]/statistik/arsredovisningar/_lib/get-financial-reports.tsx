@@ -1,5 +1,3 @@
-import { useQuery } from '@tanstack/react-query';
-
 import { formatDate } from '@/lib/utils';
 
 interface Root {
@@ -66,51 +64,51 @@ interface SoftwareYtd {
   Digitalaårsredovisningen: number;
 }
 
-export const useFinancialReports = ({ range }: { range: 'daily' | 'monthly' }) => {
-  const { data, error, status } = useQuery({
-    queryKey: ['discrepancies', range],
-    queryFn: async () => {
-      const response = await fetch(`https://api.tic.io/statistics/se/bolagsverket/financial-reports/${range}`);
+export const getFinancialReports = async ({ range }: { range: 'daily' | 'monthly' }) => {
+  try {
+    const response = await fetch(`https://api.tic.io/statistics/se/bolagsverket/financial-reports/${range}`, {
+      next: { revalidate: 3600 }, // 1 hour
+    });
 
-      if (!response.ok) {
-        throw new Error(response.statusText);
-      }
+    if (!response.ok) {
+      throw new Error(response.statusText);
+    }
 
-      const json: Root = await response.json();
+    const json: Root = await response.json();
 
-      // Prepare data for electronic reports chart
-      const eReportsData = json.eReports.map(([date, value]) => ({
-        date: formatDate(range === 'monthly' ? `${date}01` : date.toString()),
-        value,
-      }));
+    // Prepare data for electronic reports chart
+    const eReportsData = json.eReports.map(([date, value]) => ({
+      date: formatDate(range === 'monthly' ? `${date}01` : date.toString()),
+      value,
+    }));
 
-      // Prepare data for paper reports chart
-      const pReportsData = json.pReports.map(([date, value]) => ({
-        date: formatDate(range === 'monthly' ? `${date}01` : date.toString()),
-        value,
-      }));
+    // Prepare data for paper reports chart
+    const pReportsData = json.pReports.map(([date, value]) => ({
+      date: formatDate(range === 'monthly' ? `${date}01` : date.toString()),
+      value,
+    }));
 
-      // Prepare data for discrepancies chart
-      const discrepanciesData = json.intelligence.map(([date, identifiedIssues, percentage]) => ({
-        date: formatDate(range === 'monthly' ? `${date}01` : date.toString().padStart(6, '0')),
-        identifiedIssues,
-        percentage: percentage !== -1 ? percentage * 100 : null,
-      }));
+    // Prepare data for discrepancies chart
+    const discrepanciesData = json.intelligence.map(([date, identifiedIssues, percentage]) => ({
+      date: formatDate(range === 'monthly' ? `${date}01` : date.toString().padStart(6, '0')),
+      identifiedIssues,
+      percentage: percentage !== -1 ? percentage * 100 : null,
+    }));
 
-      // Prepare data for software chart
-      const softwareData = Object.entries(json.softwareYTD).map(([name, value]) => ({
-        name,
-        value,
-      }));
+    // Prepare data for software chart
+    const softwareData = Object.entries(json.softwareYTD).map(([name, value]) => ({
+      name,
+      value,
+    }));
 
-      return {
-        eReportsData,
-        pReportsData,
-        discrepanciesData,
-        softwareData,
-      };
-    },
-  });
-
-  return { data, error, status };
+    return {
+      eReportsData,
+      pReportsData,
+      discrepanciesData,
+      softwareData,
+    };
+  } catch (error) {
+    console.error('Error fetching financial reports:', error);
+    throw error;
+  }
 };

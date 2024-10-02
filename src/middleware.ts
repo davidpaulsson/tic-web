@@ -28,6 +28,7 @@ export function middleware(request: NextRequest) {
   // `/_next/` and `/api/` are ignored by the watcher, but we need to ignore files in `public` manually.
   if (
     [
+      '/icon.svg',
       '/og-image.png',
       '/og-image-statistik.png',
       // ...other files in `public`
@@ -52,15 +53,6 @@ export function middleware(request: NextRequest) {
     switch (country) {
       case 'SE':
         locale = 'sv';
-        break;
-      case 'NO':
-        locale = 'no';
-        break;
-      case 'DE':
-        locale = 'de';
-        break;
-      case 'GB':
-        locale = 'en';
         break;
     }
     if (locale) {

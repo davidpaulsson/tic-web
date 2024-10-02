@@ -1,7 +1,56 @@
+import { Suspense } from 'react';
+
+import { HeroSubtitle, HeroTitle } from '@/components/hero';
+import { Skeleton } from '@/components/ui/skeleton';
+
+import { RangeSwitch } from './_components/range-switch';
 import { Reports } from './_components/reports';
 
-export default async function Page() {
-  return <Reports />;
+export default async function Page({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}) {
+  const range = (searchParams.range as 'daily' | 'monthly') || 'daily';
+
+  return (
+    <div className="container my-8 space-y-16 md:space-y-40">
+      <div>
+        <div>
+          <HeroTitle>Bolagsverket statistik årsredovisningar</HeroTitle>
+          <HeroSubtitle>
+            Statistik över registrerade årsredovisningar (inklusive delårsrapporter) hos Bolagsverket. Uppdateras dagligen runt midnatt.
+            Använd vårt kostnadsfria API för att ladda ner mer statistik – läs mer på{' '}
+            <a
+              className="text-tic-700 no-underline hover:underline"
+              href="https://docs.tic.io/api-statistics/bolagsverket/financial-reports-daily"
+            >
+              docs.tio.io
+            </a>
+            .
+          </HeroSubtitle>
+        </div>
+
+        <RangeSwitch range={range} />
+      </div>
+
+      <div className="grid grid-cols-1 gap-4">
+        <Suspense
+          fallback={
+            <>
+              <Skeleton className="h-96" />
+              <Skeleton className="h-96" />
+              <Skeleton className="h-96" />
+            </>
+          }
+        >
+          <Reports range={range} />
+        </Suspense>
+      </div>
+    </div>
+  );
 }
 
 const metadata = {

@@ -1,18 +1,7 @@
-/* eslint-disable @next/next/no-page-custom-font */
-import { Atkinson_Hyperlegible } from 'next/font/google';
+import { Locale, i18n } from '@/i18n-config';
 
-import { FrontChat } from '@/components/front-chat';
-import { ReactQueryClientProvider } from '@/components/react-query-client-provider';
-import { TooltipProvider } from '@/components/ui/tooltip';
-
-import '../globals.css';
-
-const hyperlegible = Atkinson_Hyperlegible({
-  weight: ['400', '700'],
-  display: 'swap',
-  subsets: ['latin'],
-  preload: true,
-});
+import { Footer } from '@/components/footer';
+import { Header } from '@/components/header';
 
 export default function RootLayout({
   children,
@@ -21,14 +10,12 @@ export default function RootLayout({
   children: React.ReactNode;
   params: { slug: string[] };
 }>) {
+  const region = (params?.slug?.[0] || i18n.defaultLocale) as Locale;
   return (
-    <html lang={params?.slug?.[0] || 'sv'}>
-      <body className={hyperlegible.className}>
-        <TooltipProvider delayDuration={100}>
-          <ReactQueryClientProvider>{children}</ReactQueryClientProvider>
-        </TooltipProvider>
-        <FrontChat />
-      </body>
-    </html>
+    <>
+      <Header region={region} />
+      <main className="mt-16 md:mt-40">{children}</main>
+      <Footer region={region} />
+    </>
   );
 }
