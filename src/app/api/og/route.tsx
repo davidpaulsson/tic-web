@@ -23,10 +23,8 @@ export async function GET(request: Request) {
         : searchParams.get('title')
       : 'The Intelligence Company';
 
-    const descriptionRaw =
-      searchParams.get('description') ||
-      'Börja kostnadsfritt med företagsinformation och en modern kreditupplysningstjänst med alla företagsformer och privatpersoner. Vår AI-plattform ger säkra kredit- och affärsbeslut och vår blixtsnabba sökmotor hittar nya möjligheter på rekordtid.';
-    const description = descriptionRaw.length > 260 ? descriptionRaw.slice(0, 260) + '…' : descriptionRaw;
+    const descriptionRaw = searchParams.get('description');
+    const description = descriptionRaw && descriptionRaw.length > 260 ? descriptionRaw.slice(0, 260) + '…' : descriptionRaw || null;
 
     return new ImageResponse(
       (
@@ -46,7 +44,7 @@ export async function GET(request: Request) {
           {logo}
           <div style={{ display: 'flex', flexDirection: 'column' }}>
             <div style={{ fontSize: 72 }}>{title}</div>
-            <div style={{ fontSize: 24, marginTop: 36, color: '#b1bbc4', lineHeight: '1.75' }}>{description}</div>
+            {description !== null && <div style={{ fontSize: 24, marginTop: 36, color: '#b1bbc4', lineHeight: '1.75' }}>{description}</div>}
           </div>
         </div>
       ),
