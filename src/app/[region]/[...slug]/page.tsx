@@ -50,7 +50,7 @@ export async function generateMetadata({ params }: Readonly<{ params: { region: 
     openGraph: {
       images: [
         {
-          url: `/api/og?title=${content.title}`,
+          url: `/api/og?title=${content.title}&description=${content.description}`,
           width: 1200,
           height: 630,
           alt: content.description,
