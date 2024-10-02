@@ -4,6 +4,7 @@ import { Locale } from '@/i18n-config';
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import confetti from 'canvas-confetti';
+import { usePlausible } from 'next-plausible';
 import { startTransition, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
@@ -16,6 +17,7 @@ import { Input } from '@/components/ui/input';
 import { submitForm } from './contact-sales.action';
 
 export const ContactSales = ({ region }: { region: Locale }) => {
+  const plausible = usePlausible();
   const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted'>('idle');
   const [message, setMessage] = useState<string | null>(null);
 
@@ -58,6 +60,7 @@ export const ContactSales = ({ region }: { region: Locale }) => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    plausible('"Contact sales" form submitted');
     setStatus('submitting');
 
     startTransition(async () => {

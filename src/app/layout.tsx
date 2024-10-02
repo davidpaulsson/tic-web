@@ -45,7 +45,7 @@ export default function RootLayout({
   params: { slug: string[] };
 }>) {
   return (
-    <PlausibleProvider domain="tic.io" trackOutboundLinks>
+    <PlausibleProvider domain="tic.io" trackOutboundLinks={true}>
       <html lang={params?.slug?.[0] || i18n.defaultLocale}>
         <body className={cn(hyperlegible.className, 'text-base text-tic-950')}>
           <DotPattern

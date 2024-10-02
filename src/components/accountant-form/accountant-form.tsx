@@ -3,6 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 
 import confetti from 'canvas-confetti';
+import { usePlausible } from 'next-plausible';
 import Image from 'next/image';
 import Link from 'next/link';
 import { startTransition, useState } from 'react';
@@ -34,6 +35,7 @@ const formSchema = z.object({
 });
 
 export const AccountantForm = () => {
+  const plausible = usePlausible();
   const [status, setStatus] = useState<'idle' | 'submitting' | 'submitted'>('idle');
   const [message, setMessage] = useState<string | null>(null);
 
@@ -49,6 +51,7 @@ export const AccountantForm = () => {
 
   // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
+    plausible('"Accountant" form submitted');
     setStatus('submitting');
 
     startTransition(async () => {
