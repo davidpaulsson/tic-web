@@ -62,6 +62,7 @@ export async function generateMetadata({ params }: Readonly<{ params: { region: 
 
 export default async function Page({ params }: Readonly<{ params: { region: Locale; slug: string[] } }>) {
   const cf = getContentfulClient();
+
   const entry = (await cf.getEntries({
     content_type: 'page',
     'fields.slug': [params.region, params.slug].flat().join('/'),
