@@ -39,10 +39,10 @@ export async function generateMetadata({ params }: Readonly<{ params: { region: 
     openGraph: {
       images: [
         {
-          url: `/api/og?title=${content.title}&description=${content.description}`,
+          url: `/api/og?title=${content.title}${content.description ? `&description=${content.description}` : ''}`,
           width: 1200,
           height: 630,
-          alt: content.description,
+          alt: content.description || '',
         },
       ],
     },
