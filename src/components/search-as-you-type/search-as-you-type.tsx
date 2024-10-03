@@ -56,6 +56,7 @@ export const SearchAsYouType = () => {
                     <CommandGroup>
                       {companies.map((company) => {
                         if (!company.document) return null;
+
                         return (
                           <>
                             <CommandItem key={company.document.id} className="grid gap-2">
@@ -119,7 +120,16 @@ export const SearchAsYouType = () => {
 
                                 <div className="space-y-1">
                                   <span className="block text-sm leading-tight text-slate-500">Resultat</span>
-                                  <div className="text-sm leading-tight">
+                                  <div
+                                    className={cn('text-sm leading-tight', {
+                                      'text-green-600':
+                                        company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK &&
+                                        company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK > 0,
+                                      'text-red-600':
+                                        company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK &&
+                                        company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK < 0,
+                                    })}
+                                  >
                                     {company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK
                                       ? asMoney(company.document.mostRecentFinancialSummary?.rs_ProfitAfterFinancialItemsK * 1000)
                                       : '-'}
@@ -127,8 +137,17 @@ export const SearchAsYouType = () => {
                                 </div>
 
                                 <div className="space-y-1">
-                                  <span className="block text-sm leading-tight text-slate-500">Vinstmarginal</span>
-                                  <div className="text-sm leading-tight">
+                                  <span className="flex gap-1 text-sm leading-tight text-slate-500">Vinstmarginal</span>
+                                  <div
+                                    className={cn('text-sm leading-tight', {
+                                      'text-green-600':
+                                        company.document.mostRecentFinancialSummary?.km_NetProfitMargin &&
+                                        company.document.mostRecentFinancialSummary?.km_NetProfitMargin > 0,
+                                      'text-red-600':
+                                        company.document.mostRecentFinancialSummary?.km_NetProfitMargin &&
+                                        company.document.mostRecentFinancialSummary?.km_NetProfitMargin < 0,
+                                    })}
+                                  >
                                     {company.document.mostRecentFinancialSummary?.km_NetProfitMargin
                                       ? asPercentage(company.document.mostRecentFinancialSummary?.km_NetProfitMargin * 100)
                                       : '-'}
