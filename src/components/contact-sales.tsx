@@ -72,6 +72,8 @@ export const ContactSales = ({ region }: { region: Locale }) => {
           confetti();
           setStatus('submitted');
           form.reset();
+        } else {
+          setStatus('idle');
         }
       } catch (error) {
         toast('Uh-oh. Något gick fel. Försök igen.');
