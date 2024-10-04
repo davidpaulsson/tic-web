@@ -63,10 +63,13 @@ export const AccountantForm = () => {
         });
         setMessage(message);
         toast(message);
+
         if (success) {
           confetti();
           setStatus('submitted');
           form.reset();
+        } else {
+          setStatus('idle');
         }
       } catch (error) {
         toast('Uh-oh. Något gick fel. Försök igen.');
